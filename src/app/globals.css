@@ -1,21 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-  /* ---- Design system: dark engineering ---- */
-  --color-bg: #0a0d12;
-  --color-bg-raised: #10141c;
-  --color-bg-panel: #131926;
-  --color-border: #1f2735;
-  --color-border-strong: #2c3648;
-  --color-ink: #e6ebf2;
-  --color-ink-dim: #9aa7b8;
-  --color-ink-faint: #64748b;
-  --color-accent: #4cc9b0;
-  --color-accent-strong: #7be3cd;
+  /* ---- Signal Violet — studio-dark engineering world ---- */
+  --color-bg: #07060c;
+  --color-bg-raised: #0d0b16;
+  --color-bg-panel: #131022;
+  --color-border: #221d33;
+  --color-border-strong: #322a4a;
+  --color-ink: #f1eef9;
+  --color-ink-dim: #a49dbd;
+  --color-ink-faint: #837da6;
+  --color-accent: #8b5cf6;
+  --color-accent-strong: #a78bfa;
+  --color-accent-deep: #6d28d9;
   --color-amber: #e8b45a;
-  --color-blue: #6aa5f8;
+  --color-rose: #f472b6;
+  --color-cyan: #22d3ee;
 
-  --font-display: "Space Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono Variable", ui-monospace, "SF Mono", monospace;
 }
@@ -26,7 +28,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 5.5rem;
 }
 
 body {
@@ -34,33 +36,77 @@ body {
   color: var(--color-ink);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
 
 ::selection {
-  background: rgba(76, 201, 176, 0.25);
+  background: rgba(139, 92, 246, 0.35);
 }
 
-/* Subtle grid backdrop for hero (drawn on ::before so the mask
-   never affects the section's content) */
-.grid-backdrop {
-  position: relative;
-}
-.grid-backdrop::before {
-  content: "";
+/* ---------- Hero atmosphere ---------- */
+.hero-glow {
   position: absolute;
-  inset: 0;
   pointer-events: none;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 44px 44px;
-  mask-image: radial-gradient(ellipse 80% 65% at 50% 0%, black 35%, transparent 100%);
-}
-.grid-backdrop > * {
-  position: relative;
+  border-radius: 9999px;
+  filter: blur(90px);
 }
 
-/* Scroll-reveal (activated by Reveal component) */
+.contour {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* ---------- Orchestrated hero entrance (one authored moment) ---------- */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero-rise {
+  opacity: 0;
+  animation: rise-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.hero-rise-1 { animation-delay: 0.05s; }
+.hero-rise-2 { animation-delay: 0.16s; }
+.hero-rise-3 { animation-delay: 0.27s; }
+.hero-rise-4 { animation-delay: 0.38s; }
+.hero-rise-5 { animation-delay: 0.5s; }
+
+@keyframes draw-edge {
+  from { stroke-dashoffset: var(--edge-len, 400); }
+  to { stroke-dashoffset: 0; }
+}
+.graph-edge {
+  stroke-dasharray: var(--edge-len, 400);
+  animation: draw-edge 1.6s cubic-bezier(0.65, 0, 0.35, 1) 0.5s forwards;
+  stroke-dashoffset: var(--edge-len, 400);
+}
+@keyframes node-pop {
+  from { opacity: 0; transform: scale(0.4); }
+  to { opacity: 1; transform: scale(1); }
+}
+.graph-node {
+  opacity: 0;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: node-pop 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes pulse-route {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0.4; }
+}
+.graph-route {
+  animation: pulse-route 3.4s ease-in-out 2.2s infinite;
+}
+
+/* Legacy scroll-reveal (still used by the case-study page) */
 .reveal {
   opacity: 0;
   transform: translateY(16px);
@@ -72,14 +118,12 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .hero-rise { opacity: 1; animation: none; }
+  .graph-edge { stroke-dashoffset: 0; animation: none; }
+  .graph-node { opacity: 1; animation: none; }
+  .graph-route { animation: none; }
   *,
   *::before,
   *::after {
@@ -91,7 +135,7 @@ body {
 /* Focus visibility for keyboard navigation */
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-accent-strong);
   outline-offset: 3px;
   border-radius: 4px;
 }

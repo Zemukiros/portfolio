@@ -39,3 +39,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local design-tooling checkout and agent skills
+.impeccable/
+skills-lock.json
+
+# Local agent tooling (not app code)
+.claude/
+.agents/
+.mcp.json
+
+# Internal strategy doc (kept in the Claude project, not the public repo)
+PRODUCT.md

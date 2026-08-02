@@ -99,12 +99,15 @@ export const projectFootnote =
 export const statusStyles: Record<ProjectStatus, { label: string; className: string }> = {
   Live: { label: "Live", className: "text-accent-strong border-accent/40 bg-accent/10" },
   "Completed locally": {
-    label: "Completed · deployment in progress",
+    label: "Built & verified · deploying",
     className: "text-accent-strong border-accent/40 bg-accent/10",
   },
   "In development": {
     label: "In development",
-    className: "text-blue border-blue/40 bg-blue/10",
+    className: "text-accent-strong border-accent/30 bg-accent/5",
   },
-  Planned: { label: "Planned", className: "text-amber border-amber/40 bg-amber/10" },
+  Planned: {
+    label: "Up next",
+    className: "text-ink-dim border-border-strong bg-transparent",
+  },
 };

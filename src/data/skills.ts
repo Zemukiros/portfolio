@@ -1,63 +1,68 @@
-export type SkillCategory = {
-  title: string;
-  skills: string[];
+export type Tech = {
+  name: string;
+  /** simple-icons export key, or "aws" for the custom AWS mark, or none for a text chip */
+  icon?: string;
 };
 
-export const skillCategories: SkillCategory[] = [
+export type SkillGroup = {
+  title: string;
+  items: Tech[];
+};
+
+export const skillGroups: SkillGroup[] = [
   {
     title: "Languages",
-    skills: ["Java", "Python", "TypeScript", "JavaScript", "SQL", "C", "R", "HTML/CSS"],
-  },
-  {
-    title: "Backend & APIs",
-    skills: [
-      "Spring Boot",
-      "FastAPI",
-      "Django",
-      "REST API design",
-      "Maven",
-      "Object-oriented design",
-      "Design patterns",
+    items: [
+      { name: "Java", icon: "siOpenjdk" },
+      { name: "Python", icon: "siPython" },
+      { name: "TypeScript", icon: "siTypescript" },
+      { name: "JavaScript", icon: "siJavascript" },
+      { name: "SQL", icon: "siPostgresql" },
+      { name: "C", icon: "siC" },
+      { name: "R", icon: "siR" },
+      { name: "HTML5", icon: "siHtml5" },
+      { name: "CSS", icon: "siCss" },
     ],
   },
   {
-    title: "Frontend",
-    skills: ["Next.js", "React", "Tailwind CSS", "Responsive design", "Accessibility"],
-  },
-  {
-    title: "Databases & Data",
-    skills: ["PostgreSQL", "Relational modeling", "NumPy", "Pandas", "Apache Spark"],
-  },
-  {
-    title: "AI Engineering",
-    skills: [
-      "LLM API integration (Anthropic, OpenAI)",
-      "AI-assisted development workflows",
-      "Prompt design",
+    title: "Backend & Frameworks",
+    items: [
+      { name: "Spring Boot", icon: "siSpringboot" },
+      { name: "FastAPI", icon: "siFastapi" },
+      { name: "Django", icon: "siDjango" },
+      { name: "React", icon: "siReact" },
+      { name: "Next.js", icon: "siNextdotjs" },
+      { name: "Tailwind CSS", icon: "siTailwindcss" },
+      { name: "Maven", icon: "siApachemaven" },
+      { name: "REST APIs" },
+      { name: "Design patterns" },
     ],
   },
   {
-    title: "Cloud & DevOps",
-    skills: [
-      "AWS (Solutions Architect – Associate)",
-      "Docker",
-      "GitHub Actions",
-      "CI/CD",
-      "Linux",
+    title: "Data & AI",
+    items: [
+      { name: "PostgreSQL", icon: "siPostgresql" },
+      { name: "NumPy", icon: "siNumpy" },
+      { name: "Pandas", icon: "siPandas" },
+      { name: "Apache Spark", icon: "siApachespark" },
+      { name: "Anthropic API" },
+      { name: "OpenAI API" },
+      { name: "LLM integration" },
     ],
   },
   {
-    title: "Testing & Engineering Tools",
-    skills: [
-      "JUnit",
-      "Mockito",
-      "Pytest",
-      "Frontend component testing",
-      "Benchmarking",
-      "Git/GitHub",
-      "Structured logging",
-      "Profiling",
-      "Agile/Scrum",
+    title: "Cloud, DevOps & Testing",
+    items: [
+      { name: "AWS", icon: "aws" },
+      { name: "Docker", icon: "siDocker" },
+      { name: "GitHub Actions", icon: "siGithubactions" },
+      { name: "Vercel", icon: "siVercel" },
+      { name: "Linux", icon: "siLinux" },
+      { name: "Git", icon: "siGit" },
+      { name: "JUnit 5", icon: "siJunit5" },
+      { name: "Pytest", icon: "siPytest" },
+      { name: "Mockito" },
+      { name: "Benchmarking" },
     ],
   },
 ];

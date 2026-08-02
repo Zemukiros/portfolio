@@ -3,15 +3,12 @@ import { profile, isLinkedInPlaceholder } from "@/data/profile";
 export default function Footer() {
   return (
     <footer className="border-t border-border">
-      <div className="mx-auto flex w-full max-w-5xl flex-col items-center justify-between gap-4 px-5 py-10 text-sm text-ink-faint sm:flex-row sm:px-8">
+      <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-4 px-5 py-10 text-sm text-ink-faint sm:flex-row sm:px-8">
         <p>
           © {new Date().getFullYear()} {profile.shortName} · {profile.location}
         </p>
-        <div className="flex items-center gap-5">
-          <a
-            href={`mailto:${profile.email}`}
-            className="transition-colors hover:text-ink"
-          >
+        <div className="flex items-center gap-6">
+          <a href={`mailto:${profile.email}`} className="transition-colors hover:text-ink">
             Email
           </a>
           <a
