@@ -1,11 +1,6 @@
 /**
  * Single source of truth for personal/contact info.
  *
- * ⚠️ PLACEHOLDER — REPLACE BEFORE DEPLOY:
- * `linkedin` below is a placeholder. Replace the value with your real
- * LinkedIn profile URL (e.g. "https://www.linkedin.com/in/your-handle/").
- * While it contains "REPLACE", the UI renders a disabled "LinkedIn (link
- * pending)" label instead of a broken link.
  */
 export const profile = {
   name: "Zemariam K. Haftegebriel",
@@ -17,7 +12,7 @@ export const profile = {
   email: "zemariamkiros@gmail.com",
   github: "https://github.com/Zemukiros",
   githubUser: "Zemukiros",
-  linkedin: "REPLACE_WITH_LINKEDIN_URL", // TODO: replace before deploy
+  linkedin: "https://www.linkedin.com/in/zemariam-kiros-haftegebriel-882544240/", // TODO: replace before deploy
   focusAreas: [
     "Backend & API engineering",
     "AI-enabled systems",
