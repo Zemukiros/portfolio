@@ -1,314 +1,445 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
-import StatusBadge from "@/components/StatusBadge";
+import SectionHeading from "@/components/SectionHeading";
+import { IntelliRouteMockup } from "@/components/ProjectMockups";
+import {
+  PreferenceMockup,
+  ArchitectureDiagram,
+  FallbackDiagram,
+} from "@/components/CaseStudyVisuals";
 import { projects } from "@/data/projects";
 
 export const metadata: Metadata = {
   title: "IntelliRoute — Case Study",
   description:
-    "Route intelligence platform: Dijkstra + Yen's K-shortest paths in Java/Spring Boot, deterministic FastAPI preference ranking, and an interactive Next.js comparison UI. 125 automated tests, recorded benchmarks, green CI.",
+    "Flagship case study: route intelligence platform with Dijkstra + Yen's K-shortest paths in Java/Spring Boot, a deterministic FastAPI preference ranker, and a Next.js comparison UI — 125 automated tests, CI-recorded benchmarks, engineered fallback behavior.",
 };
 
 const project = projects.find((p) => p.slug === "intelliroute")!;
 
-function H2({ children }: { children: React.ReactNode }) {
-  return (
-    <h2 className="mt-14 font-display text-2xl font-semibold tracking-tight text-ink">
-      {children}
-    </h2>
-  );
-}
-
-function Divider() {
-  return <div className="mt-3 h-px w-12 bg-accent/50" aria-hidden="true" />;
-}
+const GRADIENT = "linear-gradient(135deg, #37167f 0%, #6d28d9 55%, #8b5cf6 115%)";
 
 const benchmarks = [
   { workload: "Dijkstra shortest path", n100: "88 µs", n1k: "754 µs", n5k: "4.05 ms" },
   { workload: "Yen's K-shortest (K=3)", n100: "1.11 ms", n1k: "7.68 ms", n5k: "68.1 ms" },
 ];
 
+const decisions = [
+  {
+    title: "Two services over one codebase",
+    tradeoff: "isolation over convenience",
+    body: "Preference interpretation evolves on a different axis than pathfinding, so the ranker lives behind an HTTP contract — swappable (deterministic today, LLM-assisted next) without touching the routing engine. The price was real cross-service failure handling; that price became the fallback design.",
+    wide: true,
+  },
+  {
+    title: "JVM for the routing core",
+    tradeoff: "predictability over novelty",
+    body: "Graph algorithms are the heart of the system. Java + Spring Boot give predictable performance and a mature testing story for correctness — including closed roads and excluded edges in Yen's algorithm.",
+    wide: false,
+  },
+  {
+    title: "Rules before LLMs",
+    tradeoff: "explainability over hype",
+    body: "The v1 ranker is rule-based: testable, free, and explainable, with 54 tests pinning its behavior and a human-readable reason on every recommendation. It also establishes the contract any future LLM mode inherits.",
+    wide: false,
+  },
+  {
+    title: "CI + Docker from day one",
+    tradeoff: "proof over promises",
+    body: "Every merge runs four GitHub Actions jobs: Java tests with a live end-to-end fallback drill, Python tests plus benchmarks, frontend lint/test/build, and a Docker Compose build with a smoke test.",
+    wide: true,
+  },
+];
+
+const testSuites = [
+  { label: "Java · JUnit", count: 62, pct: 100, detail: "Algorithm correctness, road-metadata domain, API contracts, fallback client" },
+  { label: "Python · pytest", count: 54, pct: 87, detail: "Preference parsing, synonyms, combined preferences, confidence, explanations" },
+  { label: "Frontend · components", count: 9, pct: 15, detail: "Comparison UI states, offline and degraded-service rendering" },
+];
+
+const roadmap = [
+  { when: "Next", what: "Public deployment — Vercel frontend, free-tier hosts for the Java and Python services; the live-demo link on this page goes real." },
+  { when: "Then", what: "LLM-assisted ranking mode behind the same HTTP contract and fallback path as the deterministic ranker." },
+  { when: "Then", what: "PostgreSQL persistence and real map-data import tooling to replace generated graphs." },
+  { when: "Later", what: "A* with comparison benchmarks, authentication, and load testing." },
+];
+
 export default function IntelliRouteCaseStudy() {
   return (
-    <article className="mx-auto w-full max-w-4xl px-5 pb-24 pt-28 sm:px-8">
-      <Reveal>
-        <Link
-          href="/#projects"
-          className="font-mono text-xs text-ink-faint transition-colors hover:text-ink"
-        >
-          ← Back to projects
-        </Link>
-        <div className="mt-6 flex flex-wrap items-center gap-4">
-          <h1 className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
-            IntelliRoute
-          </h1>
-          <StatusBadge status={project.status} />
-        </div>
-        <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink-dim">
-          {project.oneLiner} Built as a three-service system — Java/Spring Boot
-          routing engine, Python/FastAPI preference ranker, and a Next.js
-          comparison UI — verified by 125 automated tests and recorded benchmarks.
-        </p>
-        <div className="mt-6 flex flex-wrap gap-4 text-sm">
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-md bg-accent px-4 py-2 font-semibold text-bg transition-colors hover:bg-accent-strong"
-          >
-            View repository ↗
-          </a>
-          <span className="rounded-md border border-border px-4 py-2 text-ink-faint">
-            Public deployment: in progress
-          </span>
-        </div>
-      </Reveal>
+    <>
+      {/* ================= Case hero ================= */}
+      <section className="relative overflow-hidden" style={{ background: GRADIENT }}>
+        <div className="mx-auto w-full max-w-6xl px-5 pb-0 pt-28 sm:px-8">
+          <Reveal>
+            <Link
+              href="/#work"
+              className="font-mono text-xs text-white/70 transition-colors hover:text-white"
+            >
+              ← All projects
+            </Link>
+            <div className="mt-6 flex flex-wrap items-center gap-4">
+              <h1 className="font-display text-[clamp(3rem,7vw,5.25rem)] font-extrabold leading-none tracking-[-0.03em] text-white">
+                IntelliRoute<span className="text-white/50">.</span>
+              </h1>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 font-mono text-[11px] font-medium text-white backdrop-blur-sm">
+                <span className="h-1.5 w-1.5 rounded-full bg-white/80" aria-hidden="true" />
+                Built &amp; verified · deploying
+              </span>
+            </div>
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/85 sm:text-xl">
+              A route intelligence platform that doesn&apos;t just find the shortest
+              path — it computes real alternatives and ranks them against what you
+              asked for in plain language, with an explanation for every choice.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-4 text-sm font-medium">
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-xl bg-white px-6 py-3 text-accent-deep transition-colors hover:bg-white/85"
+              >
+                View the repository ↗
+              </a>
+              {project.liveUrl ? (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/90 hover:text-white"
+                >
+                  Open the live app ↗
+                </a>
+              ) : (
+                <span className="rounded-xl border border-white/25 px-6 py-3 text-white/75">
+                  Live app · soon
+                </span>
+              )}
+            </div>
+            <div className="mt-6 flex flex-wrap gap-2 pb-2">
+              {project.stack.map((t) => (
+                <span key={t} className="rounded-full bg-white/12 px-3 py-1 font-mono text-[11px] text-white/85">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </Reveal>
 
-      {/* Fact strip */}
-      <Reveal>
-        <dl className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          {/* hero mockup bleeding out of the gradient */}
+          <div className="relative z-10 mt-10 sm:mt-12">
+            <div className="mx-auto max-w-4xl rotate-[2deg] rounded-2xl shadow-[0_30px_80px_rgba(7,6,12,0.6)]">
+              <IntelliRouteMockup />
+            </div>
+          </div>
+        </div>
+        {/* fade the gradient into the page ground under the mockup */}
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-bg" aria-hidden="true" />
+      </section>
+
+      {/* metric strip */}
+      <section className="mx-auto w-full max-w-6xl px-5 sm:px-8">
+        <dl className="mt-12 flex flex-wrap items-center justify-between gap-x-10 gap-y-4 rounded-2xl border border-border bg-bg-raised px-6 py-5 sm:px-8">
           {[
             ["125", "automated tests"],
             ["4.05 ms", "Dijkstra @ 5k nodes"],
             ["4 / 4", "CI jobs green"],
             ["$0", "infrastructure cost"],
-          ].map(([value, label]) => (
-            <div
-              key={label}
-              className="rounded-xl border border-border bg-bg-raised p-4 text-center"
-            >
-              <dt className="order-2 mt-1 block font-mono text-[11px] uppercase tracking-wider text-ink-faint">
-                {label}
-              </dt>
-              <dd className="order-1 block font-display text-2xl font-semibold text-accent-strong">
-                {value}
-              </dd>
+          ].map(([v, l]) => (
+            <div key={l} className="flex items-baseline gap-2.5">
+              <dd className="font-mono text-xl font-semibold text-accent-strong">{v}</dd>
+              <dt className="text-xs text-ink-dim">{l}</dt>
             </div>
           ))}
         </dl>
-      </Reveal>
+      </section>
 
-      <Reveal>
-        <H2>Problem</H2>
-        <Divider />
-        <p className="mt-5 leading-relaxed text-ink-dim">
-          The &ldquo;shortest&rdquo; route is rarely the route people actually want.
-          Real routing choices trade off speed against tolls, safety, scenery, and
-          road closures — and most demo routing projects stop at a single Dijkstra
-          run. IntelliRoute answers a harder question: given several viable
-          alternatives, <em>which route best matches what the user asked for in
-          plain language</em>{" "}
-          (&ldquo;fastest but avoid tolls&rdquo;, &ldquo;scenic and
-          safe&rdquo;), and can the system explain why?
+      {/* ================= Problem ================= */}
+      <section className="mx-auto w-full max-w-6xl px-5 py-24 sm:px-8">
+        <p className="mx-auto max-w-3xl text-center font-display text-[clamp(1.5rem,3.2vw,2.25rem)] font-semibold leading-snug tracking-tight">
+          <span className="text-ink">
+            The &ldquo;shortest&rdquo; route is rarely the route people actually want.
+          </span>{" "}
+          <span className="text-ink-faint">
+            Real choices trade speed against tolls, safety, scenery, and closures —
+            and most demo routing projects stop at a single Dijkstra run.
+          </span>
         </p>
-      </Reveal>
-
-      <Reveal>
-        <H2>System capabilities</H2>
-        <Divider />
-        <ul className="mt-5 space-y-3">
-          {[
-            "Computes shortest paths with Dijkstra's algorithm over an adjacency-list road graph carrying rich metadata: road-type speeds, tolls, safety and scenic scores, and closures.",
-            "Generates K alternative routes with Yen's K-shortest loopless-paths algorithm built on an exclusion-capable Dijkstra.",
-            "Ranks alternatives against free-text preferences via a deterministic Python/FastAPI service — synonym parsing, combined preferences, confidence scores, and human-readable explanations.",
-            "Degrades gracefully: when the ranking service is unreachable, the Java API falls back to local scoring and reports the degradation in the response (java-local-fallback).",
-            "Interactive comparison UI: preference input with suggestion chips, ranked route cards with badges, on-graph route highlighting, and explicit offline/error states.",
-          ].map((c) => (
-            <li key={c} className="flex gap-2.5 leading-relaxed text-ink-dim">
-              <span className="mt-[9px] h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden="true" />
-              {c}
-            </li>
-          ))}
-        </ul>
-        <p className="mt-5 rounded-lg border border-amber/30 bg-amber/5 p-4 text-sm leading-relaxed text-ink-dim">
-          <span className="font-semibold text-amber">Accuracy note:</span> the
-          current ranking layer is deterministic, rule-based scoring — not an LLM.
-          An LLM-assisted ranking mode is on the roadmap and will only be claimed
-          here once implemented and tested.
+        <p className="mx-auto mt-6 max-w-2xl text-center leading-relaxed text-ink-dim">
+          IntelliRoute answers the harder question: given several viable
+          alternatives, which one best matches{" "}
+          <em>&ldquo;fastest but avoid tolls&rdquo;</em> or{" "}
+          <em>&ldquo;scenic and safe&rdquo;</em> — and can the system explain why?
         </p>
-      </Reveal>
+      </section>
 
-      <Reveal>
-        <H2>Architecture</H2>
-        <Divider />
-        <figure className="mt-6 overflow-hidden rounded-xl border border-border bg-bg-raised p-4 sm:p-6">
-          <svg
-            viewBox="0 0 760 300"
-            role="img"
-            aria-label="IntelliRoute architecture: Next.js frontend calls the Spring Boot routing API, which calls the FastAPI ranking service with a local fallback"
-            className="h-auto w-full"
-          >
-            <defs>
-              <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                <path d="M0 0L10 5L0 10z" fill="#4cc9b0" />
-              </marker>
-            </defs>
+      {/* ================= Product experience ================= */}
+      <section className="mx-auto w-full max-w-6xl px-5 py-24 sm:px-8">
+        <SectionHeading
+          title="The"
+          accent="experience"
+          lede="Type a preference the way you'd say it. IntelliRoute parses it, generates real alternatives, and hands back a ranked, explained comparison."
+        />
+        <div className="mt-12 grid items-center gap-10 lg:grid-cols-2">
+          <div>
+            <PreferenceMockup />
+          </div>
+          <div>
+            <ul className="space-y-6">
+              {[
+                ["Free-text preferences", "Synonym-aware parsing turns “cheap and pretty” into weighted scenic / toll / safety factors — no forms, no dropdowns."],
+                ["Real alternatives, not one answer", "Yen's K-shortest loopless paths on an exclusion-capable Dijkstra generate genuinely distinct candidates over rich road metadata: speeds, tolls, safety and scenic scores, closures."],
+                ["Ranked and explained", "Every recommendation carries a confidence score and a human-readable reason, so the #1 route never feels like a black box."],
+                ["Honest degraded states", "The comparison UI renders offline and degraded-service states explicitly — the product stays trustworthy when a dependency isn't."],
+              ].map(([t, b]) => (
+                <li key={t} className="flex gap-4">
+                  <svg width="18" height="18" viewBox="0 0 14 14" className="mt-1.5 shrink-0" aria-hidden="true">
+                    <path d="M2 7h8M7 3.5 10.5 7 7 10.5" stroke="#8b5cf6" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <div>
+                    <h3 className="font-display text-lg font-bold text-ink">{t}</h3>
+                    <p className="mt-1.5 text-[15px] leading-relaxed text-ink-dim">{b}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div>
+          <p className="mt-10 rounded-2xl border border-accent/25 bg-accent/5 p-5 text-sm leading-relaxed text-ink-dim">
+            <span className="font-semibold text-accent-strong">Deterministic by design:</span>{" "}
+            ranking v1 is rule-based — testable, free, and explainable, with 54 tests
+            pinning its behavior. An LLM-assisted mode ships next behind the same
+            contract and fallback path, and gets claimed here only once it&apos;s
+            built and tested.
+          </p>
+        </div>
+      </section>
 
-            {/* Frontend */}
-            <rect x="20" y="90" width="180" height="120" rx="10" fill="#131926" stroke="#2c3648" />
-            <text x="110" y="125" textAnchor="middle" fill="#e6ebf2" fontSize="15" fontWeight="600" fontFamily="monospace">Next.js UI</text>
-            <text x="110" y="150" textAnchor="middle" fill="#9aa7b8" fontSize="11" fontFamily="monospace">TypeScript · React</text>
-            <text x="110" y="168" textAnchor="middle" fill="#9aa7b8" fontSize="11" fontFamily="monospace">route comparison</text>
-            <text x="110" y="186" textAnchor="middle" fill="#9aa7b8" fontSize="11" fontFamily="monospace">9 component tests</text>
-
-            {/* Spring Boot */}
-            <rect x="290" y="70" width="200" height="160" rx="10" fill="#131926" stroke="#4cc9b0" />
-            <text x="390" y="103" textAnchor="middle" fill="#e6ebf2" fontSize="15" fontWeight="600" fontFamily="monospace">Spring Boot API</text>
-            <text x="390" y="128" textAnchor="middle" fill="#9aa7b8" fontSize="11" fontFamily="monospace">Dijkstra + Yen K-shortest</text>
-            <text x="390" y="146" textAnchor="middle" fill="#9aa7b8" fontSize="11" fontFamily="monospace">road metadata domain</text>
-            <text x="390" y="164" textAnchor="middle" fill="#9aa7b8" fontSize="11" fontFamily="monospace">local fallback scoring</text>
-            <text x="390" y="182" textAnchor="middle" fill="#9aa7b8" fontSize="11" fontFamily="monospace">62 JUnit tests</text>
-            <text x="390" y="207" textAnchor="middle" fill="#4cc9b0" fontSize="10" fontFamily="monospace">/api/routes/alternatives · /recommend</text>
-
-            {/* FastAPI */}
-            <rect x="570" y="90" width="170" height="120" rx="10" fill="#131926" stroke="#2c3648" />
-            <text x="655" y="125" textAnchor="middle" fill="#e6ebf2" fontSize="15" fontWeight="600" fontFamily="monospace">FastAPI ranker</text>
-            <text x="655" y="150" textAnchor="middle" fill="#9aa7b8" fontSize="11" fontFamily="monospace">deterministic scoring</text>
-            <text x="655" y="168" textAnchor="middle" fill="#9aa7b8" fontSize="11" fontFamily="monospace">confidence + explains</text>
-            <text x="655" y="186" textAnchor="middle" fill="#9aa7b8" fontSize="11" fontFamily="monospace">54 pytest tests</text>
-
-            {/* Arrows */}
-            <line x1="200" y1="140" x2="284" y2="140" stroke="#4cc9b0" strokeWidth="1.5" markerEnd="url(#arrow)" />
-            <text x="242" y="130" textAnchor="middle" fill="#64748b" fontSize="10" fontFamily="monospace">REST</text>
-            <line x1="490" y1="140" x2="564" y2="140" stroke="#4cc9b0" strokeWidth="1.5" markerEnd="url(#arrow)" />
-            <text x="527" y="130" textAnchor="middle" fill="#64748b" fontSize="10" fontFamily="monospace">HTTP</text>
-            <line x1="620" y1="215" x2="475" y2="240" stroke="#e8b45a" strokeWidth="1.2" strokeDasharray="4 4" markerEnd="url(#arrow)" />
-            <text x="560" y="245" textAnchor="middle" fill="#e8b45a" fontSize="10" fontFamily="monospace">ranker down → java-local-fallback</text>
-
-            {/* CI strip */}
-            <rect x="20" y="262" width="720" height="28" rx="6" fill="#10141c" stroke="#1f2735" />
-            <text x="380" y="280" textAnchor="middle" fill="#9aa7b8" fontSize="11" fontFamily="monospace">GitHub Actions CI · API + e2e fallback drill · ranking + benchmarks · web build · Docker smoke</text>
-          </svg>
-          <figcaption className="mt-3 text-center font-mono text-xs text-ink-faint">
-            Three services, one contract: ranked-route responses always report
-            which ranking path produced them.
-          </figcaption>
-        </figure>
-      </Reveal>
-
-      <Reveal>
-        <H2>Technology decisions</H2>
-        <Divider />
-        <div className="mt-5 space-y-4">
-          {[
-            [
-              "Java + Spring Boot for the routing core",
-              "The graph algorithms are the heart of the system, and the JVM gives predictable performance plus a mature testing story (JUnit) for algorithm correctness — including edge cases like closed roads and excluded edges in Yen's algorithm.",
-            ],
-            [
-              "A separate Python/FastAPI ranking service",
-              "Preference interpretation evolves on a different axis than pathfinding. Isolating it behind an HTTP contract lets the ranker be swapped (deterministic today, LLM-assisted later) without touching the routing engine — and forced a real cross-service failure-handling design.",
-            ],
-            [
-              "Deterministic ranking before LLM ranking",
-              "A rule-based ranker is testable, free, and explainable — 54 tests pin its behavior. It also establishes the fallback layer any future LLM integration will need anyway.",
-            ],
-            [
-              "Docker Compose + GitHub Actions from day one",
-              "Every merge runs four CI jobs: Java tests with a live end-to-end fallback drill, Python tests plus benchmarks, frontend lint/test/build, and a Docker Compose build with smoke test.",
-            ],
-          ].map(([title, body]) => (
-            <div key={title} className="rounded-xl border border-border bg-bg-raised p-5">
-              <h3 className="font-display font-semibold text-ink">{title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-dim">{body}</p>
+      {/* ================= Architecture ================= */}
+      <section className="mx-auto w-full max-w-6xl px-5 py-24 sm:px-8">
+        <SectionHeading
+          title="The"
+          accent="architecture"
+          lede="Three services, one contract: ranked-route responses always report which ranking path produced them."
+        />
+        <div className="mt-12">
+          <div className="overflow-x-auto rounded-3xl border border-border bg-bg-raised p-5 sm:p-8">
+            <div className="min-w-[640px]">
+              <ArchitectureDiagram />
+            </div>
+          </div>
+        </div>
+        <div className="mt-10 grid gap-5 md:grid-cols-2">
+          {decisions.map((d) => (
+            <div
+              key={d.title}
+              className={`h-full rounded-3xl border p-7 transition-colors sm:p-8 ${
+                d.wide ? "md:col-span-2" : ""
+              } ${
+                d.tradeoff === "isolation over convenience"
+                  ? "border-accent/30 bg-accent/5"
+                  : "border-border bg-bg-raised hover:border-border-strong"
+              }`}
+            >
+              <h3
+                className={`font-display font-bold text-ink ${
+                  d.tradeoff === "isolation over convenience" ? "text-2xl" : "text-xl"
+                }`}
+              >
+                {d.title}{" "}
+                <span className="font-medium text-accent-strong">— {d.tradeoff}</span>
+              </h3>
+              <p
+                className={`mt-3 max-w-3xl leading-relaxed text-ink-dim ${
+                  d.tradeoff === "isolation over convenience" ? "text-base" : "text-[15px]"
+                }`}
+              >
+                {d.body}
+              </p>
             </div>
           ))}
         </div>
-      </Reveal>
+      </section>
 
-      <Reveal>
-        <H2>Testing &amp; CI evidence</H2>
-        <Divider />
-        <ul className="mt-5 space-y-3">
-          {[
-            "62 Java tests — algorithm correctness (Dijkstra, Yen's with exclusions), road-metadata domain, API contracts, and ranking-client fallback behavior.",
-            "54 Python tests — preference parsing, synonym handling, combined preferences, confidence scoring, and explanation output.",
-            "9 frontend component tests — comparison UI states including offline and degraded-service rendering.",
-            "End-to-end fallback drill in CI: the pipeline kills the ranking service and asserts the Java API degrades to local scoring with the correct degradation flag.",
-            "All four GitHub Actions jobs green on main; a real CI failure (a mocked-client test clobbered by a request-factory override, plus a Docker smoke-test race) was diagnosed and fixed — documented in the repo's changelog.",
-          ].map((t) => (
-            <li key={t} className="flex gap-2.5 text-sm leading-relaxed text-ink-dim">
-              <span className="mt-[8px] h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden="true" />
-              {t}
-            </li>
-          ))}
-        </ul>
-      </Reveal>
-
-      <Reveal>
-        <H2>Benchmarks</H2>
-        <Divider />
-        <p className="mt-5 text-sm leading-relaxed text-ink-dim">
-          Measured in CI on a 2-core container with a fixed random seed (42), on
-          generated road graphs of 100 / 1,000 / 5,000 nodes. Preference ranking
-          of a candidate set completes in ~91 µs.
-        </p>
-        <div className="mt-5 overflow-x-auto rounded-xl border border-border">
-          <table className="w-full min-w-[480px] text-left text-sm">
-            <caption className="sr-only">
-              Algorithm benchmark timings by graph size
-            </caption>
-            <thead>
-              <tr className="border-b border-border bg-bg-panel font-mono text-xs text-ink-faint">
-                <th scope="col" className="px-4 py-3 font-medium">Workload</th>
-                <th scope="col" className="px-4 py-3 font-medium">100 nodes</th>
-                <th scope="col" className="px-4 py-3 font-medium">1,000 nodes</th>
-                <th scope="col" className="px-4 py-3 font-medium">5,000 nodes</th>
-              </tr>
-            </thead>
-            <tbody>
-              {benchmarks.map((b) => (
-                <tr key={b.workload} className="border-b border-border last:border-0">
-                  <th scope="row" className="px-4 py-3 font-medium text-ink">
-                    {b.workload}
-                  </th>
-                  <td className="px-4 py-3 font-mono text-accent-strong">{b.n100}</td>
-                  <td className="px-4 py-3 font-mono text-accent-strong">{b.n1k}</td>
-                  <td className="px-4 py-3 font-mono text-accent-strong">{b.n5k}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      {/* ================= Reliability ================= */}
+      <section className="mx-auto w-full max-w-6xl px-5 py-24 sm:px-8">
+        <SectionHeading
+          title="Built to"
+          accent="degrade gracefully"
+          lede="Cross-service failure isn't an edge case — it's a designed, tested behavior."
+        />
+        <div className="mt-12">
+          <div className="overflow-x-auto rounded-3xl border border-border bg-bg-raised p-5 sm:p-8">
+            <div className="min-w-[640px]">
+              <FallbackDiagram />
+            </div>
+          </div>
+          <p className="mt-4 font-mono text-xs leading-relaxed text-ink-faint">
+            Drilled in CI on every merge — the pipeline kills the ranker and
+            asserts this exact path.
+          </p>
         </div>
-      </Reveal>
+      </section>
 
-      <Reveal>
-        <H2>Current limitations &amp; roadmap</H2>
-        <Divider />
-        <ul className="mt-5 space-y-3">
-          {[
-            "Not yet publicly deployed — production deployment (Vercel frontend, Java + Python services on a free-tier backend host) is the next milestone.",
-            "Ranking is deterministic; an LLM-assisted ranking mode with the same fallback contract is planned.",
-            "Graph data is generated/seeded; PostgreSQL persistence and real map-data import tooling are planned.",
-            "Planned next: A* with comparison benchmarks, authentication, and load testing.",
-          ].map((t) => (
-            <li key={t} className="flex gap-2.5 text-sm leading-relaxed text-ink-dim">
-              <span className="mt-[8px] h-1 w-1 shrink-0 rounded-full bg-amber" aria-hidden="true" />
-              {t}
-            </li>
-          ))}
-        </ul>
-      </Reveal>
-
-      <Reveal>
-        <div className="mt-14 flex flex-wrap gap-4 border-t border-border pt-8">
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-md bg-accent px-5 py-2.5 text-sm font-semibold text-bg transition-colors hover:bg-accent-strong"
-          >
-            Explore the code ↗
-          </a>
-          <Link
-            href="/#contact"
-            className="rounded-md border border-border-strong px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent"
-          >
-            Contact me
-          </Link>
+      {/* ================= Evidence ================= */}
+      <section className="mx-auto w-full max-w-6xl px-5 py-24 sm:px-8">
+        <SectionHeading
+          title="The"
+          accent="evidence"
+          lede="Every claim on this page maps to something you can run: a test suite, a CI job, or a recorded benchmark."
+        />
+        <div className="mt-12 grid gap-6 lg:grid-cols-2">
+          {/* test suites */}
+          <div>
+            <div className="h-full rounded-3xl border border-border bg-bg-raised p-7 sm:p-8">
+              <h3 className="font-display text-xl font-bold text-ink">
+                125 automated tests
+              </h3>
+              <div className="mt-6 space-y-5">
+                {testSuites.map((s) => (
+                  <div key={s.label}>
+                    <div className="flex items-baseline justify-between gap-3">
+                      <p className="font-mono text-xs text-ink-dim">{s.label}</p>
+                      <p className="font-display text-lg font-bold text-accent-strong">{s.count}</p>
+                    </div>
+                    <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-bg-panel">
+                      <div className="h-full rounded-full bg-accent" style={{ width: `${s.pct}%` }} />
+                    </div>
+                    <p className="mt-2 text-xs leading-relaxed text-ink-dim">{s.detail}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          {/* CI + war story */}
+          <div>
+            <div className="flex h-full flex-col gap-6">
+              <div className="rounded-3xl border border-border bg-bg-raised p-7 sm:p-8">
+                <h3 className="font-display text-xl font-bold text-ink">
+                  CI that attacks the system
+                </h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-ink-dim">
+                  The pipeline doesn&apos;t just run unit tests — it kills the
+                  ranking service mid-run and asserts the API degrades to local
+                  scoring with the correct degradation flag. Four jobs, green on
+                  main, on every merge.
+                </p>
+              </div>
+              <div className="flex-1 rounded-3xl border border-border bg-bg-raised p-7 sm:p-8">
+                <h3 className="font-display text-xl font-bold text-ink">
+                  A real failure, kept on the record
+                </h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-ink-dim">
+                  A real CI failure — a mocked ranking client clobbered by a
+                  request-factory override, plus a Docker smoke test racing the
+                  web container&apos;s boot — was diagnosed, fixed, and documented
+                  in the changelog. The failure and the fix are both part of the
+                  repo&apos;s history, on purpose.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-      </Reveal>
-    </article>
+
+        {/* benchmarks */}
+        <div>
+          <div className="mt-6 rounded-3xl border border-border bg-bg-raised p-7 sm:p-8">
+            <div className="flex flex-wrap items-baseline justify-between gap-3">
+              <h3 className="font-display text-xl font-bold text-ink">Recorded benchmarks</h3>
+              <p className="font-mono text-xs text-ink-faint">
+                CI container · 2 cores · fixed seed 42 · generated graphs
+              </p>
+            </div>
+            <div className="mt-6 overflow-x-auto">
+              <table className="w-full min-w-[520px] text-left text-sm">
+                <caption className="sr-only">Algorithm benchmark timings by graph size</caption>
+                <thead>
+                  <tr className="border-b border-border font-mono text-xs text-ink-faint">
+                    <th scope="col" className="pb-3 pr-4 font-medium">Workload</th>
+                    <th scope="col" className="pb-3 pr-4 font-medium">100 nodes</th>
+                    <th scope="col" className="pb-3 pr-4 font-medium">1,000 nodes</th>
+                    <th scope="col" className="pb-3 font-medium">5,000 nodes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {benchmarks.map((b) => (
+                    <tr key={b.workload} className="border-b border-border last:border-0">
+                      <th scope="row" className="py-3.5 pr-4 font-medium text-ink">{b.workload}</th>
+                      <td className="py-3.5 pr-4 font-mono text-accent-strong">{b.n100}</td>
+                      <td className="py-3.5 pr-4 font-mono text-accent-strong">{b.n1k}</td>
+                      <td className="py-3.5 font-mono text-accent-strong">{b.n5k}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-4 text-xs text-ink-dim">
+              Preference ranking of a candidate set completes in ~91 µs.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= Status & roadmap ================= */}
+      <section className="mx-auto w-full max-w-6xl px-5 py-24 sm:px-8">
+        <SectionHeading
+          title="Where it's"
+          accent="headed"
+          lede="Built and verified locally; deployment is the next milestone, and the roadmap keeps compounding."
+        />
+        <div className="mt-12">
+          <ol className="relative space-y-8 border-l border-border pl-8">
+            {roadmap.map((r, i) => (
+              <li key={r.what} className="relative">
+                <span
+                  className={`absolute -left-[37px] top-1 h-4 w-4 rounded-full border-2 ${
+                    i === 0 ? "border-accent bg-accent/30" : "border-border-strong bg-bg"
+                  }`}
+                  aria-hidden="true"
+                />
+                <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">{r.when}</p>
+                <p className="mt-1.5 max-w-2xl leading-relaxed text-ink-dim">{r.what}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* ================= Close ================= */}
+      <section className="mx-auto w-full max-w-6xl px-5 pb-28 sm:px-8">
+        <div>
+          <div
+            className="flex flex-wrap items-center justify-between gap-6 rounded-3xl p-9 sm:p-12"
+            style={{ background: GRADIENT }}
+          >
+            <div>
+              <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">
+                Open the code<span className="text-white/50">.</span>
+              </h2>
+              <p className="mt-2 max-w-md text-[15px] leading-relaxed text-white/80">
+                Three services, 125 tests, the CI pipeline, and every decision
+                record — all public.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-4 text-sm font-medium">
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-xl bg-white px-6 py-3 text-accent-deep transition-colors hover:bg-white/85"
+              >
+                GitHub ↗
+              </a>
+              <Link href="/#contact" className="text-white/90 transition-colors hover:text-white">
+                Contact me
+              </Link>
+              <Link href="/#work" className="text-white/90 transition-colors hover:text-white">
+                All projects
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

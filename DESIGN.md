@@ -146,7 +146,8 @@ polychrome zones that never leak into chrome.
 - **Deep Violet** (`accent-deep`, #6d28d9): pressed/hover fill for primary buttons, text color on white action chips, and the dense end of glow atmospheres (`rgba(109,40,217,0.28)`).
 
 ### Secondary (project gradient identities)
-Each showcase project owns one fixed gradient, used only on its carousel card:
+Each showcase project owns one fixed gradient, used only on its identity
+surfaces (carousel card, case-study hero and closing panel):
 - **IntelliRoute** (featured): `linear-gradient(135deg, #37167f 0%, #6d28d9 55%, #8b5cf6 115%)` — the house violet.
 - **Rhythmiq**: `linear-gradient(135deg, #4a1268 0%, #86198f 60%, #d946ef 130%)` — magenta.
 - **QueryGuard**: `linear-gradient(135deg, #1e1b5e 0%, #4338ca 60%, #818cf8 130%)` — indigo.
@@ -184,7 +185,9 @@ their true brand hex via `noLift`. Never recolor a brand mark to violet.
 
 **The Accent Period Rule.** Display and section headings end with a violet
 period (`<span class="text-accent">.</span>`). It is the signature
-punctuation of the world; one per heading, never mid-sentence.
+punctuation of the world; one per heading, never mid-sentence. On gradient
+surfaces, where violet would vanish, the closing period renders
+`text-white/50` instead.
 
 ## Typography
 
@@ -242,7 +245,7 @@ tech-mark chips cast real shadows against the gradient.
 
 ### Shadow Vocabulary
 - **CTA glow** (`box-shadow: 0 8px 30px rgba(139,92,246,0.35)`): primary buttons only; intensifies to `0.5` alpha on hover. Light emission from the violet fill, not elevation.
-- **Mockup drop** (`box-shadow: 0 24px 60px rgba(7,6,12,0.55)`): under the tilted mockup window on each gradient carousel card.
+- **Mockup drop** (`box-shadow: 0 24px 60px rgba(7,6,12,0.55)`): under the tilted mockup window on each gradient carousel card. The case-study page hero mockup uses a deeper cut of the same shadow (`0 30px 80px rgba(7,6,12,0.6)`).
 - **Floating chip** (Tailwind `shadow-lg`): under the white circular tech-mark chips floating on gradient cards.
 
 ### Named Rules
@@ -303,7 +306,7 @@ than disappearing or faking a destination.
 - **Border:** 1px Hairline on dark cards; gradient cards are borderless
 - **Internal Padding:** `p-8` (32px), `sm:p-10` (40px) on hero-level panels; carousel headers `p-7 sm:p-8`
 - **Hover behavior:** interactive cards lift `-translate-y-1.5` (300ms)
-- **Gradient panels:** reserved for identity — the three project carousel cards and the AWS certification card (`linear-gradient(140deg, #2a1758 0%, #6d28d9 70%, #8b5cf6 110%)`, white text). Do not spawn gradient panels for anything without an identity of its own.
+- **Gradient panels:** reserved for identity — the three project carousel cards, each project's case-study hero and closing CTA panel (same identity gradient), and the AWS certification card (`linear-gradient(140deg, #2a1758 0%, #6d28d9 70%, #8b5cf6 110%)`, white text). Do not spawn gradient panels for anything without an identity of its own.
 
 ### Project Carousel (signature)
 Full-bleed scroll-snap showcase: each project is one gradient-identity
@@ -331,6 +334,17 @@ floating cards `+16/+12px`, each with a spring-like ease
 `float-bob` (5.5s, ±7px, staggered delays). Parallax and bob are disabled
 under `(hover: none)` and `prefers-reduced-motion`.
 
+### Case-Study Surfaces (signature)
+Project case-study pages (`/projects/intelliroute` is the template) extend
+the system with a fixed set of conventions:
+- **Gradient page hero:** the project's gradient identity fills the hero, then fades into the page ground via a bottom overlay (`h-40 bg-gradient-to-b from-transparent to-bg`); a `rotate-[2deg]` hero mockup (16px radius, deep mockup shadow) bleeds across the seam into the first section. Hero text is white; actions reuse the white action chip and "· soon" placeholder; stack tags are the gradient (white/12) variant.
+- **Metric strip:** a single hairline `rounded-2xl` bg-raised `dl` row — mono semibold 1.25rem Lifted Violet value beside a 12px ink-dim label. This inline pairing is the sanctioned metric presentation on case studies; big-number stat cards are not.
+- **Decision cards:** titles voiced as a tradeoff — "X over Y" plus an em-dashed tradeoff phrase in medium Lifted Violet ("— isolation over convenience"). The keystone decision gets the accent-tinted wide panel (`border-accent/30 bg-accent/5`, `md:col-span-2`); the rest are standard bg-raised cards with hover border upgrade. Callout asides use the same accent tint (`border-accent/25 bg-accent/5`).
+- **Diagram suite:** large schematic SVG diagrams — the architecture diagram with its glowing featured node (violet stroke + gaussian-blur glow filter), violet marker arrows, dashed Lifted Violet fallback arc, mint CI status dots; and the three-beat fallback sequence (dashed border = unreachable beat, hot `#1c1533` accent-stroked final beat). Diagrams sit inside `overflow-x-auto` rounded-3xl panels with a `min-w-[640px]` inner wrapper so mobile scrolls instead of shrinking.
+- **Evidence blocks:** test-suite bars (6px full-pill track in bg-panel, violet fill) and benchmark tables (mono Lifted Violet data cells, hairline row borders, mono ink-faint headers, `sr-only` caption) present only recorded numbers.
+- **Roadmap timeline:** a `border-l` hairline list, 32px indent, absolute 16px dots — current item `border-accent bg-accent/30`, future items `border-border-strong bg-bg` — with mono uppercase tracked "when" labels in Signal Violet.
+- **Motion:** one `Reveal` wraps the hero block; all body sections arrive static (headings via the shared `SectionHeading` reveal).
+
 ### Illustrations
 Two authored families, both product-true. **Line-work vignettes** (hero
 monitor graph, experience side panels): gray edges in Hairline Strong
@@ -351,15 +365,15 @@ screenshots faked as UI, or gradient stand-ins.
 One authored entrance plus a small sanctioned interaction set:
 - **Hero entrance:** `hero-rise` (rise-in: 26px lift + fade, 0.9s `cubic-bezier(0.16,1,0.3,1)`, five stagger steps at 0.05-0.5s). The graph draw/pop keyframes (`draw-edge`, `node-pop`, `pulse-route`) remain defined for graph illustrations.
 - **Hero idle:** `float-bob` (5.5s ease-in-out, ±7px, staggered) on floating cards and carousel tech chips; three-layer pointer parallax (see Hero Scene).
-- **Section-heading reveals:** the `Reveal` wrapper (IntersectionObserver, threshold 0.1, `-40px` bottom margin, one-shot) applies `.reveal` — 16px lift + fade over 0.6s ease — to section headings only; section bodies arrive static.
+- **Section-heading reveals:** the `Reveal` wrapper (IntersectionObserver, threshold 0.1, `-40px` bottom margin, one-shot) applies `.reveal` — 16px lift + fade over 0.6s ease — to section headings and the case-study page hero block only; section bodies arrive static.
 - **Hover set:** card lift `-translate-y-1.5` (300ms), skill-chip lift `-translate-y-0.5` (200ms), mockup tilt deepen (500ms), and `transition-colors` everywhere else.
 
 `prefers-reduced-motion` collapses all of it to final state instantly
 (opacity 1, transforms none, universal 0.01ms override); parallax and bob
 are additionally skipped on touch (`hover: none`). **The One Authored
 Moment Rule (amended).** Orchestrated entrance animation lives in the hero;
-scroll entrances exist only as the single per-section heading reveal —
-never on card grids, lists, or body content.
+scroll entrances exist only as the single per-section heading reveal and
+the case-study hero block — never on card grids, lists, or body content.
 
 ## Do's and Don'ts
 
@@ -377,14 +391,7 @@ never on card grids, lists, or body content.
 - **Don't** introduce polychrome outside the three sanctioned zones, recolor brand marks to violet, or use the unused cyan token without first assigning it a documented role.
 - **Don't** add box shadows on the dark ground — shadows live only as the CTA glow and the gradient-card mockup/chip shadows.
 - **Don't** use JetBrains Mono for headings, paragraphs, or buttons; mono means data.
-- **Don't** spread scroll reveals beyond section headings — one `Reveal` per heading; body content arrives static (the standalone `.reveal` class also survives as legacy on the old case-study page).
-- **Don't** create gradient panels without an identity to carry; the three project cards and the certification card are the set.
+- **Don't** spread scroll reveals beyond section headings and the case-study hero — one `Reveal` per heading; body content arrives static.
+- **Don't** create gradient panels without an identity to carry; project identity surfaces (carousel cards, case-study hero and close) and the certification card are the set.
 - **Don't** replace authored SVG illustration with stock imagery, emoji, glyph-font icons, or abstract gradient blobs.
 
----
-
-*Known boundary: `/projects/intelliroute` (the case-study page) predates this
-system — it still uses the legacy standalone `.reveal` styling patterns and
-simpler layout and is scheduled for redesign. Do not treat that page as a
-source of system rules; this document describes the homepage system it will
-be migrated to.*

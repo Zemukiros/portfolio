@@ -3,32 +3,11 @@ import HeroScene from "@/components/HeroScene";
 import SocialLinks from "@/components/SocialLinks";
 import ProjectCarousel from "@/components/ProjectCarousel";
 import ExperienceTabs from "@/components/ExperienceTabs";
-import Reveal from "@/components/Reveal";
+import SectionHeading from "@/components/SectionHeading";
 import { TechIcon, AwsMark } from "@/components/TechIcon";
 import { profile } from "@/data/profile";
 import { skillGroups } from "@/data/skills";
 import { education, certifications } from "@/data/education";
-
-function SectionHeading({
-  title,
-  accent,
-  lede,
-}: {
-  title: string;
-  accent?: string;
-  lede?: string;
-}) {
-  return (
-    <Reveal className="max-w-2xl">
-      <h2 className="font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
-        {title}
-        {accent && <span className="text-accent-strong"> {accent}</span>}
-        <span className="text-accent">.</span>
-      </h2>
-      {lede && <p className="mt-4 text-lg leading-relaxed text-ink-dim">{lede}</p>}
-    </Reveal>
-  );
-}
 
 export default function Home() {
   return (

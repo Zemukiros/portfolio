@@ -4,7 +4,7 @@
  * each product's real (or planned) interface, not stock screenshots.
  */
 
-function Window({
+export function Window({
   title,
   children,
   height = 330,
