@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Developer Portfolio — Zemariam K. Haftegebriel
 
-## Getting Started
+Personal engineering portfolio: backend, AI-enabled systems, and cloud
+architecture. Built with Next.js (App Router), TypeScript, and Tailwind CSS v4,
+deployed on Vercel.
 
-First, run the development server:
+**Live:** _URL added after first deployment_
+
+## Highlights
+
+- Fully static output (no server runtime needed) — fast and free to host.
+- Structured content model: all profile, skills, experience, education, and
+  project data lives in `src/data/*.ts`, so content updates never touch layout code.
+- Honest project statuses (`Live` / `Completed locally` / `In development` /
+  `Planned`) enforced by a typed status system.
+- IntelliRoute case study with architecture diagram (inline SVG), verified test
+  counts, and CI-recorded benchmarks.
+- Self-hosted variable fonts (Fontsource) — no Google Fonts network dependency.
+- Accessibility: semantic landmarks, skip link, keyboard-visible focus styles,
+  `prefers-reduced-motion` support, accessible contrast on dark surfaces.
+
+## ⚠️ Before deploying
+
+1. **LinkedIn URL placeholder** — edit `src/data/profile.ts` and replace
+   `REPLACE_WITH_LINKEDIN_URL` with your real LinkedIn profile URL. Until then
+   the site intentionally shows "LinkedIn — coming soon" instead of a broken link.
+2. **AWS certification verify link** — optionally add `verifyUrl` in
+   `src/data/education.ts` when the Credly/AWS verification link is at hand.
+
+## Local development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev    # http://localhost:3000
+npm run build  # production build (static)
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+  data/        # all content (profile, skills, education, experience, projects)
+  components/  # Nav, Footer, Section, Reveal, ProjectCard, StatusBadge
+  app/         # layout, home page, /projects/intelliroute case study
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Content accuracy policy
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Every claim on this site maps to verifiable evidence (repositories, test
+output, CI runs, recorded benchmarks). Planned work is always labeled
+"Planned" and never presented as completed.
