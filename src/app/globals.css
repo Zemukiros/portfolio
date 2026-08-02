@@ -106,6 +106,40 @@ body {
   animation: pulse-route 3.4s ease-in-out 2.2s infinite;
 }
 
+/* ---------- Hero parallax layers ---------- */
+.parallax-scene {
+  --px: 0;
+  --py: 0;
+}
+.parallax-back {
+  transform: translate3d(calc(var(--px) * -14px), calc(var(--py) * -10px), 0);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.parallax-mid {
+  transform: translate3d(calc(var(--px) * 6px), calc(var(--py) * 4px), 0);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.parallax-front {
+  transform: translate3d(calc(var(--px) * 16px), calc(var(--py) * 12px), 0);
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes float-bob {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -7px; }
+}
+.float-bob {
+  animation: float-bob 5.5s ease-in-out infinite;
+}
+
+/* ---------- Showcase carousel ---------- */
+.carousel {
+  scrollbar-width: none;
+}
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
 /* Legacy scroll-reveal (still used by the case-study page) */
 .reveal {
   opacity: 0;
@@ -124,6 +158,10 @@ body {
   .graph-edge { stroke-dashoffset: 0; animation: none; }
   .graph-node { opacity: 1; animation: none; }
   .graph-route { animation: none; }
+  .float-bob { animation: none; }
+  .parallax-back,
+  .parallax-mid,
+  .parallax-front { transform: none; }
   *,
   *::before,
   *::after {

@@ -1,8 +1,9 @@
 import Link from "next/link";
-import HeroGraph, { RouteStrip } from "@/components/HeroGraph";
+import HeroScene from "@/components/HeroScene";
 import SocialLinks from "@/components/SocialLinks";
-import ProjectShowcase from "@/components/ProjectShowcase";
+import ProjectCarousel from "@/components/ProjectCarousel";
 import ExperienceTabs from "@/components/ExperienceTabs";
+import Reveal from "@/components/Reveal";
 import { TechIcon, AwsMark } from "@/components/TechIcon";
 import { profile } from "@/data/profile";
 import { skillGroups } from "@/data/skills";
@@ -18,14 +19,14 @@ function SectionHeading({
   lede?: string;
 }) {
   return (
-    <div className="max-w-2xl">
+    <Reveal className="max-w-2xl">
       <h2 className="font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
         {title}
         {accent && <span className="text-accent-strong"> {accent}</span>}
         <span className="text-accent">.</span>
       </h2>
       {lede && <p className="mt-4 text-lg leading-relaxed text-ink-dim">{lede}</p>}
-    </div>
+    </Reveal>
   );
 }
 
@@ -90,15 +91,15 @@ export default function Home() {
               </Link>
             </div>
             <p className="hero-rise hero-rise-5 mt-10 font-mono text-xs tracking-wide text-ink-faint">
-              {profile.location} · AWS Certified Solutions Architect · B.S. CS, May 2027
+              {profile.location} · B.S. Computer Science — May 2027
             </p>
-            <div className="hero-rise hero-rise-5 mt-10 rounded-2xl border border-border bg-bg-raised/60 p-4 lg:hidden">
-              <RouteStrip />
+            <div className="hero-rise hero-rise-5 mt-12 flex justify-center lg:hidden">
+              <HeroScene />
             </div>
           </div>
 
           <div className="hero-rise hero-rise-3 relative hidden justify-center lg:flex">
-            <HeroGraph />
+            <HeroScene />
           </div>
         </div>
 
@@ -156,7 +157,7 @@ export default function Home() {
                 {group.items.map((tech) => (
                   <li
                     key={tech.name}
-                    className="flex items-center gap-2.5 rounded-xl border border-border bg-bg-raised py-2.5 pl-3 pr-4 transition-colors hover:border-border-strong"
+                    className="flex items-center gap-2.5 rounded-xl border border-border bg-bg-raised py-2.5 pl-3 pr-4 transition-[border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-border-strong"
                   >
                     {tech.icon === "aws" ? (
                       <AwsMark size={22} />
@@ -181,8 +182,8 @@ export default function Home() {
           accent="work"
           lede="Systems with real architecture behind them — algorithms, services, tests, and pipelines you can open and run."
         />
-        <div className="mt-12">
-          <ProjectShowcase />
+        <div className="mt-6">
+          <ProjectCarousel />
         </div>
       </section>
 

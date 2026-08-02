@@ -20,15 +20,18 @@ export function TechIcon({
   size = 34,
   className = "",
   title,
+  noLift = false,
 }: {
   slug: string;
   size?: number;
   className?: string;
   title?: string;
+  /** Render the true brand color even for dark marks (for light surfaces). */
+  noLift?: boolean;
 }) {
   const icon = icons[slug];
   if (!icon) return null;
-  const fill = LIFT[slug] ?? `#${icon.hex}`;
+  const fill = noLift ? `#${icon.hex}` : (LIFT[slug] ?? `#${icon.hex}`);
   return (
     <svg
       role="img"
