@@ -169,14 +169,14 @@ export default function ProjectCarousel() {
                     <p className="mt-3 font-mono text-xs text-white/70">{p.headlineMetric}</p>
                   )}
                 </div>
-                <div className="flex flex-col items-end gap-2">
-                  {card.featured && (
+                {card.featured && (
+                  <div className="flex flex-col items-end gap-2">
                     <span className="rounded-full bg-white px-3 py-1 font-mono text-[11px] font-semibold text-accent-deep">
                       Featured
                     </span>
-                  )}
-                  <StatusChip status={p.status} />
-                </div>
+                    <StatusChip status={p.status} />
+                  </div>
+                )}
               </div>
 
               {/* floating tech marks */}

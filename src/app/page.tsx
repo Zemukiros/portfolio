@@ -6,6 +6,7 @@ import ExperienceTabs from "@/components/ExperienceTabs";
 import SectionHeading from "@/components/SectionHeading";
 import Typewriter from "@/components/Typewriter";
 import Reveal from "@/components/Reveal";
+import WordReveal from "@/components/WordReveal";
 import { TechIcon, AwsMark } from "@/components/TechIcon";
 import { profile } from "@/data/profile";
 import { skillGroups } from "@/data/skills";
@@ -55,7 +56,7 @@ export default function Home() {
                 <Typewriter
                   phrases={[
                     "a software engineer.",
-                    "a backend & AI systems builder.",
+                    "a full-stack & AI systems builder.",
                     "an AWS-certified solutions architect.",
                     "a CS student at Bowie State.",
                   ]}
@@ -63,7 +64,7 @@ export default function Home() {
               </span>
             </p>
             <p className="hero-rise hero-rise-3 mt-4 max-w-xl text-lg leading-relaxed text-ink-dim">
-              I craft backend &amp; AI-enabled systems that are built to be
+              I craft full-stack, AI-enabled systems that are built to be
               proven — tested, benchmarked, shipped.
             </p>
             <div className="hero-rise hero-rise-4 mt-8">
@@ -106,18 +107,19 @@ export default function Home() {
 
       {/* ================= About ================= */}
       <section id="about" className="mx-auto w-full max-w-6xl px-5 py-24 sm:px-8">
-        <Reveal>
-          <p className="mx-auto max-w-3xl text-center font-display text-[clamp(1.5rem,3.2vw,2.25rem)] font-semibold leading-snug tracking-tight">
-            <span className="text-ink">
-              I&apos;m a Computer Science student at Bowie State University building
-              systems that hold up under proof
-            </span>{" "}
-            <span className="text-ink-faint">
-              — Java and Spring Boot backends, Python services, AI-integrated
-              workflows, and cloud architecture designed the AWS way.
-            </span>
-          </p>
-        </Reveal>
+        <WordReveal
+          className="mx-auto max-w-3xl text-center font-display text-[clamp(1.5rem,3.2vw,2.25rem)] font-semibold leading-snug tracking-tight"
+          segments={[
+            {
+              text: "I'm a Computer Science student at Bowie State University building systems that hold up under proof",
+              className: "text-ink",
+            },
+            {
+              text: "— Java and Spring Boot backends, Python services, AI-integrated workflows, and cloud architecture designed the AWS way.",
+              className: "text-ink-faint",
+            },
+          ]}
+        />
         <Reveal delay={180} className="mt-10 flex flex-wrap justify-center gap-3">
           {[
             "B.S. Computer Science · GPA 3.8",
