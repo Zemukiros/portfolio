@@ -4,6 +4,8 @@ import SocialLinks from "@/components/SocialLinks";
 import ProjectCarousel from "@/components/ProjectCarousel";
 import ExperienceTabs from "@/components/ExperienceTabs";
 import SectionHeading from "@/components/SectionHeading";
+import Typewriter from "@/components/Typewriter";
+import Reveal from "@/components/Reveal";
 import { TechIcon, AwsMark } from "@/components/TechIcon";
 import { profile } from "@/data/profile";
 import { skillGroups } from "@/data/skills";
@@ -47,10 +49,22 @@ export default function Home() {
               Haftegebriel
               <span className="text-accent">.</span>
             </h1>
-            <p className="hero-rise hero-rise-3 mt-6 max-w-xl text-xl leading-relaxed text-ink-dim sm:text-2xl">
-              Software engineer crafting{" "}
-              <span className="font-semibold text-ink">backend &amp; AI-enabled systems</span>{" "}
-              that are built to be proven — tested, benchmarked, shipped.
+            <p className="hero-rise hero-rise-3 mt-6 min-h-[2.6em] font-display text-2xl font-semibold text-ink sm:text-3xl">
+              I&apos;m{" "}
+              <span className="text-accent-strong">
+                <Typewriter
+                  phrases={[
+                    "a software engineer.",
+                    "a backend & AI systems builder.",
+                    "an AWS-certified solutions architect.",
+                    "a CS student at Bowie State.",
+                  ]}
+                />
+              </span>
+            </p>
+            <p className="hero-rise hero-rise-3 mt-4 max-w-xl text-lg leading-relaxed text-ink-dim">
+              I craft backend &amp; AI-enabled systems that are built to be
+              proven — tested, benchmarked, shipped.
             </p>
             <div className="hero-rise hero-rise-4 mt-8">
               <SocialLinks />
@@ -92,17 +106,19 @@ export default function Home() {
 
       {/* ================= About ================= */}
       <section id="about" className="mx-auto w-full max-w-6xl px-5 py-24 sm:px-8">
-        <p className="mx-auto max-w-3xl text-center font-display text-[clamp(1.5rem,3.2vw,2.25rem)] font-semibold leading-snug tracking-tight">
-          <span className="text-ink">
-            I&apos;m a Computer Science student at Bowie State University building
-            systems that hold up under proof
-          </span>{" "}
-          <span className="text-ink-faint">
-            — Java and Spring Boot backends, Python services, AI-integrated
-            workflows, and cloud architecture designed the AWS way.
-          </span>
-        </p>
-        <div className="mt-10 flex flex-wrap justify-center gap-3">
+        <Reveal>
+          <p className="mx-auto max-w-3xl text-center font-display text-[clamp(1.5rem,3.2vw,2.25rem)] font-semibold leading-snug tracking-tight">
+            <span className="text-ink">
+              I&apos;m a Computer Science student at Bowie State University building
+              systems that hold up under proof
+            </span>{" "}
+            <span className="text-ink-faint">
+              — Java and Spring Boot backends, Python services, AI-integrated
+              workflows, and cloud architecture designed the AWS way.
+            </span>
+          </p>
+        </Reveal>
+        <Reveal delay={180} className="mt-10 flex flex-wrap justify-center gap-3">
           {[
             "B.S. Computer Science · GPA 3.8",
             "AWS Solutions Architect – Associate",
@@ -116,7 +132,7 @@ export default function Home() {
               {f}
             </span>
           ))}
-        </div>
+        </Reveal>
       </section>
 
       {/* ================= Skills ================= */}
@@ -169,8 +185,8 @@ export default function Home() {
       {/* ================= Experience ================= */}
       <section id="experience" className="mx-auto w-full max-w-6xl px-5 py-24 sm:px-8">
         <SectionHeading
-          title="Where I've"
-          accent="shipped"
+          title="My"
+          accent="experience"
           lede="Two engineering teams, from a drone medication-delivery platform to production Spring Boot services."
         />
         <div className="mt-12 rounded-3xl border border-border bg-bg-raised p-8 sm:p-10">

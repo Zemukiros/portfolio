@@ -5,6 +5,7 @@ import "@fontsource-variable/jetbrains-mono";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import IntroLoader from "@/components/IntroLoader";
 import { profile } from "@/data/profile";
 
 export const metadata: Metadata = {
@@ -57,6 +58,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         >
           Skip to content
         </a>
+        <IntroLoader />
         <Nav />
         <main id="main">{children}</main>
         <Footer />
