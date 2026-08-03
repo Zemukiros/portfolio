@@ -13,7 +13,7 @@ import { projects } from "@/data/projects";
 export const metadata: Metadata = {
   title: "IntelliRoute — Case Study",
   description:
-    "Flagship case study: route intelligence platform with Dijkstra + Yen's K-shortest paths in Java/Spring Boot, a deterministic FastAPI preference ranker, and a Next.js comparison UI — 125 automated tests, CI-recorded benchmarks, engineered fallback behavior.",
+    "Flagship case study: a route intelligence platform live in production across three services — Dijkstra + Yen's K-shortest paths in Java/Spring Boot, a deterministic FastAPI preference ranker, and a Next.js comparison UI, with 125 automated tests, CI-recorded benchmarks, and engineered fallback behavior.",
 };
 
 const project = projects.find((p) => p.slug === "intelliroute")!;
@@ -59,8 +59,8 @@ const testSuites = [
 ];
 
 const roadmap = [
-  { when: "Next", what: "Public deployment — Vercel frontend, free-tier hosts for the Java and Python services; the live-demo link on this page goes real." },
-  { when: "Then", what: "LLM-assisted ranking mode behind the same HTTP contract and fallback path as the deterministic ranker." },
+  { when: "Shipped", what: "Deployed to production: Next.js frontend on Vercel, Spring Boot API and FastAPI ranker on Render, wired across the open internet with CORS locked to the production domain — running at $0/month." },
+  { when: "Next", what: "LLM-assisted ranking mode behind the same HTTP contract and fallback path as the deterministic ranker." },
   { when: "Then", what: "PostgreSQL persistence and real map-data import tooling to replace generated graphs." },
   { when: "Later", what: "A* with comparison benchmarks, authentication, and load testing." },
 ];
@@ -84,7 +84,7 @@ export default function IntelliRouteCaseStudy() {
               </h1>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 font-mono text-[11px] font-medium text-white backdrop-blur-sm">
                 <span className="h-1.5 w-1.5 rounded-full bg-white/80" aria-hidden="true" />
-                Built &amp; verified · deploying
+                Live in production
               </span>
             </div>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/85 sm:text-xl">
@@ -385,7 +385,7 @@ export default function IntelliRouteCaseStudy() {
         <SectionHeading
           title="Where it's"
           accent="headed"
-          lede="Built and verified locally; deployment is the next milestone, and the roadmap keeps compounding."
+          lede="Deployed and running in production; the roadmap keeps compounding from here."
         />
         <div className="mt-12">
           <ol className="relative space-y-8 border-l border-border pl-8">
@@ -414,19 +414,29 @@ export default function IntelliRouteCaseStudy() {
           >
             <div>
               <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">
-                Open the code<span className="text-white/50">.</span>
+                Try it, then read the code<span className="text-white/50">.</span>
               </h2>
               <p className="mt-2 max-w-md text-[15px] leading-relaxed text-white/80">
-                Three services, 125 tests, the CI pipeline, and every decision
-                record — all public.
+                Three services live in production, 125 tests, the CI pipeline,
+                and every decision record — all public.
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-4 text-sm font-medium">
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-xl bg-white px-6 py-3 text-accent-deep transition-colors hover:bg-white/85"
+                >
+                  Open the live app ↗
+                </a>
+              )}
               <a
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-xl bg-white px-6 py-3 text-accent-deep transition-colors hover:bg-white/85"
+                className="text-white/90 transition-colors hover:text-white"
               >
                 GitHub ↗
               </a>

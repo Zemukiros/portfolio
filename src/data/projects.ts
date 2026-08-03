@@ -26,7 +26,7 @@ export const projects: Project[] = [
     name: "IntelliRoute",
     oneLiner:
       "Route intelligence platform that computes and ranks alternative routes against natural-language preferences.",
-    status: "Completed locally",
+    status: "Live",
     stack: [
       "Java",
       "Spring Boot",
@@ -38,6 +38,7 @@ export const projects: Project[] = [
       "GitHub Actions",
     ],
     github: "https://github.com/Zemukiros/intelliroute",
+    liveUrl: "https://intelliroute-theta.vercel.app",
     caseStudyPath: "/projects/intelliroute",
     headlineMetric: "125 automated tests · Dijkstra 4.05 ms @ 5,000 nodes",
     highlights: [
