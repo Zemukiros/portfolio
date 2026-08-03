@@ -6,6 +6,7 @@ import { projects, projectFootnote, statusStyles } from "@/data/projects";
 import { TechIcon } from "./TechIcon";
 import {
   IntelliRouteMockup,
+  MeridianMockup,
   RhythmiqMockup,
   QueryGuardMockup,
 } from "./ProjectMockups";
@@ -25,6 +26,12 @@ const CARDS: CardSpec[] = [
     floatingIcons: ["siOpenjdk", "siSpringboot", "siFastapi"],
     mockup: <IntelliRouteMockup />,
     featured: true,
+  },
+  {
+    slug: "meridian",
+    gradient: "linear-gradient(135deg, #0b3b3c 0%, #0f766e 55%, #2dd4bf 125%)",
+    floatingIcons: ["siPython", "siDjango", "siPostgresql"],
+    mockup: <MeridianMockup />,
   },
   {
     slug: "rhythmiq",

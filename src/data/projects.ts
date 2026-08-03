@@ -49,6 +49,32 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "meridian",
+    name: "Meridian Patient Website",
+    oneLiner:
+      "Drone medication-delivery platform where patients order and track deliveries live while staff drive the pipeline from an operations dashboard.",
+    status: "Live",
+    stack: [
+      "Python",
+      "Django",
+      "PostgreSQL",
+      "Render",
+      "Neon",
+      "Gunicorn",
+      "WhiteNoise",
+    ],
+    github: "https://github.com/Zemukiros/meridian-website",
+    liveUrl: "https://meridian-website-8dmx.onrender.com",
+    caseStudyPath: "/projects/meridian",
+    headlineMetric: "43/43 automated tests · 4 days from empty folder to live",
+    highlights: [
+      "Built during my software engineering internship at Meridian Medical Associates: a nine-page patient platform with Django-auth accounts, plan-based ordering with strict server-side validation — including a 2,500 g cap matching the drone's real payload limit — simulated checkout, and a live four-stage delivery tracker.",
+      "“Meridian Operations”: Django admin customized into a staff dashboard with pipeline filters and search; one-click status actions appear on the patient's tracker immediately.",
+      "Ownership enforced at the query level so no patient can read another's order, zero secrets in the repo, and production hardening (HTTPS redirect, HSTS, secure cookies) — with synthetic data only and HIPAA readiness tracked as a launch prerequisite.",
+      "43 automated tests across three Django apps plus a scripted Chromium end-to-end walkthrough; infrastructure-as-code deployment (render.yaml) to Render + Neon serverless PostgreSQL, auto-deploying on every push to main.",
+    ],
+  },
+  {
     slug: "rhythmiq",
     name: "Rhythmiq",
     oneLiner:

@@ -87,6 +87,82 @@ export function IntelliRouteMockup() {
   );
 }
 
+export function MeridianMockup() {
+  const stages = [
+    { x: 60, label: "received", state: "done" },
+    { x: 180, label: "verified", state: "done" },
+    { x: 300, label: "in flight", state: "active" },
+    { x: 420, label: "delivered", state: "todo" },
+  ] as const;
+  return (
+    <Window title="meridian — track order">
+      {/* order header */}
+      <text x="24" y="76" fill="#f1eef9" fontSize="14" fontWeight="700" fontFamily="var(--font-display)">
+        Order MMA-1042
+      </text>
+      <text x="24" y="94" fill="#837da6" fontSize="10.5" fontFamily="var(--font-mono)">
+        plan: priority · window: today 2–4 pm
+      </text>
+      <rect x="376" y="62" width="100" height="24" rx="12" fill="#0d2b26" stroke="#2dd4bf" strokeOpacity="0.6" />
+      <text x="426" y="78" textAnchor="middle" fill="#2dd4bf" fontSize="10.5" fontFamily="var(--font-mono)">
+        drone in flight
+      </text>
+      {/* four-stage tracker */}
+      <line x1="60" y1="140" x2="300" y2="140" stroke="#34d399" strokeWidth="3" strokeLinecap="round" />
+      <line x1="300" y1="140" x2="420" y2="140" stroke="#322a4a" strokeWidth="3" strokeLinecap="round" strokeDasharray="1 8" />
+      {stages.map((s) => (
+        <g key={s.label}>
+          <circle
+            cx={s.x}
+            cy="140"
+            r={s.state === "active" ? 11 : 8}
+            fill={s.state === "done" ? "#34d399" : s.state === "active" ? "#0d2b26" : "#131022"}
+            stroke={s.state === "todo" ? "#322a4a" : s.state === "active" ? "#2dd4bf" : "#34d399"}
+            strokeWidth={s.state === "active" ? 2.2 : 1.5}
+          />
+          {s.state === "done" && (
+            <path d={`M${s.x - 3.5} 140l2.5 3 5-6`} stroke="#07060c" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+          )}
+          <text x={s.x} y="170" textAnchor="middle" fill={s.state === "todo" ? "#584b85" : "#a49dbd"} fontSize="10" fontFamily="var(--font-mono)">
+            {s.label}
+          </text>
+        </g>
+      ))}
+      {/* drone above the active stage */}
+      <g transform="translate(300 108)">
+        <line x1="-12" y1="0" x2="12" y2="0" stroke="#2dd4bf" strokeWidth="2.5" strokeLinecap="round" />
+        <circle cx="-12" cy="0" r="3.5" fill="none" stroke="#2dd4bf" strokeWidth="1.6" />
+        <circle cx="12" cy="0" r="3.5" fill="none" stroke="#2dd4bf" strokeWidth="1.6" />
+        <rect x="-4" y="1" width="8" height="6" rx="2" fill="#2dd4bf" />
+      </g>
+      {/* delivery details card */}
+      <rect x="24" y="196" width="284" height="88" rx="11" fill="#131022" stroke="#2a2342" />
+      <rect x="40" y="212" width="118" height="8" rx="4" fill="#3d3358" />
+      <rect x="40" y="230" width="176" height="7" rx="3.5" fill="#322a4a" />
+      <rect x="40" y="246" width="146" height="7" rx="3.5" fill="#322a4a" />
+      <text x="40" y="272" fill="#837da6" fontSize="10" fontFamily="var(--font-mono)">
+        payment ✓ card ····4242 (simulated)
+      </text>
+      {/* staff ops panel hint */}
+      <rect x="324" y="196" width="152" height="88" rx="11" fill="#0e0b1a" stroke="#221d33" />
+      <text x="340" y="218" fill="#a49dbd" fontSize="10.5" fontWeight="600" fontFamily="var(--font-mono)">
+        ops · pipeline
+      </text>
+      {[234, 252, 270].map((y, i) => (
+        <g key={y}>
+          <circle cx="348" cy={y - 3} r="4" fill={["#34d399", "#2dd4bf", "#322a4a"][i]} />
+          <rect x="360" y={y - 8} width={[92, 74, 84][i]} height="7" rx="3.5" fill="#322a4a" />
+        </g>
+      ))}
+      {/* status bar */}
+      <rect x="24" y="296" width="220" height="24" rx="8" fill="#131022" stroke="#221d33" />
+      <text x="134" y="312" textAnchor="middle" fill="#837da6" fontSize="10" fontFamily="var(--font-mono)">
+        43✓ tests · render + neon · $0/mo
+      </text>
+    </Window>
+  );
+}
+
 export function RhythmiqMockup() {
   return (
     <Window title="rhythmiq — library">
