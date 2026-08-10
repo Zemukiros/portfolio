@@ -157,7 +157,7 @@ export function MeridianMockup() {
       {/* status bar */}
       <rect x="24" y="296" width="220" height="24" rx="8" fill="#131022" stroke="#221d33" />
       <text x="134" y="312" textAnchor="middle" fill="#837da6" fontSize="10" fontFamily="var(--font-mono)">
-        43✓ tests · render + neon · $0/mo
+        69✓ tests · live on company domain
       </text>
     </Window>
   );

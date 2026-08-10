@@ -247,10 +247,20 @@ export default function ProjectCarousel() {
                       rel="noopener noreferrer"
                       className="text-white/90 transition-colors hover:text-white"
                     >
-                      Live demo ↗
+                      {p.demoUrl ? "Live site ↗" : "Live demo ↗"}
                     </a>
                   ) : (
                     <span className="text-white/75">Live demo · soon</span>
+                  )}
+                  {p.demoUrl && (
+                    <a
+                      href={p.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white/90 transition-colors hover:text-white"
+                    >
+                      Demo ↗
+                    </a>
                   )}
                 </div>
               </div>

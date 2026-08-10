@@ -12,7 +12,7 @@ import { projects } from "@/data/projects";
 export const metadata: Metadata = {
   title: "Meridian Patient Website — Case Study",
   description:
-    "Internship case study: a live Django + PostgreSQL drone medication-delivery platform — patient ordering with a simulated checkout, a live four-stage delivery tracker, and a customized staff operations dashboard, backed by 43 automated tests and infrastructure-as-code deployment on Render + Neon.",
+    "Internship case study: a Django drone medication-delivery platform running in production on the company's own domain — patient ordering with a simulated checkout, a live four-stage delivery tracker, and a staff operations dashboard, backed by 69 automated tests, with a public interactive demo copy on Render + Neon.",
 };
 
 const project = projects.find((p) => p.slug === "meridian")!;
@@ -50,12 +50,19 @@ const decisions = [
     body: "Card format is validated, no processor is contacted, and only the last four digits are stored — but the flow is deliberately shaped so a real Stripe integration is a drop-in replacement, not a rewrite. The demo says so out loud instead of faking a charge.",
     wide: true,
   },
+  {
+    title: "The MariaDB pivot",
+    tradeoff: "shipping over stack purity",
+    body: "Moving production onto the company's own server hit a wall: its PostgreSQL was version 10, and Django 6 requires 15+. Rather than forcing a remote database, the engine became environment-driven — production runs the server's MariaDB 11.4 via mysqlclient while local development keeps PostgreSQL — and the same codebase deploys to both without edits.",
+    wide: true,
+  },
 ];
 
 const testSuites = [
-  { label: "orders · Django tests", count: 23, pct: 100, detail: "Form validation rules (incl. the 2,500 g payload cap), payment simulation, tracker states, admin pipeline actions" },
-  { label: "accounts · Django tests", count: 10, pct: 43, detail: "Signup, login, session handling, and access-control boundaries" },
-  { label: "pages · Django tests", count: 10, pct: 43, detail: "Every public route, pricing consistency, template rendering" },
+  { label: "operations · Django tests", count: 26, pct: 100, detail: "Role-gated dashboard tabs, pilot flight workflow (manifest → in flight → delivered), weather no-fly rules, pilot assignment, audit entries, staff-only account creation" },
+  { label: "orders · Django tests", count: 23, pct: 88, detail: "Form validation rules (incl. the 2,500 g payload cap), payment simulation, tracker states, admin pipeline actions" },
+  { label: "accounts · Django tests", count: 10, pct: 38, detail: "Signup, login, session handling, and access-control boundaries" },
+  { label: "pages · Django tests", count: 10, pct: 38, detail: "Every public route, pricing consistency, template rendering" },
 ];
 
 const constraints = [
@@ -107,28 +114,40 @@ export default function MeridianCaseStudy() {
               operations dashboard.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4 text-sm font-medium">
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-xl bg-white px-6 py-3 text-[#0f766e] transition-colors hover:bg-white/85"
-              >
-                View the repository ↗
-              </a>
               {project.liveUrl && (
                 <a
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/90 hover:text-white"
+                  className="rounded-xl bg-white px-6 py-3 text-[#0f766e] transition-colors hover:bg-white/85"
                 >
-                  Open the live app ↗
+                  Open the live site ↗
                 </a>
               )}
+              {project.demoUrl && (
+                <a
+                  href={project.demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/90 hover:text-white"
+                >
+                  Interactive demo ↗
+                </a>
+              )}
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/90 hover:text-white"
+              >
+                View the repository ↗
+              </a>
             </div>
             <p className="mt-4 max-w-xl font-mono text-[11px] leading-relaxed text-white/65">
-              Free-tier hosting sleeps when idle — the first load can take about
-              a minute. All data is synthetic; payments are simulated, so no
+              The live site is the company&apos;s production deployment on its
+              own domain. The interactive demo is a separate copy with synthetic
+              data — its free-tier hosting sleeps when idle, so the first load
+              can take about a minute. Payments are simulated everywhere; no
               real charge is possible.
             </p>
             <div className="mt-6 flex flex-wrap gap-2 pb-2">
@@ -155,10 +174,10 @@ export default function MeridianCaseStudy() {
       <section className="mx-auto w-full max-w-6xl px-5 sm:px-8">
         <dl className="mt-12 flex flex-wrap items-center justify-between gap-x-10 gap-y-4 rounded-2xl border border-border bg-bg-raised px-6 py-5 sm:px-8">
           {[
-            ["43/43", "automated tests passing"],
+            ["69/69", "automated tests passing"],
             ["9", "responsive pages"],
             ["4 days", "empty folder → live"],
-            ["$0", "infrastructure cost"],
+            ["$0", "added infrastructure cost"],
           ].map(([v, l]) => (
             <div key={l} className="flex items-baseline gap-2.5">
               <dd className="font-mono text-xl font-semibold text-accent-strong">{v}</dd>
@@ -233,7 +252,7 @@ export default function MeridianCaseStudy() {
         <SectionHeading
           title="The"
           accent="architecture"
-          lede="One well-built monolith, deployed as code: Django on Render, PostgreSQL on Neon, and a pipeline that rebuilds the whole thing on every push."
+          lede="One well-built monolith, twice deployed: production on the company's own hosting behind Passenger with MariaDB, and a demo copy on Render + Neon that rebuilds as code on every push."
         />
         <div className="mt-12">
           <div className="overflow-x-auto rounded-3xl border border-border bg-bg-raised p-5 sm:p-8">
@@ -284,7 +303,7 @@ export default function MeridianCaseStudy() {
         <p className="mt-6 rounded-2xl border border-accent/25 bg-accent/5 p-5 text-sm leading-relaxed text-ink-dim">
           <span className="font-semibold text-accent-strong">Production hardening:</span>{" "}
           HTTPS redirect, HSTS, and secure cookies are enabled in the deployed
-          configuration — and the 43-test suite passed against both the
+          configuration — and the 69-test suite passed against both the
           development and production settings before every release.
         </p>
       </section>
@@ -301,7 +320,7 @@ export default function MeridianCaseStudy() {
           <div>
             <div className="h-full rounded-3xl border border-border bg-bg-raised p-7 sm:p-8">
               <h3 className="font-display text-xl font-bold text-ink">
-                43 automated tests, three apps
+                69 automated tests, four apps
               </h3>
               <div className="mt-6 space-y-5">
                 {testSuites.map((s) => (
@@ -328,14 +347,16 @@ export default function MeridianCaseStudy() {
             <div className="flex h-full flex-col gap-6">
               <div className="rounded-3xl border border-border bg-bg-raised p-7 sm:p-8">
                 <h3 className="font-display text-xl font-bold text-ink">
-                  Deployment is a file, not a checklist
+                  Two deployments, both documented
                 </h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-ink-dim">
-                  A <span className="font-mono text-sm text-accent-strong">render.yaml</span>{" "}
-                  blueprint defines the service; the build installs
-                  dependencies, collects and fingerprints static assets, runs
-                  migrations, and idempotently bootstraps the admin account.
-                  Every push to main redeploys the same way.
+                  The demo copy is defined by a{" "}
+                  <span className="font-mono text-sm text-accent-strong">render.yaml</span>{" "}
+                  blueprint — install, collectstatic, migrate, bootstrap admin —
+                  redeploying identically on every push to main. Production on
+                  the company&apos;s server follows a written runbook: upload,
+                  migrate, collectstatic, stop/start — handed off so a future
+                  team can update the site without archaeology.
                 </p>
               </div>
               <div className="flex-1 rounded-3xl border border-border bg-bg-raised p-7 sm:p-8">
@@ -366,8 +387,8 @@ export default function MeridianCaseStudy() {
               Order a delivery, then read the code<span className="text-white/50">.</span>
             </h2>
             <p className="mt-2 max-w-md text-[15px] leading-relaxed text-white/80">
-              The live app, the 43-test suite, the deployment blueprint, and the
-              day-by-day development log — all public.
+              The live production site, the interactive demo, the 69-test
+              suite, and the day-by-day development log — all open.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-4 text-sm font-medium">
@@ -378,7 +399,17 @@ export default function MeridianCaseStudy() {
                 rel="noopener noreferrer"
                 className="rounded-xl bg-white px-6 py-3 text-[#0f766e] transition-colors hover:bg-white/85"
               >
-                Open the live app ↗
+                Open the live site ↗
+              </a>
+            )}
+            {project.demoUrl && (
+              <a
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/90 transition-colors hover:text-white"
+              >
+                Interactive demo ↗
               </a>
             )}
             <a

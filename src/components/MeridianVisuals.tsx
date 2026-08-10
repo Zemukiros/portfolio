@@ -61,13 +61,13 @@ export function OperationsMockup() {
   );
 }
 
-/** Deployed architecture: Render web service + Neon PostgreSQL, IaC pipeline. */
+/** Deployed architecture: company production server + MariaDB, with a Render + Neon demo copy. */
 export function MeridianArchitectureDiagram() {
   return (
     <svg
-      viewBox="0 0 960 430"
+      viewBox="0 0 960 470"
       role="img"
-      aria-label="Meridian architecture: patient and staff browsers reach a Render web service running Gunicorn, WhiteNoise, and Django 6 with three apps — accounts, orders, pages — backed by a Neon serverless PostgreSQL database. A render.yaml blueprint drives the build pipeline: install, collectstatic, migrate, bootstrap admin, on every push to main."
+      aria-label="Meridian architecture: patient and staff browsers reach the company's production server running Passenger, WhiteNoise, and Django 6 with four apps — accounts, orders, pages, operations — backed by the server's MariaDB 11.4 database through an environment-driven engine setting. Production updates follow a runbook: upload via cPanel, migrate, collectstatic, stop and start. A separate demo copy runs on Render with Neon PostgreSQL, auto-deploying from a render.yaml blueprint on every push to main."
       className="h-auto w-full"
     >
       <defs>
@@ -91,40 +91,40 @@ export function MeridianArchitectureDiagram() {
       <rect x="78" y="216" width="144" height="26" rx="13" fill="#131022" stroke="#2a2342" />
       <text x="150" y="233" textAnchor="middle" fill="#a78bfa" fontSize="11" fontFamily="var(--font-mono)">9 responsive pages</text>
 
-      {/* Render web service (featured) */}
+      {/* Company production server (featured) */}
       <rect x="352" y="82" width="256" height="216" rx="18" fill="#131022" stroke="#8b5cf6" strokeWidth="2" filter="url(#mdGlow)" />
-      <text x="480" y="122" textAnchor="middle" fill="#f1eef9" fontSize="19" fontWeight="700" fontFamily="var(--font-display)">Render web service</text>
-      <text x="480" y="150" textAnchor="middle" fill="#a49dbd" fontSize="12.5" fontFamily="var(--font-body)">Gunicorn · WhiteNoise · Django 6</text>
+      <text x="480" y="122" textAnchor="middle" fill="#f1eef9" fontSize="19" fontWeight="700" fontFamily="var(--font-display)">Company production</text>
+      <text x="480" y="150" textAnchor="middle" fill="#a49dbd" fontSize="12.5" fontFamily="var(--font-body)">Passenger · WhiteNoise · Django 6</text>
       <text x="480" y="168" textAnchor="middle" fill="#a49dbd" fontSize="12.5" fontFamily="var(--font-body)">HTTPS redirect · HSTS · secure cookies</text>
       <text x="480" y="186" textAnchor="middle" fill="#a49dbd" fontSize="12.5" fontFamily="var(--font-body)">Query-level ownership checks</text>
       <rect x="398" y="204" width="164" height="26" rx="13" fill="#0d0b16" stroke="#2a2342" />
-      <text x="480" y="221" textAnchor="middle" fill="#a78bfa" fontSize="11" fontFamily="var(--font-mono)">43 Django tests</text>
-      <text x="480" y="254" textAnchor="middle" fill="#8b5cf6" fontSize="10.5" fontFamily="var(--font-mono)">apps: accounts · orders · pages</text>
+      <text x="480" y="221" textAnchor="middle" fill="#a78bfa" fontSize="11" fontFamily="var(--font-mono)">69 Django tests</text>
+      <text x="480" y="254" textAnchor="middle" fill="#8b5cf6" fontSize="10.5" fontFamily="var(--font-mono)">accounts · orders · pages · operations</text>
       <text x="480" y="272" textAnchor="middle" fill="#8b5cf6" fontSize="10.5" fontFamily="var(--font-mono)">env-driven config · zero secrets in git</text>
 
-      {/* Neon PostgreSQL */}
+      {/* MariaDB */}
       <rect x="690" y="110" width="240" height="160" rx="18" fill="#0d0b16" stroke="#322a4a" strokeWidth="1.5" />
-      <text x="810" y="150" textAnchor="middle" fill="#f1eef9" fontSize="19" fontWeight="700" fontFamily="var(--font-display)">Neon PostgreSQL</text>
-      <text x="810" y="178" textAnchor="middle" fill="#a49dbd" fontSize="12.5" fontFamily="var(--font-body)">Serverless Postgres — persists</text>
-      <text x="810" y="196" textAnchor="middle" fill="#a49dbd" fontSize="12.5" fontFamily="var(--font-body)">beyond the host&apos;s 30-day free DB</text>
+      <text x="810" y="150" textAnchor="middle" fill="#f1eef9" fontSize="19" fontWeight="700" fontFamily="var(--font-display)">MariaDB 11.4</text>
+      <text x="810" y="178" textAnchor="middle" fill="#a49dbd" fontSize="12.5" fontFamily="var(--font-body)">Server-local database — engine is</text>
+      <text x="810" y="196" textAnchor="middle" fill="#a49dbd" fontSize="12.5" fontFamily="var(--font-body)">env-driven (PostgreSQL in dev)</text>
       <rect x="738" y="216" width="144" height="26" rx="13" fill="#131022" stroke="#2a2342" />
-      <text x="810" y="233" textAnchor="middle" fill="#a78bfa" fontSize="11" fontFamily="var(--font-mono)">synthetic data only</text>
+      <text x="810" y="233" textAnchor="middle" fill="#a78bfa" fontSize="11" fontFamily="var(--font-mono)">localhost:3306</text>
 
       {/* arrows */}
       <line x1="270" y1="180" x2="344" y2="180" stroke="#8b5cf6" strokeWidth="2" markerEnd="url(#mdArrow)" />
       <text x="307" y="168" textAnchor="middle" fill="#837da6" fontSize="11" fontFamily="var(--font-mono)">HTTPS</text>
       <line x1="608" y1="180" x2="682" y2="180" stroke="#8b5cf6" strokeWidth="2" markerEnd="url(#mdArrow)" />
-      <text x="645" y="168" textAnchor="middle" fill="#837da6" fontSize="11" fontFamily="var(--font-mono)">psycopg</text>
+      <text x="645" y="168" textAnchor="middle" fill="#837da6" fontSize="11" fontFamily="var(--font-mono)">mysqlclient</text>
 
-      {/* deploy pipeline strip */}
+      {/* production update runbook strip */}
       <rect x="30" y="362" width="900" height="52" rx="14" fill="#0d0b16" stroke="#221d33" />
-      <text x="58" y="393" fill="#837da6" fontSize="11.5" fontFamily="var(--font-mono)">push to main →</text>
+      <text x="58" y="393" fill="#837da6" fontSize="11.5" fontFamily="var(--font-mono)">prod update →</text>
       {[
-        { x: 178, w: 150, label: "render.yaml blueprint" },
-        { x: 340, w: 130, label: "install + build" },
-        { x: 482, w: 176, label: "collectstatic (hashed)" },
-        { x: 670, w: 100, label: "migrate" },
-        { x: 782, w: 136, label: "bootstrap admin" },
+        { x: 192, w: 152, label: "upload via cPanel" },
+        { x: 356, w: 100, label: "migrate" },
+        { x: 468, w: 176, label: "collectstatic (hashed)" },
+        { x: 656, w: 130, label: "stop → start" },
+        { x: 798, w: 122, label: "verify live" },
       ].map((j) => (
         <g key={j.label}>
           <rect x={j.x} y="374" width={j.w} height="28" rx="14" fill="#131022" stroke="#2a2342" />
@@ -134,6 +134,11 @@ export function MeridianArchitectureDiagram() {
           </text>
         </g>
       ))}
+
+      {/* demo copy note */}
+      <text x="480" y="450" textAnchor="middle" fill="#837da6" fontSize="11" fontFamily="var(--font-mono)">
+        demo copy: Render + Neon PostgreSQL — render.yaml blueprint, auto-deploys on every push to main
+      </text>
     </svg>
   );
 }

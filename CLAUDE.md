@@ -32,10 +32,10 @@ Semantic landmarks, skip link, keyboard-visible focus styles, `prefers-reduced-m
 
 ## Related projects (same machine, `C:\Users\zemar\projects\`)
 
-- `meridian-website` — Django internship project (has its own CLAUDE.md); featured on this portfolio pending employer permission for the live link + company name
+- `meridian-website` — Django internship project (has its own CLAUDE.md); production live at https://meridianmobilehealth.com (company hosting), demo copy on Render; formal portfolio permission requested in the handoff email
 - `intelliroute` — case-study subject, live at https://intelliroute-theta.vercel.app
 
 ## Maintenance notes
 
 - Add `verifyUrl` in `src/data/education.ts` when the AWS/Credly verification link is available
-- Each project's `liveUrl` in `src/data/projects.ts` drives the "Live demo" slot; unset shows "Live demo · soon"
+- Each project's `liveUrl` in `src/data/projects.ts` drives the "Live demo" slot; unset shows "Live demo · soon". Optional `demoUrl` (used by Meridian) marks a separate interactive demo copy when `liveUrl` is a real production site — cards then show "Live site" + "Demo".
