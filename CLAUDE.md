@@ -59,3 +59,9 @@ Semantic landmarks, skip link, keyboard-visible focus styles, `prefers-reduced-m
 
 - Add `verifyUrl` in `src/data/education.ts` when the AWS/Credly verification link is available
 - `.claude/`, `.agents/`, `.impeccable/`, `.mcp.json`, and `PRODUCT.md` are gitignored local tooling and are excluded from lint — not app code
+
+## Workflow
+Plans and research live in docs/plans/. When asked to implement a plan,
+read the relevant file in docs/plans/ first and follow it. Ask before
+deviating from a plan in a major way. After finishing a significant
+feature, update this file if the project structure changed.
