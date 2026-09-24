@@ -114,24 +114,14 @@ export default function MeridianCaseStudy() {
               operations dashboard.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4 text-sm font-medium">
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-xl bg-white px-6 py-3 text-[#0f766e] transition-colors hover:bg-white/85"
-                >
-                  Open the live site ↗
-                </a>
-              )}
               {project.demoUrl && (
                 <a
                   href={project.demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/90 hover:text-white"
+                  className="rounded-xl bg-white px-6 py-3 text-[#0f766e] transition-colors hover:bg-white/85"
                 >
-                  Interactive demo ↗
+                  View demo ↗
                 </a>
               )}
               <a
@@ -144,11 +134,12 @@ export default function MeridianCaseStudy() {
               </a>
             </div>
             <p className="mt-4 max-w-xl font-mono text-[11px] leading-relaxed text-white/65">
-              The live site is the company&apos;s production deployment on its
-              own domain. The interactive demo is a separate copy with synthetic
-              data — its free-tier hosting sleeps when idle, so the first load
-              can take about a minute. Payments are simulated everywhere; no
-              real charge is possible.
+              The demo is my original development and testing deployment on
+              Render, built during the internship before the project moved to
+              the company&apos;s hosting — it is not the company&apos;s current
+              production website. It runs on synthetic data, and its free-tier
+              hosting sleeps when idle, so the first load can take about a
+              minute. Payments are simulated; no real charge is possible.
             </p>
             <div className="mt-6 flex flex-wrap gap-2 pb-2">
               {project.stack.map((t) => (
@@ -387,29 +378,19 @@ export default function MeridianCaseStudy() {
               Order a delivery, then read the code<span className="text-white/50">.</span>
             </h2>
             <p className="mt-2 max-w-md text-[15px] leading-relaxed text-white/80">
-              The live production site, the interactive demo, the 69-test
-              suite, and the day-by-day development log — all open.
+              The original Render demo, the 69-test suite, and the
+              day-by-day development log — all open.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-4 text-sm font-medium">
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-xl bg-white px-6 py-3 text-[#0f766e] transition-colors hover:bg-white/85"
-              >
-                Open the live site ↗
-              </a>
-            )}
             {project.demoUrl && (
               <a
                 href={project.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/90 transition-colors hover:text-white"
+                className="rounded-xl bg-white px-6 py-3 text-[#0f766e] transition-colors hover:bg-white/85"
               >
-                Interactive demo ↗
+                View demo ↗
               </a>
             )}
             <a

@@ -8,7 +8,7 @@ export type Project = {
   stack: string[];
   github?: string;
   liveUrl?: string;
-  /** Separate interactive demo copy, used when liveUrl is a real production site. */
+  /** Interactive demo deployment. Shown alongside liveUrl, or as the primary "View demo" link when no liveUrl is set. */
   demoUrl?: string;
   caseStudyPath?: string;
   headlineMetric?: string; // verified evidence only
@@ -66,8 +66,7 @@ export const projects: Project[] = [
       "WhiteNoise",
     ],
     github: "https://github.com/Zemukiros/meridian-website",
-    liveUrl: "https://meridianmobilehealth.com",
-    demoUrl: "https://meridian-website-8dmx.onrender.com",
+    demoUrl: "https://meridian-website-8dmx.onrender.com/",
     caseStudyPath: "/projects/meridian",
     headlineMetric: "69/69 automated tests · live on the company's own domain",
     highlights: [

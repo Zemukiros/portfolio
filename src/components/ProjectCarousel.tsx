@@ -249,7 +249,7 @@ export default function ProjectCarousel() {
                     >
                       {p.demoUrl ? "Live site ↗" : "Live demo ↗"}
                     </a>
-                  ) : (
+                  ) : p.demoUrl ? null : (
                     <span className="text-white/75">Live demo · soon</span>
                   )}
                   {p.demoUrl && (
@@ -259,7 +259,7 @@ export default function ProjectCarousel() {
                       rel="noopener noreferrer"
                       className="text-white/90 transition-colors hover:text-white"
                     >
-                      Demo ↗
+                      {p.liveUrl ? "Demo ↗" : "View demo ↗"}
                     </a>
                   )}
                 </div>

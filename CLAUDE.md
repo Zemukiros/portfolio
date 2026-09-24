@@ -26,7 +26,7 @@ There is no test runner in this repo — `npm run build` (type-checks + prerende
 
 **Server/client split:** pages are server components. Only interaction-bearing components are `"use client"` (`Nav`, `HeroScene`, `ProjectCarousel`, `ExperienceTabs`, `Reveal`, `WordReveal`, `Typewriter`, `IntroLoader`). Keep it that way — no server runtime features (no API routes, no server actions), so every route prerenders and the deploy stays fully static.
 
-**Project statuses** are a typed system in `src/data/projects.ts`: `Live` / `Completed locally` / `In development` / `Planned`, with display labels and badge classes in `statusStyles` (`Planned` renders as "Up next"). Use them honestly. `liveUrl` drives the "Live demo" slot; unset shows "Live demo · soon". Optional `demoUrl` (used by Meridian) marks a separate interactive demo copy when `liveUrl` is a real production site — cards then show "Live site" + "Demo".
+**Project statuses** are a typed system in `src/data/projects.ts`: `Live` / `Completed locally` / `In development` / `Planned`, with display labels and badge classes in `statusStyles` (`Planned` renders as "Up next"). Use them honestly. `liveUrl` drives the "Live demo" slot; unset shows "Live demo · soon". Optional `demoUrl` marks an interactive demo deployment: with `liveUrl` set, cards show "Live site" + "Demo"; without it (Meridian), the demo is the primary link, labeled "View demo".
 
 **Styling:** Tailwind v4 CSS-first — there is no `tailwind.config`. Theme tokens (colors, fonts) are declared in the `@theme` block at the top of `src/app/globals.css` and used as ordinary utilities (`bg-bg-raised`, `text-ink-dim`, `border-border-strong`, `font-display`). Add a token there, never as an arbitrary hex in a component. Keyframes and the hero/reveal animation classes also live in `globals.css`.
 
@@ -52,7 +52,7 @@ Semantic landmarks, skip link, keyboard-visible focus styles, `prefers-reduced-m
 
 ## Related projects (same machine, `~/projects/`)
 
-- `meridian-website` — Django internship project (has its own CLAUDE.md); production live at https://meridianmobilehealth.com (company hosting), demo copy on Render; formal portfolio permission requested in the handoff email
+- `meridian-website` — Django internship project (has its own CLAUDE.md); now runs on company hosting, but the portfolio links only to the original Render demo (https://meridian-website-8dmx.onrender.com/) — the company domain is flagged by Google Safe Browsing, so don't link it; formal portfolio permission requested in the handoff email
 - `intelliroute` — case-study subject, live at https://intelliroute-theta.vercel.app
 
 ## Maintenance notes
