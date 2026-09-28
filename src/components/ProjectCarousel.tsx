@@ -7,6 +7,7 @@ import { TechIcon } from "./TechIcon";
 import {
   IntelliRouteMockup,
   MeridianMockup,
+  MiniS3Mockup,
   RhythmiqMockup,
   QueryGuardMockup,
 } from "./ProjectMockups";
@@ -26,6 +27,12 @@ const CARDS: CardSpec[] = [
     floatingIcons: ["siOpenjdk", "siSpringboot", "siFastapi"],
     mockup: <IntelliRouteMockup />,
     featured: true,
+  },
+  {
+    slug: "mini-s3",
+    gradient: "linear-gradient(135deg, #3a1405 0%, #9a3412 58%, #ea580c 128%)",
+    floatingIcons: ["siOpenjdk", "siSpringboot", "siPostgresql"],
+    mockup: <MiniS3Mockup />,
   },
   {
     slug: "meridian",
@@ -249,7 +256,14 @@ export default function ProjectCarousel() {
                     >
                       {p.demoUrl ? "Live site ↗" : "Live demo ↗"}
                     </a>
-                  ) : p.demoUrl ? null : (
+                  ) : p.demoUrl ? null : p.simulatorPath ? (
+                    <Link
+                      href={p.simulatorPath}
+                      className="text-white/90 transition-colors hover:text-white"
+                    >
+                      Simulator →
+                    </Link>
+                  ) : (
                     <span className="text-white/75">Live demo · soon</span>
                   )}
                   {p.demoUrl && (

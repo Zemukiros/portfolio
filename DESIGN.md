@@ -16,6 +16,7 @@ colors:
   amber: "#e8b45a"
   rose: "#f472b6"
   cyan: "#22d3ee"
+  mint: "#34d399"
 typography:
   display:
     fontFamily: "Bricolage Grotesque Variable, ui-sans-serif, system-ui, sans-serif"
@@ -151,6 +152,8 @@ surfaces (carousel card, case-study hero and closing panel):
 - **IntelliRoute** (featured): `linear-gradient(135deg, #37167f 0%, #6d28d9 55%, #8b5cf6 115%)` — the house violet.
 - **Rhythmiq**: `linear-gradient(135deg, #4a1268 0%, #86198f 60%, #d946ef 130%)` — magenta.
 - **QueryGuard**: `linear-gradient(135deg, #1e1b5e 0%, #4338ca 60%, #818cf8 130%)` — indigo.
+- **Meridian**: `linear-gradient(135deg, #0b3b3c 0%, #0f766e 55%, #2dd4bf 125%)` — teal.
+- **Mini-S3**: `linear-gradient(135deg, #3a1405 0%, #9a3412 58%, #ea580c 128%)` — ember (the last stop is held at orange-600 so white links stay legible in the bright corner).
 
 Text on gradients is white (white/80 body, white/70 meta); UI on gradients
 is white glass (`bg-white/12`-`/15`, `border-white/25`) or solid white chips.
@@ -166,7 +169,7 @@ is white glass (`bg-white/12`-`/15`, `border-white/25`) or solid white chips.
 - **Ink Faint** (`ink-faint`, #837da6): meta lines, footnotes, tile captions, the carousel counter — the quietest text allowed on the page.
 
 ### Tertiary (illustration-only)
-- **Amber** (#e8b45a) and **Rose** (#f472b6): window-chrome dots in mockup windows; rose also draws the hero scene's cursor. **Mint** (#34d399 — a recurring raw literal, not a theme token): the "verified" check marks in mockups, the green window-chrome dot, and the hero plant. **Cyan** (#22d3ee) remains a defined but unused token — reserved, no role yet.
+- **Amber** (#e8b45a) and **Rose** (#f472b6): window-chrome dots in mockup windows; rose also draws the hero scene's cursor. **Mint** (#34d399 — now the `mint` token, used only where the tertiaries are allowed): the "verified" check marks in mockups, the green window-chrome dot, and the hero plant. **Cyan** (#22d3ee) remains a defined but unused token — reserved, no role yet.
 - The hero avatar scene carries its own contained palette: warm skin tones (#96603c, #8a5a3b), near-black curls (#1b1526), cream sweater (#f3efe9), violet furniture (#5b21b6, #6d28d9, #4c1d95), pastel floating-card fills (#efeafd, #fbe7f5, #f6f4fd) and a five-swatch palette pill. These stay inside the scene; none may migrate into UI chrome.
 - The line-work layer keeps a recurring dim-violet sub-palette (see Components → Illustrations).
 
@@ -344,6 +347,28 @@ the system with a fixed set of conventions:
 - **Evidence blocks:** test-suite bars (6px full-pill track in bg-panel, violet fill) and benchmark tables (mono Lifted Violet data cells, hairline row borders, mono ink-faint headers, `sr-only` caption) present only recorded numbers.
 - **Roadmap timeline:** a `border-l` hairline list, 32px indent, absolute 16px dots — current item `border-accent bg-accent/30`, future items `border-border-strong bg-bg` — with mono uppercase tracked "when" labels in Signal Violet.
 - **Motion:** one `Reveal` wraps the hero block; all body sections arrive static (headings via the shared `SectionHeading` reveal).
+
+### Interactive Console (Mini-S3 simulator — amendment, 2026-09-28)
+The simulator on `/projects/mini-s3` is a *working* mockup window: the
+same dark frame (#0b0916, #3b3157 border, rose/amber/mint chrome dots, mono
+title pill) with live controls inside. **The Console Palette Rule:** inside
+that window only, the illustration tertiaries carry status — mint = UP /
+acknowledged / checksum match, amber = suspect (silent but not yet DOWN),
+surplus, or under-replicated, rose = DOWN, failed, corrupt, or a destructive
+"stop" control. Primary actions stay Signal Violet. Sequence diagrams may use
+the same rose/mint on a single step label to mark a bad/good check. Nowhere
+else. Motion inside the console (packets, `blob-in`) is interaction-driven,
+runs only while the console is on screen, has a Pause control, starts paused
+under `prefers-reduced-motion`, and never renders packets in that mode.
+
+### Sequence Diagrams and Request-Path Tabs
+`SequenceDiagram` draws lanes as 12px-radius pills (the featured lane gets
+the violet stroke), dashed lifelines, and numbered violet badges at each
+message's source; labels sit beside the source end with a panel-colored halo
+so lifelines never cut text. Calls are solid violet, replies dashed ink-faint,
+background work dashed dim violet, notes are accent-tinted pills, and a
+dark band marks elapsed time. `RequestPathTabs` puts one diagram per tab
+(tablist with arrow-key support), followed by exactly three point cards.
 
 ### Illustrations
 Two authored families, both product-true. **Line-work vignettes** (hero

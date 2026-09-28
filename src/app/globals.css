@@ -16,6 +16,7 @@
   --color-amber: #e8b45a;
   --color-rose: #f472b6;
   --color-cyan: #22d3ee;
+  --color-mint: #34d399;
 
   --font-display: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
@@ -209,6 +210,21 @@ body {
 }
 .carousel::-webkit-scrollbar {
   display: none;
+}
+
+/* ---------- Mini-S3 simulator ---------- */
+@keyframes blob-in {
+  from { opacity: 0; transform: scale(0.3); }
+  to { opacity: 1; transform: scale(1); }
+}
+.sim-blob {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: blob-in 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.sim-hit {
+  cursor: pointer;
+  outline: none;
 }
 
 /* Legacy scroll-reveal (still used by the case-study page) */

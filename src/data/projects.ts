@@ -11,6 +11,8 @@ export type Project = {
   /** Interactive demo deployment. Shown alongside liveUrl, or as the primary "View demo" link when no liveUrl is set. */
   demoUrl?: string;
   caseStudyPath?: string;
+  /** In-portfolio interactive simulation (not a deployment). Shown when there is no liveUrl or demoUrl. */
+  simulatorPath?: string;
   headlineMetric?: string; // verified evidence only
   highlights: string[];
 };
@@ -48,6 +50,24 @@ export const projects: Project[] = [
       "Deterministic Python/FastAPI preference-ranking service (synonym parsing, combined preferences, confidence scores, explanations) with graceful Java-local fallback when the service is down.",
       "Interactive Next.js comparison UI: preference input, ranked route cards, badges, graph highlighting, and offline states.",
       "62 Java, 54 Python, and 9 frontend tests; benchmarks recorded in CI; Docker Compose smoke-tested; 4-job GitHub Actions pipeline green.",
+    ],
+  },
+  {
+    slug: "mini-s3",
+    name: "Mini-S3",
+    oneLiner:
+      "Self-healing distributed object store: 3× replication placed by consistent hashing, quorum writes, and automatic repair when a storage node dies.",
+    status: "Completed locally",
+    stack: ["Java 21", "Spring Boot", "PostgreSQL", "Docker Compose", "JUnit"],
+    github: "https://github.com/Zemukiros/mini-s3",
+    caseStudyPath: "/projects/mini-s3",
+    simulatorPath: "/projects/mini-s3#simulator",
+    headlineMetric: "Node-kill drill: 13 copies rebuilt · SHA-256 match, no object lost",
+    highlights: [
+      "Replicated object store: every object is stored 3× across four storage nodes, placed by a SHA-256 hash ring with 200 virtual nodes per server.",
+      "Quorum writes (N = 3, W = 2) with checksum-verified reads and read repair; Postgres holds metadata only, enforced by a partial unique index and per-key advisory locks.",
+      "Heartbeat failure detection and a level-triggered repair worker that claims work with FOR UPDATE SKIP LOCKED; a garbage collector trims tombstones and surplus copies.",
+      "Recorded failure drill: node stopped mid-run, 13 copies rebuilt in one repair pass, download SHA-256 matched byte for byte; consistent hashing moves ~19% of keys on growth vs ~80% for hash % N.",
     ],
   },
   {
@@ -128,7 +148,7 @@ export const projectFootnote =
 export const statusStyles: Record<ProjectStatus, { label: string; className: string }> = {
   Live: { label: "Live", className: "text-accent-strong border-accent/40 bg-accent/10" },
   "Completed locally": {
-    label: "Built & verified · deploying",
+    label: "Built & verified",
     className: "text-accent-strong border-accent/40 bg-accent/10",
   },
   "In development": {

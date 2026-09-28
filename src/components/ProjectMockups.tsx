@@ -254,3 +254,68 @@ export function QueryGuardMockup() {
     </Window>
   );
 }
+
+export function MiniS3Mockup() {
+  const nodes = [
+    // The recorded drill: node-1 held 13 copies; the other nodes held 18/15/17
+    // and each ends the repair pass with all 21 objects (13 fresh copies total).
+    { x: 24, id: "node-1", down: true, live: 13, fresh: 0 },
+    { x: 138, id: "node-2", down: false, live: 21, fresh: 3 },
+    { x: 252, id: "node-3", down: false, live: 21, fresh: 6 },
+    { x: 366, id: "node-4", down: false, live: 21, fresh: 4 },
+  ];
+  return (
+    <Window title="mini-s3 · /admin/cluster">
+      {nodes.map((n) => (
+        <g key={n.id}>
+          <rect
+            x={n.x}
+            y="60"
+            width="104"
+            height="150"
+            rx="11"
+            fill={n.down ? "#0b0916" : "#131022"}
+            stroke={n.down ? "#f472b6" : "#2a2342"}
+            strokeOpacity={n.down ? 0.7 : 1}
+            strokeDasharray={n.down ? "5 4" : undefined}
+          />
+          <text x={n.x + 12} y="82" fill={n.down ? "#837da6" : "#f1eef9"} fontSize="12" fontWeight="700" fontFamily="var(--font-display)">
+            {n.id}
+          </text>
+          <rect x={n.x + 12} y="90" width={n.down ? 44 : 30} height="16" rx="8" fill={n.down ? "#2a1020" : "#10261f"} />
+          <text x={n.x + (n.down ? 34 : 27)} y="101.5" textAnchor="middle" fill={n.down ? "#f472b6" : "#34d399"} fontSize="9.5" fontWeight="600" fontFamily="var(--font-mono)">
+            {n.down ? "DOWN" : "UP"}
+          </text>
+          {Array.from({ length: 25 }, (_, j) => {
+            const filled = j < n.live;
+            const fresh = !n.down && j >= n.live - n.fresh && j < n.live;
+            return (
+              <rect
+                key={j}
+                x={n.x + 12 + (j % 5) * 16}
+                y={116 + Math.floor(j / 5) * 17}
+                width="12"
+                height="11"
+                rx="3"
+                fill={!filled ? "none" : n.down ? "#322a4a" : fresh ? "#c4b5fd" : "#8b5cf6"}
+                stroke={filled ? "none" : "#221d33"}
+              />
+            );
+          })}
+        </g>
+      ))}
+      {/* worker log */}
+      <rect x="24" y="222" width="456" height="92" rx="11" fill="#0e0b1a" stroke="#221d33" />
+      <text x="40" y="246" fill="#e8b45a" fontSize="10.5" fontFamily="var(--font-mono)">
+        node-1 missed heartbeats for 6s → DOWN
+      </text>
+      <text x="40" y="268" fill="#a49dbd" fontSize="10.5" fontFamily="var(--font-mono)">
+        repair pass: 13 new copies made
+      </text>
+      <path d="M40 286l4 4 8-9" stroke="#34d399" strokeWidth="2.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      <text x="60" y="290" fill="#34d399" fontSize="10.5" fontFamily="var(--font-mono)">
+        demo.bin via node-4 · SHA-256 match
+      </text>
+    </Window>
+  );
+}
