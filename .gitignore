@@ -51,3 +51,6 @@ skills-lock.json
 
 # Internal strategy doc (kept in the Claude project, not the public repo)
 PRODUCT.md
+
+# Private Claude Code notes
+CLAUDE.local.md

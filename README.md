@@ -4,7 +4,7 @@ Personal engineering portfolio: backend, AI-enabled systems, and cloud
 architecture. Built with Next.js (App Router), TypeScript, and Tailwind CSS v4,
 deployed on Vercel.
 
-**Live:** https://portfolio-lac-psi-kunu1cmuxj.vercel.app
+**Live:** https://zemariam.vercel.app
 
 ## Highlights
 

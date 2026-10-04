@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Personal engineering portfolio for Zemariam K. Haftegebriel. Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · deployed on Vercel.
 
-**Live:** https://portfolio-lac-psi-kunu1cmuxj.vercel.app
+**Live:** https://zemariam.vercel.app
 See `README.md` for the overview and `DESIGN.md` for the full design system.
 
 ## Commands
@@ -54,7 +54,7 @@ Semantic landmarks, skip link, keyboard-visible focus styles, `prefers-reduced-m
 
 ## Related projects (same machine, `~/projects/`)
 
-- `meridian-website` — Django internship project (has its own CLAUDE.md); now runs on company hosting, but the portfolio links only to the original Render demo (https://meridian-website-8dmx.onrender.com/) — the company domain is flagged by Google Safe Browsing, so don't link it; formal portfolio permission requested in the handoff email
+- `meridian-website` — Django internship project (its guidance is in a gitignored CLAUDE.local.md there); now runs on company hosting, but the portfolio links only to the original Render demo (https://meridian-website-8dmx.onrender.com/) — the company domain is flagged by Google Safe Browsing, so don't link it
 - `intelliroute` — case-study subject, live at https://intelliroute-theta.vercel.app
 - `mini-s3` — case-study subject (github.com/Zemukiros/mini-s3); runs locally via Docker Compose, not hosted. Its drill numbers on the page (13 copies rebuilt, 13+18+15+17 = 63) are from one recorded run — counts vary per run
 
@@ -64,7 +64,7 @@ Semantic landmarks, skip link, keyboard-visible focus styles, `prefers-reduced-m
 - `.claude/`, `.agents/`, `.impeccable/`, `.mcp.json`, and `PRODUCT.md` are gitignored local tooling and are excluded from lint — not app code
 
 ## Workflow
-Plans and research live in docs/plans/. When asked to implement a plan,
+Plans and research live in docs/plans/ (not created yet — add it with the first plan). When asked to implement a plan,
 read the relevant file in docs/plans/ first and follow it. Ask before
 deviating from a plan in a major way. After finishing a significant
 feature, update this file if the project structure changed.
