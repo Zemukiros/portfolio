@@ -13,7 +13,7 @@ import { projects } from "@/data/projects";
 export const metadata: Metadata = {
   title: "IntelliRoute — Case Study",
   description:
-    "Flagship case study: a route intelligence platform live in production across three services — Dijkstra + Yen's K-shortest paths in Java/Spring Boot, a deterministic FastAPI preference ranker, and a Next.js comparison UI, with 125 automated tests, CI-recorded benchmarks, and engineered fallback behavior.",
+    "Flagship case study: a route intelligence platform live in production across three services — Dijkstra + Yen's K-shortest paths in Java/Spring Boot, a deterministic FastAPI preference ranker, and a Next.js comparison UI, with 121 automated tests, CI-recorded benchmarks, and engineered fallback behavior.",
 };
 
 const project = projects.find((p) => p.slug === "intelliroute")!;
@@ -53,9 +53,9 @@ const decisions = [
 ];
 
 const testSuites = [
-  { label: "Java · JUnit", count: 62, pct: 100, detail: "Algorithm correctness, road-metadata domain, API contracts, fallback client" },
-  { label: "Python · pytest", count: 54, pct: 87, detail: "Preference parsing, synonyms, combined preferences, confidence, explanations" },
-  { label: "Frontend · components", count: 9, pct: 15, detail: "Comparison UI states, offline and degraded-service rendering" },
+  { label: "Java · JUnit", count: 58, pct: 100, detail: "Algorithm correctness, road-metadata domain, API contracts, fallback client" },
+  { label: "Python · pytest", count: 54, pct: 93, detail: "Preference parsing, synonyms, combined preferences, confidence, explanations" },
+  { label: "Frontend · components", count: 9, pct: 16, detail: "Comparison UI states, offline and degraded-service rendering" },
 ];
 
 const roadmap = [
@@ -140,7 +140,7 @@ export default function IntelliRouteCaseStudy() {
       <section className="mx-auto w-full max-w-6xl px-5 sm:px-8">
         <dl className="mt-12 flex flex-wrap items-center justify-between gap-x-10 gap-y-4 rounded-2xl border border-border bg-bg-raised px-6 py-5 sm:px-8">
           {[
-            ["125", "automated tests"],
+            ["121", "automated tests"],
             ["4.05 ms", "Dijkstra @ 5k nodes"],
             ["4 / 4", "CI jobs green"],
             ["$0", "infrastructure cost"],
@@ -293,7 +293,7 @@ export default function IntelliRouteCaseStudy() {
           <div>
             <div className="h-full rounded-3xl border border-border bg-bg-raised p-7 sm:p-8">
               <h3 className="font-display text-xl font-bold text-ink">
-                125 automated tests
+                121 automated tests
               </h3>
               <div className="mt-6 space-y-5">
                 {testSuites.map((s) => (
@@ -417,7 +417,7 @@ export default function IntelliRouteCaseStudy() {
                 Try it, then read the code<span className="text-white/50">.</span>
               </h2>
               <p className="mt-2 max-w-md text-[15px] leading-relaxed text-white/80">
-                Three services live in production, 125 tests, the CI pipeline,
+                Three services live in production, 121 tests, the CI pipeline,
                 and every decision record — all public.
               </p>
             </div>

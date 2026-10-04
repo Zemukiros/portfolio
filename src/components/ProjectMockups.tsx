@@ -81,7 +81,7 @@ export function IntelliRouteMockup() {
       {/* status bar (bottom-left: stays clear of the tilted crop) */}
       <rect x="24" y="296" width="200" height="24" rx="8" fill="#131022" stroke="#221d33" />
       <text x="124" y="312" textAnchor="middle" fill="#837da6" fontSize="10" fontFamily="var(--font-mono)">
-        62✓ java · 54✓ py · 9✓ web
+        58✓ java · 54✓ py · 9✓ web
       </text>
     </Window>
   );

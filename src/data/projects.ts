@@ -44,12 +44,12 @@ export const projects: Project[] = [
     github: "https://github.com/Zemukiros/intelliroute",
     liveUrl: "https://intelliroute-theta.vercel.app",
     caseStudyPath: "/projects/intelliroute",
-    headlineMetric: "125 automated tests · Dijkstra 4.05 ms @ 5,000 nodes",
+    headlineMetric: "121 automated tests · Dijkstra 4.05 ms @ 5,000 nodes",
     highlights: [
       "Dijkstra's shortest path + Yen's K-shortest loopless paths over an adjacency-list road graph with rich road metadata (speeds, tolls, safety, closures).",
       "Deterministic Python/FastAPI preference-ranking service (synonym parsing, combined preferences, confidence scores, explanations) with graceful Java-local fallback when the service is down.",
       "Interactive Next.js comparison UI: preference input, ranked route cards, badges, graph highlighting, and offline states.",
-      "62 Java, 54 Python, and 9 frontend tests; benchmarks recorded in CI; Docker Compose smoke-tested; 4-job GitHub Actions pipeline green.",
+      "58 Java, 54 Python, and 9 frontend tests; benchmarks recorded in CI; Docker Compose smoke-tested; 4-job GitHub Actions pipeline green.",
     ],
   },
   {

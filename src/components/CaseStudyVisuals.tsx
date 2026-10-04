@@ -93,7 +93,7 @@ export function ArchitectureDiagram() {
       <text x="480" y="168" textAnchor="middle" fill="#a49dbd" fontSize="12.5" fontFamily="var(--font-body)">Road-metadata domain · closures</text>
       <text x="480" y="186" textAnchor="middle" fill="#a49dbd" fontSize="12.5" fontFamily="var(--font-body)">Local fallback scoring</text>
       <rect x="398" y="204" width="164" height="26" rx="13" fill="#0d0b16" stroke="#2a2342" />
-      <text x="480" y="221" textAnchor="middle" fill="#a78bfa" fontSize="11" fontFamily="var(--font-mono)">62 JUnit tests</text>
+      <text x="480" y="221" textAnchor="middle" fill="#a78bfa" fontSize="11" fontFamily="var(--font-mono)">58 JUnit tests</text>
       <text x="480" y="254" textAnchor="middle" fill="#8b5cf6" fontSize="10.5" fontFamily="var(--font-mono)">/api/routes/alternatives</text>
       <text x="480" y="272" textAnchor="middle" fill="#8b5cf6" fontSize="10.5" fontFamily="var(--font-mono)">/api/routes/recommend</text>
 

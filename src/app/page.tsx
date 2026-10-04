@@ -125,7 +125,7 @@ export default function Home() {
             "B.S. Computer Science · GPA 3.8",
             "AWS Solutions Architect – Associate",
             "2 engineering internships",
-            "125 automated tests across IntelliRoute",
+            "121 automated tests across IntelliRoute",
           ].map((f) => (
             <span
               key={f}
