@@ -18,8 +18,6 @@ export const metadata: Metadata = {
 
 const project = projects.find((p) => p.slug === "intelliroute")!;
 
-const GRADIENT = "linear-gradient(135deg, #37167f 0%, #6d28d9 55%, #8b5cf6 115%)";
-
 const benchmarks = [
   { workload: "Dijkstra shortest path", n100: "88 µs", n1k: "754 µs", n5k: "4.05 ms" },
   { workload: "Yen's K-shortest (K=3)", n100: "1.11 ms", n1k: "7.68 ms", n5k: "68.1 ms" },
@@ -69,25 +67,25 @@ export default function IntelliRouteCaseStudy() {
   return (
     <>
       {/* ================= Case hero ================= */}
-      <section className="relative overflow-hidden" style={{ background: GRADIENT }}>
+      <section className="relative overflow-hidden border-b border-border">
         <div className="mx-auto w-full max-w-6xl px-5 pb-0 pt-28 sm:px-8">
           <Reveal>
             <Link
               href="/#work"
-              className="font-mono text-xs text-white/70 transition-colors hover:text-white"
+              className="font-mono text-xs text-ink-faint transition-colors hover:text-accent-strong"
             >
               ← All projects
             </Link>
             <div className="mt-6 flex flex-wrap items-center gap-4">
-              <h1 className="font-display text-[clamp(3rem,7vw,5.25rem)] font-extrabold leading-none tracking-[-0.03em] text-white">
-                IntelliRoute<span className="text-white/50">.</span>
+              <h1 className="font-display text-[clamp(3rem,7vw,5.25rem)] leading-none tracking-[-0.025em] text-ink">
+                IntelliRoute<span className="text-accent">.</span>
               </h1>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 font-mono text-[11px] font-medium text-white backdrop-blur-sm">
-                <span className="h-1.5 w-1.5 rounded-full bg-white/80" aria-hidden="true" />
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 font-mono text-[11px] font-medium text-accent-strong">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
                 Live in production
               </span>
             </div>
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/85 sm:text-xl">
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-dim sm:text-xl">
               A route intelligence platform that doesn&apos;t just find the shortest
               path — it computes real alternatives and ranks them against what you
               asked for in plain language, with an explanation for every choice.
@@ -97,7 +95,7 @@ export default function IntelliRouteCaseStudy() {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-xl bg-white px-6 py-3 text-accent-deep transition-colors hover:bg-white/85"
+                className="rounded-full bg-accent-deep px-6 py-3 text-white transition-colors hover:bg-accent"
               >
                 View the repository ↗
               </a>
@@ -106,19 +104,19 @@ export default function IntelliRouteCaseStudy() {
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/90 hover:text-white"
+                  className="text-ink hover:text-accent-strong"
                 >
                   Open the live app ↗
                 </a>
               ) : (
-                <span className="rounded-xl border border-white/25 px-6 py-3 text-white/75">
+                <span className="rounded-full border border-dashed border-border-strong px-6 py-3 text-ink-faint">
                   Live app · soon
                 </span>
               )}
             </div>
             <div className="mt-6 flex flex-wrap gap-2 pb-2">
               {project.stack.map((t) => (
-                <span key={t} className="rounded-full bg-white/12 px-3 py-1 font-mono text-[11px] text-white/85">
+                <span key={t} className="rounded-md border border-border px-2 py-0.5 font-mono text-[11px] text-ink-dim">
                   {t}
                 </span>
               ))}
@@ -127,13 +125,12 @@ export default function IntelliRouteCaseStudy() {
 
           {/* hero mockup bleeding out of the gradient */}
           <div className="relative z-10 mt-10 sm:mt-12">
-            <div className="mx-auto max-w-4xl rotate-[2deg] rounded-2xl shadow-[0_30px_80px_rgba(7,6,12,0.6)]">
+            <div className="mx-auto max-w-4xl rounded-2xl border border-border-strong overflow-hidden">
               <IntelliRouteMockup />
             </div>
           </div>
         </div>
         {/* fade the gradient into the page ground under the mockup */}
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-bg" aria-hidden="true" />
       </section>
 
       {/* metric strip */}
@@ -155,7 +152,7 @@ export default function IntelliRouteCaseStudy() {
 
       {/* ================= Problem ================= */}
       <section className="mx-auto w-full max-w-6xl px-5 py-24 sm:px-8">
-        <p className="mx-auto max-w-3xl text-center font-display text-[clamp(1.5rem,3.2vw,2.25rem)] font-semibold leading-snug tracking-tight">
+        <p className="mx-auto max-w-3xl text-center font-display text-[clamp(1.5rem,3.2vw,2.25rem)] leading-snug tracking-tight">
           <span className="text-ink">
             The &ldquo;shortest&rdquo; route is rarely the route people actually want.
           </span>{" "}
@@ -193,10 +190,10 @@ export default function IntelliRouteCaseStudy() {
               ].map(([t, b]) => (
                 <li key={t} className="flex gap-4">
                   <svg width="18" height="18" viewBox="0 0 14 14" className="mt-1.5 shrink-0" aria-hidden="true">
-                    <path d="M2 7h8M7 3.5 10.5 7 7 10.5" stroke="#8b5cf6" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M2 7h8M7 3.5 10.5 7 7 10.5" stroke="#2f6a3b" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                   <div>
-                    <h3 className="font-display text-lg font-bold text-ink">{t}</h3>
+                    <h3 className="font-display text-lg text-ink">{t}</h3>
                     <p className="mt-1.5 text-[15px] leading-relaxed text-ink-dim">{b}</p>
                   </div>
                 </li>
@@ -242,7 +239,7 @@ export default function IntelliRouteCaseStudy() {
               }`}
             >
               <h3
-                className={`font-display font-bold text-ink ${
+                className={`font-display text-ink ${
                   d.tradeoff === "isolation over convenience" ? "text-2xl" : "text-xl"
                 }`}
               >
@@ -292,7 +289,7 @@ export default function IntelliRouteCaseStudy() {
           {/* test suites */}
           <div>
             <div className="h-full rounded-3xl border border-border bg-bg-raised p-7 sm:p-8">
-              <h3 className="font-display text-xl font-bold text-ink">
+              <h3 className="font-display text-xl text-ink">
                 121 automated tests
               </h3>
               <div className="mt-6 space-y-5">
@@ -300,7 +297,7 @@ export default function IntelliRouteCaseStudy() {
                   <div key={s.label}>
                     <div className="flex items-baseline justify-between gap-3">
                       <p className="font-mono text-xs text-ink-dim">{s.label}</p>
-                      <p className="font-display text-lg font-bold text-accent-strong">{s.count}</p>
+                      <p className="font-display text-lg text-accent-strong">{s.count}</p>
                     </div>
                     <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-bg-panel">
                       <div className="h-full rounded-full bg-accent" style={{ width: `${s.pct}%` }} />
@@ -315,7 +312,7 @@ export default function IntelliRouteCaseStudy() {
           <div>
             <div className="flex h-full flex-col gap-6">
               <div className="rounded-3xl border border-border bg-bg-raised p-7 sm:p-8">
-                <h3 className="font-display text-xl font-bold text-ink">
+                <h3 className="font-display text-xl text-ink">
                   CI that attacks the system
                 </h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-ink-dim">
@@ -326,7 +323,7 @@ export default function IntelliRouteCaseStudy() {
                 </p>
               </div>
               <div className="flex-1 rounded-3xl border border-border bg-bg-raised p-7 sm:p-8">
-                <h3 className="font-display text-xl font-bold text-ink">
+                <h3 className="font-display text-xl text-ink">
                   A real failure, kept on the record
                 </h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-ink-dim">
@@ -345,7 +342,7 @@ export default function IntelliRouteCaseStudy() {
         <div>
           <div className="mt-6 rounded-3xl border border-border bg-bg-raised p-7 sm:p-8">
             <div className="flex flex-wrap items-baseline justify-between gap-3">
-              <h3 className="font-display text-xl font-bold text-ink">Recorded benchmarks</h3>
+              <h3 className="font-display text-xl text-ink">Recorded benchmarks</h3>
               <p className="font-mono text-xs text-ink-faint">
                 CI container · 2 cores · fixed seed 42 · generated graphs
               </p>
@@ -409,14 +406,13 @@ export default function IntelliRouteCaseStudy() {
       <section className="mx-auto w-full max-w-6xl px-5 pb-28 sm:px-8">
         <div>
           <div
-            className="flex flex-wrap items-center justify-between gap-6 rounded-3xl p-9 sm:p-12"
-            style={{ background: GRADIENT }}
+            className="flex flex-wrap items-center justify-between gap-6 rounded-[20px] border border-border bg-bg-raised p-9 sm:p-12"
           >
             <div>
-              <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">
-                Try it, then read the code<span className="text-white/50">.</span>
+              <h2 className="font-display text-3xl text-ink sm:text-4xl">
+                Try it, then read the code<span className="text-accent">.</span>
               </h2>
-              <p className="mt-2 max-w-md text-[15px] leading-relaxed text-white/80">
+              <p className="mt-2 max-w-md text-[15px] leading-relaxed text-ink-dim">
                 Three services live in production, 121 tests, the CI pipeline,
                 and every decision record — all public.
               </p>
@@ -427,7 +423,7 @@ export default function IntelliRouteCaseStudy() {
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-xl bg-white px-6 py-3 text-accent-deep transition-colors hover:bg-white/85"
+                  className="rounded-full bg-accent-deep px-6 py-3 text-white transition-colors hover:bg-accent"
                 >
                   Open the live app ↗
                 </a>
@@ -436,14 +432,14 @@ export default function IntelliRouteCaseStudy() {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/90 transition-colors hover:text-white"
+                className="text-ink transition-colors hover:text-accent-strong"
               >
                 GitHub ↗
               </a>
-              <Link href="/#contact" className="text-white/90 transition-colors hover:text-white">
+              <Link href="/#contact" className="text-ink transition-colors hover:text-accent-strong">
                 Contact me
               </Link>
-              <Link href="/#work" className="text-white/90 transition-colors hover:text-white">
+              <Link href="/#work" className="text-ink transition-colors hover:text-accent-strong">
                 All projects
               </Link>
             </div>

@@ -56,16 +56,16 @@ function pointAt(pts: Pt[], t: number): Pt {
 }
 
 const PACKET_STYLE: Record<PacketKind, { r: number; fill: string; stroke?: string; opacity?: number }> = {
-  write: { r: 5, fill: "#8b5cf6" },
-  ack: { r: 3.5, fill: "#34d399" },
-  read: { r: 4, fill: "#a78bfa" },
-  data: { r: 5, fill: "#a78bfa" },
-  repair: { r: 5.5, fill: "#c4b5fd", stroke: "#f1eef9" },
-  heartbeat: { r: 2.5, fill: "#837da6", opacity: 0.8 },
-  meta: { r: 3, fill: "#a49dbd" },
-  gc: { r: 3.5, fill: "#0b0916", stroke: "#a49dbd" },
-  response: { r: 4.5, fill: "#34d399" },
-  fail: { r: 4.5, fill: "#f472b6" },
+  write: { r: 5, fill: "#2f6a3b" },
+  ack: { r: 3.5, fill: "#2f855a" },
+  read: { r: 4, fill: "#285d33" },
+  data: { r: 5, fill: "#285d33" },
+  repair: { r: 5.5, fill: "#9fbf95", stroke: "#18211a" },
+  heartbeat: { r: 2.5, fill: "#5a6258", opacity: 0.8 },
+  meta: { r: 3, fill: "#485148" },
+  gc: { r: 3.5, fill: "#fbfaf5", stroke: "#485148" },
+  response: { r: 4.5, fill: "#2f855a" },
+  fail: { r: 4.5, fill: "#c2416b" },
 };
 
 const BLOB_LABEL: Record<string, string> = {
@@ -122,14 +122,14 @@ function Box({
         width={w}
         height={h}
         rx="14"
-        fill={featured ? "#131022" : "#0d0b16"}
-        stroke={featured ? "#8b5cf6" : "#322a4a"}
+        fill={featured ? "#e7e3d6" : "#efece2"}
+        stroke={featured ? "#2f6a3b" : "#c4bfae"}
         strokeWidth={featured ? 1.8 : 1.3}
       />
-      <text x={x + 16} y={y + 26} fill="#f1eef9" fontSize="15" fontWeight="700" fontFamily="var(--font-display)">
+      <text x={x + 16} y={y + 26} fill="#18211a" fontSize="15" fontFamily="var(--font-display)">
         {title}
       </text>
-      <text x={x + 16} y={y + 44} fill="#837da6" fontSize="10.5" fontFamily="var(--font-mono)">
+      <text x={x + 16} y={y + 44} fill="#5a6258" fontSize="10.5" fontFamily="var(--font-mono)">
         {sub}
       </text>
       {lines.map((l, i) => (
@@ -137,7 +137,7 @@ function Box({
           key={i}
           x={x + 16}
           y={y + 64 + i * 15}
-          fill={l.tone === "accent" ? "#a78bfa" : "#a49dbd"}
+          fill={l.tone === "accent" ? "#285d33" : "#485148"}
           fontSize="10.5"
           fontFamily="var(--font-mono)"
         >
@@ -192,13 +192,13 @@ function Topology({
       </defs>
 
       {/* private network frame */}
-      <rect x="10" y="10" width={VIEW_W - 20} height={VIEW_H - 20} rx="20" fill="none" stroke="#221d33" strokeDasharray="4 6" />
-      <text x={VIEW_W - 24} y={VIEW_H - 22} textAnchor="end" fill="#837da6" fontSize="10.5" fontFamily="var(--font-mono)">
+      <rect x="10" y="10" width={VIEW_W - 20} height={VIEW_H - 20} rx="20" fill="none" stroke="#dcd8ca" strokeDasharray="4 6" />
+      <text x={VIEW_W - 24} y={VIEW_H - 22} textAnchor="end" fill="#5a6258" fontSize="10.5" fontFamily="var(--font-mono)">
         docker network · only :8080 published
       </text>
 
       {/* static links */}
-      <g stroke="#322a4a" strokeWidth="1.4" fill="none">
+      <g stroke="#c4bfae" strokeWidth="1.4" fill="none">
         {[
           route("client", "api"),
           route("api", "pg"),
@@ -212,7 +212,7 @@ function Topology({
 
       <Box {...CLIENT} title="Client" sub="curl · SDK" lines={[{ text: "X-Api-Key" }]} />
       <g filter="url(#simGlow)">
-        <rect x={API.x} y={API.y} width={API.w} height={API.h} rx="14" fill="none" stroke="#8b5cf6" strokeOpacity="0.35" />
+        <rect x={API.x} y={API.y} width={API.w} height={API.h} rx="14" fill="none" stroke="#2f6a3b" strokeOpacity="0.35" />
       </g>
       <Box
         {...API}
@@ -247,11 +247,11 @@ function Topology({
         const down = node.status === "DOWN";
         const status = node.running
           ? down
-            ? { text: "starting…", fill: "#837da6" }
-            : { text: `heartbeat ${Math.max(0, silent).toFixed(1)}s ago`, fill: "#837da6" }
+            ? { text: "starting…", fill: "#5a6258" }
+            : { text: `heartbeat ${Math.max(0, silent).toFixed(1)}s ago`, fill: "#5a6258" }
           : suspect
-            ? { text: `stopped · silent ${silent.toFixed(1)}s`, fill: "#e8b45a" }
-            : { text: "stopped", fill: "#f472b6" };
+            ? { text: `stopped · silent ${silent.toFixed(1)}s`, fill: "#b7791f" }
+            : { text: "stopped", fill: "#c2416b" };
         const blobs = [...node.blobs.entries()]
           .map(([oid, b]) => {
             const o = sim.objects.get(oid);
@@ -278,24 +278,24 @@ function Topology({
               width={TILE.w}
               height={TILE.h}
               rx="16"
-              fill="#0d0b16"
-              stroke={down ? "#f472b6" : suspect ? "#e8b45a" : "#322a4a"}
+              fill="#efece2"
+              stroke={down ? "#c2416b" : suspect ? "#b7791f" : "#c4bfae"}
               strokeOpacity={down || suspect ? 0.7 : 1}
               strokeWidth="1.4"
               strokeDasharray={down ? "6 5" : undefined}
             />
             <g opacity={down || !node.running ? 0.5 : 1}>
-              <circle cx={x + 18} cy={y + 21} r={beat ? 5 : 3.5} fill={node.running ? "#34d399" : "#584b85"} opacity={beat ? 1 : 0.85} />
-              <text x={x + 30} y={y + 26} fill="#f1eef9" fontSize="15" fontWeight="700" fontFamily="var(--font-display)">
+              <circle cx={x + 18} cy={y + 21} r={beat ? 5 : 3.5} fill={node.running ? "#2f855a" : "#9aa08f"} opacity={beat ? 1 : 0.85} />
+              <text x={x + 30} y={y + 26} fill="#18211a" fontSize="15" fontFamily="var(--font-display)">
                 {id}
               </text>
             </g>
-            <rect x={x + TILE.w - 58} y={y + 11} width="46" height="20" rx="10" fill={down ? "#2a1020" : "#10261f"} />
+            <rect x={x + TILE.w - 58} y={y + 11} width="46" height="20" rx="10" fill={down ? "#f6e3ea" : "#e2efe6"} />
             <text
               x={x + TILE.w - 35}
               y={y + 25}
               textAnchor="middle"
-              fill={down ? "#f472b6" : "#34d399"}
+              fill={down ? "#c2416b" : "#2f855a"}
               fontSize="10.5"
               fontWeight="600"
               fontFamily="var(--font-mono)"
@@ -314,12 +314,12 @@ function Topology({
                 const fill =
                   b.state === "live"
                     ? selected
-                      ? "#f1eef9"
-                      : "#8b5cf6"
+                      ? "#18211a"
+                      : "#2f6a3b"
                     : b.state === "pending"
-                      ? "#584b85"
+                      ? "#9aa08f"
                       : b.state === "corrupt"
-                        ? "#f472b6"
+                        ? "#c2416b"
                         : "none";
                 return (
                   <rect
@@ -331,7 +331,7 @@ function Topology({
                     height="14"
                     rx="3.5"
                     fill={fill}
-                    stroke={b.state === "garbage" ? "#584b85" : selected ? "#a78bfa" : "none"}
+                    stroke={b.state === "garbage" ? "#9aa08f" : selected ? "#285d33" : "none"}
                     strokeWidth={selected ? 2 : 1.2}
                     strokeDasharray={b.state === "garbage" ? "2 2" : undefined}
                   >
@@ -340,13 +340,13 @@ function Topology({
                 );
               })}
               {blobs.length > CAP && (
-                <text x={x + 14 + 6 * 19 + 7} y={y + 60 + 3 * 19 + 11} textAnchor="middle" fill="#a49dbd" fontSize="9.5" fontFamily="var(--font-mono)">
+                <text x={x + 14 + 6 * 19 + 7} y={y + 60 + 3 * 19 + 11} textAnchor="middle" fill="#485148" fontSize="9.5" fontFamily="var(--font-mono)">
                   +{blobs.length - CAP + 1}
                 </text>
               )}
             </g>
 
-            <text x={x + 14} y={y + 162} fill={down ? "#837da6" : "#a49dbd"} fontSize="10.5" fontFamily="var(--font-mono)">
+            <text x={x + 14} y={y + 162} fill={down ? "#5a6258" : "#485148"} fontSize="10.5" fontFamily="var(--font-mono)">
               {sim.copiesOn(id)} {down ? "unreachable" : "copies"}
             </text>
             <g
@@ -368,7 +368,7 @@ function Topology({
               opacity={locked ? 0.4 : 1}
             >
               {focused === id && (
-                <rect x={x + TILE.w - 74} y={y + 144} width="64" height="28" rx="14" fill="none" stroke="#a78bfa" strokeWidth="2" />
+                <rect x={x + TILE.w - 74} y={y + 144} width="64" height="28" rx="14" fill="none" stroke="#285d33" strokeWidth="2" />
               )}
               <rect
                 x={x + TILE.w - 70}
@@ -376,15 +376,15 @@ function Topology({
                 width="56"
                 height="20"
                 rx="10"
-                fill={node.running ? "#2a1020" : "#1c1533"}
-                stroke={node.running ? "#f472b6" : "#8b5cf6"}
+                fill={node.running ? "#f6e3ea" : "#dfe8d8"}
+                stroke={node.running ? "#c2416b" : "#2f6a3b"}
                 strokeOpacity="0.7"
               />
               <text
                 x={x + TILE.w - 42}
                 y={y + 162}
                 textAnchor="middle"
-                fill={node.running ? "#f472b6" : "#a78bfa"}
+                fill={node.running ? "#c2416b" : "#285d33"}
                 fontSize="10.5"
                 fontWeight="600"
                 fontFamily="var(--font-mono)"
@@ -447,7 +447,7 @@ const ObjectsPanel = memo(function ObjectsPanel({
   return (
     <div className="flex h-full flex-col rounded-2xl border border-border bg-bg-raised">
       <div className="flex items-baseline justify-between gap-3 border-b border-border px-4 py-3">
-        <h3 className="font-display text-sm font-bold text-ink">Objects</h3>
+        <h3 className="font-display text-sm text-ink">Objects</h3>
         <p className="font-mono text-[11px] text-ink-faint">bucket: {BUCKET} · click a row to highlight its copies</p>
       </div>
       <ul className="max-h-[300px] flex-1 overflow-y-auto p-2">
@@ -629,7 +629,7 @@ export default function MiniS3Simulator() {
     "rounded-xl border border-border-strong px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent-strong disabled:cursor-default disabled:opacity-40 disabled:hover:border-border-strong disabled:hover:text-ink";
 
   return (
-    <div ref={rootRef} className="overflow-hidden rounded-3xl border border-[#3b3157] bg-[#0b0916]">
+    <div ref={rootRef} className="overflow-hidden rounded-3xl border border-[#c4bfae] bg-[#fbfaf5]">
       {/* window chrome */}
       <div className="flex items-center gap-4 border-b border-border px-5 py-3.5">
         <div className="flex gap-2" aria-hidden="true">
@@ -637,7 +637,7 @@ export default function MiniS3Simulator() {
           <span className="h-2.5 w-2.5 rounded-full bg-amber" />
           <span className="h-2.5 w-2.5 rounded-full bg-mint" />
         </div>
-        <p className="mx-auto rounded-full bg-[#161129] px-4 py-1 font-mono text-[11px] text-ink-faint">
+        <p className="mx-auto rounded-full bg-[#e7e3d6] px-4 py-1 font-mono text-[11px] text-ink-faint">
           <span className="hidden sm:inline">mini-s3 · </span>cluster console · simulated
         </p>
         <span className="w-[52px]" aria-hidden="true" />
@@ -650,7 +650,7 @@ export default function MiniS3Simulator() {
             type="button"
             disabled={locked}
             onClick={() => setSelectedKey(act0(() => sim.upload()))}
-            className="rounded-xl bg-accent px-4 py-2.5 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(139,92,246,0.35)] transition-all hover:bg-accent-deep disabled:cursor-default disabled:opacity-40 disabled:hover:bg-accent"
+            className="rounded-xl bg-accent px-4 py-2.5 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(47,106,59,0.25)] transition-all hover:bg-accent-deep disabled:cursor-default disabled:opacity-40 disabled:hover:bg-accent"
           >
             Upload a file
           </button>
@@ -748,7 +748,7 @@ export default function MiniS3Simulator() {
       <ul className="flex flex-wrap gap-x-5 gap-y-2 px-5 pb-1 pt-2 font-mono text-[11px] text-ink-faint" aria-label="Legend">
         <li className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-[3px] bg-accent" />live copy</li>
         <li className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-[3px] bg-ink" />selected object</li>
-        <li className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-[3px] border border-dashed border-[#584b85]" />bytes awaiting GC</li>
+        <li className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-[3px] border border-dashed border-[#9aa08f]" />bytes awaiting GC</li>
         <li className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-[3px] bg-rose" />corrupt copy</li>
         {!reduced && (
           <>
@@ -811,7 +811,7 @@ export default function MiniS3Simulator() {
           ) : (
             <p className="border-b border-border px-4 py-4 text-[13px] leading-relaxed text-ink-dim">
               <span className="font-semibold text-ink">Try it:</span> stop a node that holds{" "}
-              <span className="font-mono text-accent-strong">demo.bin</span> (its copies are the white
+              <span className="font-mono text-accent-strong">demo.bin</span> (its copies are the dark
               squares), wait ~6 s for the worker to mark it DOWN, and watch the copies rebuild. Then
               download <span className="font-mono text-accent-strong">demo.bin</span>.
             </p>

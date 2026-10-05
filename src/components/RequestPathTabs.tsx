@@ -57,13 +57,13 @@ export default function RequestPathTabs({ panels }: { panels: PathPanel[] }) {
           className="mt-6"
         >
           <div className="overflow-x-auto rounded-3xl border border-border bg-bg-raised p-5 sm:p-8">
-            <p className="font-display text-xl font-bold text-ink">{p.title}</p>
+            <p className="font-display text-xl text-ink">{p.title}</p>
             <div className="mt-4 min-w-[680px]">{p.diagram}</div>
           </div>
           <div className="mt-5 grid gap-5 md:grid-cols-3">
             {p.points.map((pt) => (
               <div key={pt.title} className="rounded-2xl border border-border bg-bg-raised p-6">
-                <h4 className="font-display text-base font-bold text-ink">{pt.title}</h4>
+                <h4 className="font-display text-base text-ink">{pt.title}</h4>
                 <p className="mt-2 text-[14.5px] leading-relaxed text-ink-dim">{pt.body}</p>
               </div>
             ))}

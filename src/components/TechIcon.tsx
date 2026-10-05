@@ -53,7 +53,7 @@ export function AwsMark({ size = 34 }: { size?: number }) {
     <span
       aria-label="Amazon Web Services"
       title="AWS — Certified Solutions Architect Associate"
-      className="inline-flex items-center justify-center rounded font-display font-bold"
+      className="inline-flex items-center justify-center rounded font-body font-bold"
       style={{
         width: size,
         height: size,
