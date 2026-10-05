@@ -4,7 +4,7 @@ import SectionHeading from "@/components/SectionHeading";
 import ProjectList from "@/components/ProjectList";
 import ExperienceAccordion from "@/components/ExperienceAccordion";
 import GithubActivity from "@/components/GithubActivity";
-import FieldRoute from "@/components/FieldRoute";
+import QueryGuardSim from "@/components/QueryGuardSim";
 import HashRingObject from "@/components/HashRingObject";
 import LocalTime from "@/components/LocalTime";
 import { TechIcon, AwsMark } from "@/components/TechIcon";
@@ -168,17 +168,17 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* ================= 05 Field (interactive Dijkstra) ================= */}
-        <section id="field" className={SECTION}>
+        {/* ================= 05 QueryGuard simulator ================= */}
+        <section id="queryguard" className={SECTION}>
           <SectionHeading
             index="05"
-            label="How I think"
-            title="Shortest path"
-            accent="through the field"
-            lede="A live Dijkstra running in your browser — the same algorithm at the heart of IntelliRoute's routing core. Pick a flower and watch it search."
+            label="Try QueryGuard"
+            title="Model-written SQL,"
+            accent="verified before it runs"
+            lede="Pick a request — or write your own SQL — and watch QueryGuard decide what is allowed to reach the database."
           />
           <div className="mt-14">
-            <FieldRoute />
+            <QueryGuardSim />
           </div>
         </section>
 

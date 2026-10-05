@@ -124,7 +124,7 @@ reference site is not licensed for reuse.
 - **Ink** (#18211a) headings · **Ink Dim** (#485148) body · **Ink Faint** (#5a6258) meta. All pass WCAG AA on all three paper tones.
 
 ### Tertiary (illustration and status only)
-Amber, rose, mint, and cyan carry status inside the Mini-S3 console and diagrams, never in chrome.
+Amber, rose, mint, and cyan carry status inside the Mini-S3 console, the QueryGuard simulator console (rose = blocked, amber = clarification/stopped, green = pass/executed), and diagrams, never in chrome.
 
 ### Named rules
 **The One Green Rule.** Field Green is the only accent in UI chrome. Brand tech marks keep

@@ -164,21 +164,14 @@ body {
   .hero-route, .pop-in, .project-dialog[open] { animation: none; }
 }
 
-/* Shortest path through the field (FieldRoute): petals tint in Dijkstra's settle order,
-   then the route draws. pathLength=1 on the polyline makes the dash math unitless. */
-.field-petal {
-  transition: fill 0.35s ease;
+/* QueryGuard simulator: each stage body fades up as the pipeline reaches it; the confidence bar grows. */
+@keyframes qg-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
 }
-@keyframes field-route-draw {
-  from { stroke-dashoffset: 1; }
-  to { stroke-dashoffset: 0; }
-}
-.field-route {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: field-route-draw 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
+.qg-stage-body.is-shown { animation: qg-in 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
+@keyframes qg-bar { from { width: 0; } }
+.qg-bar { animation: qg-bar 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
 @media (prefers-reduced-motion: reduce) {
-  .field-petal { transition: none; transition-delay: 0s !important; }
-  .field-route { animation: none; stroke-dashoffset: 0; }
+  .qg-stage-body.is-shown, .qg-bar { animation: none; }
 }
