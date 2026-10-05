@@ -19,7 +19,7 @@ deployed on Vercel.
   [repository](https://github.com/Zemukiros/intelliroute).
 - Self-hosted variable fonts (Fontsource) — no Google Fonts network dependency.
 - Accessibility: semantic landmarks, skip link, keyboard-visible focus styles,
-  `prefers-reduced-motion` support, accessible contrast on dark surfaces.
+  `prefers-reduced-motion` support, WCAG AA contrast on every paper surface (axe-core: 0 violations at 1440 and 390 px).
 
 ## Maintenance notes
 
