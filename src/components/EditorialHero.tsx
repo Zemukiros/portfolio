@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { profile } from "@/data/profile";
+import { education } from "@/data/education";
 
 /**
  * Full-viewport framed hero. On scroll the frame insets (scale + radius) while the page
@@ -38,7 +39,6 @@ export default function EditorialHero() {
     <section ref={ref} className="hero-frame-wrap relative h-[100svh] min-h-[560px] p-0" aria-labelledby="hero-title">
       <div className="hero-frame absolute inset-0 overflow-hidden">
         <FieldArtwork />
-        <div className="absolute inset-0 bg-gradient-to-b from-bg/10 via-bg/0 to-bg/30" aria-hidden="true" />
 
         <div className="relative flex h-full flex-col items-center justify-center px-5 text-center">
           <p className="hero-rise hero-rise-1 rounded-full border border-ink/15 bg-bg/60 px-4 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.16em] text-ink-dim backdrop-blur-sm">
@@ -70,8 +70,8 @@ export default function EditorialHero() {
               </Link>
             ))}
           </nav>
-          <p className="hero-rise hero-rise-5 absolute bottom-8 font-mono text-[11px] tracking-[0.12em] text-ink-faint">
-            {profile.location} · B.S. Computer Science, May 2027
+          <p className="hero-rise hero-rise-5 absolute bottom-8 rounded-full bg-bg/75 px-4 py-1.5 font-mono text-[11px] tracking-[0.12em] text-ink backdrop-blur-sm">
+            {profile.location} · {education[0].degree.replace("B.S. in", "B.S.")}, {education[0].dates.replace("Expected ", "expected ")}
           </p>
         </div>
       </div>

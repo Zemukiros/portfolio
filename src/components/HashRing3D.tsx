@@ -36,8 +36,9 @@ function Ring() {
     [],
   );
 
-  useFrame((state, delta) => {
+  useFrame((state, rawDelta) => {
     if (!tilt.current || !spin.current || !packet.current) return;
+    const delta = Math.min(rawDelta, 0.1); // no jump after resuming from off screen
 
     // Gentle pointer tilt, eased.
     const tx = -state.pointer.y * MAX_TILT;

@@ -322,7 +322,7 @@ export default function MiniS3CaseStudy() {
           accent="design"
           lede="Metadata and bytes live in different places, on purpose. One jar runs as three roles — api, storage, or worker, chosen by Spring profile — so the API, the storage nodes, and the worker all ship from a single image."
         />
-        <div className="mt-12 overflow-x-auto rounded-3xl border border-border bg-bg-raised p-5 sm:p-8">
+        <div tabIndex={0} role="region" aria-label="Architecture diagram (scrolls horizontally)" className="mt-12 overflow-x-auto rounded-3xl border border-border bg-bg-raised p-5 sm:p-8">
           <div className="min-w-[680px]">
             <MiniS3ArchitectureDiagram />
           </div>
@@ -366,7 +366,7 @@ export default function MiniS3CaseStudy() {
             </div>
           ))}
         </div>
-        <div className="mt-5 overflow-x-auto rounded-3xl border border-border bg-bg-raised p-7">
+        <div tabIndex={0} role="region" aria-label="Key SQL statements (scrolls horizontally)" className="mt-5 overflow-x-auto rounded-3xl border border-border bg-bg-raised p-7">
           <h3 className="font-display text-base text-ink">The three statements that carry the design</h3>
           <div className="mt-4 space-y-4">
             {sql.map((q) => (

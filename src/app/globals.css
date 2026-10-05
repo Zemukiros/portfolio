@@ -13,10 +13,14 @@
   --color-accent: #2f6a3b;
   --color-accent-strong: #285d33;
   --color-accent-deep: #1f4a29;
-  --color-amber: #b7791f;
-  --color-rose: #c2416b;
-  --color-cyan: #1f7a8c;
-  --color-mint: #2f855a;
+  --color-amber: #8a5f17;
+  --color-rose: #a8325a;
+  --color-cyan: #1b6b7b;
+  --color-mint: #237049;
+  --color-window: #fbfaf5;
+  --color-heat-1: #c9d8bf;
+  --color-heat-2: #8fb184;
+  --color-heat-3: #4f8a57;
 
   --font-display: "Instrument Serif", ui-serif, Georgia, serif;
   --font-body: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
@@ -82,7 +86,7 @@ body {
   outline: none;
 }
 
-/* Legacy scroll-reveal (still used by the case-study page) */
+/* Scroll reveal for section headings (SectionHeading) and case-study hero blocks */
 .reveal {
   opacity: 0;
   transform: translateY(16px);

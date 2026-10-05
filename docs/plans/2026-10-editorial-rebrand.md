@@ -1,6 +1,6 @@
 # Plan: Editorial rebrand + minimalist 3D object
 
-Status: **Approved 2026-10-04** on `feat/editorial-rebrand` — Phases 1–4 done (contract, home rebuild, 3D ring, case-study restyle); next: Phase 5 verification
+Status: **Approved 2026-10-04** on `feat/editorial-rebrand` — Phases 1–5 done (contract, home rebuild, 3D ring, case-study restyle, verification); next: Phase 6 PR → approval → merge
 
 ## Decisions (2026-10-04)
 - Direction: follow the reference's light editorial look closely (user: Signal Violet / gradient cards felt cliché).

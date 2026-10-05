@@ -153,10 +153,10 @@ export const statusStyles: Record<ProjectStatus, { label: string; className: str
   },
   "In development": {
     label: "In development",
-    className: "text-accent-strong border-accent/30 bg-accent/5",
+    className: "text-ink-dim border-border-strong bg-transparent",
   },
   Planned: {
     label: "Up next",
-    className: "text-ink-dim border-border-strong bg-transparent",
+    className: "text-ink-faint border-border bg-transparent",
   },
 };

@@ -13,10 +13,10 @@ colors:
   accent: "#2f6a3b"
   accent-strong: "#285d33"
   accent-deep: "#1f4a29"
-  amber: "#b7791f"
-  rose: "#c2416b"
-  cyan: "#1f7a8c"
-  mint: "#2f855a"
+  amber: "#8a5f17"
+  rose: "#a8325a"
+  cyan: "#1b6b7b"
+  mint: "#237049"
 typography:
   display:
     fontFamily: "Instrument Serif, ui-serif, Georgia, serif"

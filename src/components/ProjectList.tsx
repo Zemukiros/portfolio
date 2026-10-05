@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { projects, projectFootnote, statusStyles, type Project } from "@/data/projects";
 import ProjectLinks from "./ProjectLinks";
 import {
@@ -38,10 +38,14 @@ export default function ProjectList() {
   const open = openSlug ? projects.find((p) => p.slug === openSlug) : undefined;
   const openRow = open ? ROWS.find((r) => r.slug === open.slug) : undefined;
 
-  const show = (slug: string) => {
-    setOpenSlug(slug);
-    dialogRef.current?.showModal();
-  };
+  // Open only after the content for this project has rendered, so the dialog is
+  // never empty and aria-labelledby resolves when focus moves in.
+  useEffect(() => {
+    const d = dialogRef.current;
+    if (openSlug && d && !d.open) d.showModal();
+  }, [openSlug]);
+
+  const show = (slug: string) => setOpenSlug(slug);
   const close = () => dialogRef.current?.close();
 
   return (
@@ -69,7 +73,7 @@ export default function ProjectList() {
                 aria-haspopup="dialog"
                 className="group grid w-full grid-cols-[88px_1fr_24px] items-center gap-4 px-2 py-5 text-left transition-colors hover:bg-bg-raised focus-visible:bg-bg-raised md:grid-cols-[120px_1fr_220px_130px_32px] md:gap-6"
               >
-                <span className="block aspect-[16/10] overflow-hidden rounded-xl border border-border bg-[#fbfaf5]">
+                <span className="block aspect-[16/10] overflow-hidden rounded-xl border border-border bg-window">
                   <span className="pointer-events-none block w-[250%] origin-top-left scale-[0.4]">{row.thumb}</span>
                 </span>
                 <span className="min-w-0">
@@ -154,7 +158,7 @@ export default function ProjectList() {
             </div>
 
             {openRow && (
-              <div className="mt-8 overflow-hidden rounded-2xl border border-border bg-[#fbfaf5]">{openRow.thumb}</div>
+              <div className="mt-8 overflow-hidden rounded-2xl border border-border bg-window">{openRow.thumb}</div>
             )}
 
             <h4 className="mt-9 font-mono text-[11px] uppercase tracking-[0.16em] text-ink-faint">

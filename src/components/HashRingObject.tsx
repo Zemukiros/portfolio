@@ -1,18 +1,34 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useRef, useState } from "react";
+import { Component, useEffect, useRef, useState, type ReactNode } from "react";
 import HashRingFigure from "./HashRingFigure";
 import { preference, ringDescription } from "@/lib/ringFigure";
 
 const HashRing3D = dynamic(() => import("./HashRing3D"), { ssr: false });
+
+/** If the 3D chunk fails to load or WebGL throws, drop back to the SVG (even after a fade-in). */
+class Keep2DOnError extends Component<{ children: ReactNode; onFail: () => void }, { failed: boolean }> {
+  state = { failed: false };
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+  componentDidCatch() {
+    this.props.onFail();
+  }
+  render() {
+    return this.state.failed ? null : this.props.children;
+  }
+}
 
 function canUse3D() {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
   if (window.matchMedia("(hover: none)").matches) return false; // touch / low-power: keep the SVG
   try {
     const c = document.createElement("canvas");
-    return Boolean(c.getContext("webgl2") ?? c.getContext("webgl"));
+    const gl = c.getContext("webgl2") ?? c.getContext("webgl");
+    gl?.getExtension("WEBGL_lose_context")?.loseContext(); // release the probe context
+    return Boolean(gl);
   } catch {
     return false;
   }
@@ -55,7 +71,14 @@ export default function HashRingObject() {
         </div>
         {show3D && (
           <div aria-hidden="true" className={`absolute inset-0 transition-opacity duration-500 ${ready ? "opacity-100" : "opacity-0"}`}>
-            <HashRing3D active={onScreen} onReady={() => setReady(true)} />
+            <Keep2DOnError
+              onFail={() => {
+                setReady(false);
+                setWant3D(false);
+              }}
+            >
+              <HashRing3D active={onScreen} onReady={() => setReady(true)} />
+            </Keep2DOnError>
           </div>
         )}
       </div>

@@ -20,6 +20,8 @@ export default function FloatingNav() {
   const [talkOpen, setTalkOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const firstActionRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!isHome) return;
@@ -31,7 +33,12 @@ export default function FloatingNav() {
 
   useEffect(() => {
     if (!talkOpen) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setTalkOpen(false);
+    firstActionRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setTalkOpen(false);
+      triggerRef.current?.focus();
+    };
     const onPointer = (e: PointerEvent) => {
       if (!wrapRef.current?.contains(e.target as Node)) setTalkOpen(false);
     };
@@ -58,11 +65,45 @@ export default function FloatingNav() {
   return (
     <div
       ref={wrapRef}
+      inert={!shown}
       className={`fixed inset-x-0 bottom-5 z-50 flex justify-center px-4 transition-[opacity,transform] duration-300 ${
         shown ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
       }`}
     >
       <div className="relative">
+        <nav
+          aria-label="Sections"
+          className="flex items-center gap-1 rounded-full border border-border bg-bg-raised/90 p-1.5 shadow-[0_12px_40px_rgba(24,33,26,0.12)] backdrop-blur-md"
+        >
+          {LINKS.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              tabIndex={shown ? 0 : -1}
+              className="hidden rounded-full px-3.5 py-2 font-mono text-[11px] uppercase tracking-[0.12em] text-ink-dim transition-colors hover:bg-bg-panel hover:text-ink sm:block"
+            >
+              {l.label}
+            </Link>
+          ))}
+          <Link
+            href="/#work"
+            tabIndex={shown ? 0 : -1}
+            className="rounded-full px-3.5 py-2 font-mono text-[11px] uppercase tracking-[0.12em] text-ink-dim transition-colors hover:bg-bg-panel hover:text-ink sm:hidden"
+          >
+            Work
+          </Link>
+          <button
+            ref={triggerRef}
+            type="button"
+            tabIndex={shown ? 0 : -1}
+            aria-expanded={talkOpen}
+            aria-controls="lets-talk"
+            onClick={() => setTalkOpen((o) => !o)}
+            className="rounded-full bg-accent-deep px-4 py-2 font-mono text-[11px] uppercase tracking-[0.12em] text-white transition-colors hover:bg-accent"
+          >
+            Let&apos;s talk
+          </button>
+        </nav>
         {talkOpen && (
           <div
             id="lets-talk"
@@ -78,6 +119,7 @@ export default function FloatingNav() {
             </p>
             <div className="mt-4 grid gap-2">
               <button
+                ref={firstActionRef}
                 type="button"
                 onClick={copyEmail}
                 className="flex items-center justify-between rounded-xl border border-border bg-bg-raised px-4 py-3 text-left text-sm text-ink transition-colors hover:border-accent"
@@ -118,38 +160,6 @@ export default function FloatingNav() {
           </div>
         )}
 
-        <nav
-          aria-label="Sections"
-          className="flex items-center gap-1 rounded-full border border-border bg-bg-raised/90 p-1.5 shadow-[0_12px_40px_rgba(24,33,26,0.12)] backdrop-blur-md"
-        >
-          {LINKS.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              tabIndex={shown ? 0 : -1}
-              className="hidden rounded-full px-3.5 py-2 font-mono text-[11px] uppercase tracking-[0.12em] text-ink-dim transition-colors hover:bg-bg-panel hover:text-ink sm:block"
-            >
-              {l.label}
-            </Link>
-          ))}
-          <Link
-            href="/#work"
-            tabIndex={shown ? 0 : -1}
-            className="rounded-full px-3.5 py-2 font-mono text-[11px] uppercase tracking-[0.12em] text-ink-dim transition-colors hover:bg-bg-panel hover:text-ink sm:hidden"
-          >
-            Work
-          </Link>
-          <button
-            type="button"
-            tabIndex={shown ? 0 : -1}
-            aria-expanded={talkOpen}
-            aria-controls="lets-talk"
-            onClick={() => setTalkOpen((o) => !o)}
-            className="rounded-full bg-accent-deep px-4 py-2 font-mono text-[11px] uppercase tracking-[0.12em] text-white transition-colors hover:bg-accent"
-          >
-            Let&apos;s talk
-          </button>
-        </nav>
       </div>
     </div>
   );

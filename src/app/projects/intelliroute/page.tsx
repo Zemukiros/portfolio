@@ -220,7 +220,7 @@ export default function IntelliRouteCaseStudy() {
           lede="Three services, one contract: ranked-route responses always report which ranking path produced them."
         />
         <div className="mt-12">
-          <div className="overflow-x-auto rounded-3xl border border-border bg-bg-raised p-5 sm:p-8">
+          <div tabIndex={0} role="region" aria-label="Architecture diagram (scrolls horizontally)" className="overflow-x-auto rounded-3xl border border-border bg-bg-raised p-5 sm:p-8">
             <div className="min-w-[640px]">
               <ArchitectureDiagram />
             </div>
@@ -266,7 +266,7 @@ export default function IntelliRouteCaseStudy() {
           lede="Cross-service failure isn't an edge case — it's a designed, tested behavior."
         />
         <div className="mt-12">
-          <div className="overflow-x-auto rounded-3xl border border-border bg-bg-raised p-5 sm:p-8">
+          <div tabIndex={0} role="region" aria-label="Fallback sequence diagram (scrolls horizontally)" className="overflow-x-auto rounded-3xl border border-border bg-bg-raised p-5 sm:p-8">
             <div className="min-w-[640px]">
               <FallbackDiagram />
             </div>
@@ -347,7 +347,7 @@ export default function IntelliRouteCaseStudy() {
                 CI container · 2 cores · fixed seed 42 · generated graphs
               </p>
             </div>
-            <div className="mt-6 overflow-x-auto">
+            <div tabIndex={0} role="region" aria-label="Benchmark table (scrolls horizontally)" className="mt-6 overflow-x-auto">
               <table className="w-full min-w-[520px] text-left text-sm">
                 <caption className="sr-only">Algorithm benchmark timings by graph size</caption>
                 <thead>

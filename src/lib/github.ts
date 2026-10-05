@@ -36,7 +36,8 @@ export async function getGithubActivity(user: string): Promise<GithubActivity | 
       const n = /^(\d+) contribution/.exec(text.trim());
       counts.set(id, n ? Number(n[1]) : 0);
     }
-    if (cells.length < 300) return null;
+    // Markup drift guard: without real per-day counts we publish nothing rather than zeros.
+    if (cells.length < 300 || counts.size < cells.length * 0.9) return null;
 
     const days = cells
       .map(([, date, id, level]) => ({ date, count: counts.get(id) ?? 0, level: Number(level) }))

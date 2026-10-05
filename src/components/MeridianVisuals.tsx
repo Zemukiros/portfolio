@@ -2,15 +2,15 @@ import { Window } from "./ProjectMockups";
 
 /**
  * Case-study visuals for the Meridian Patient Website, drawn in the site's
- * schematic language: dark panels, violet line-work, mint = verified,
+ * schematic language: paper panels, field-green line-work, mint = verified,
  * teal = Meridian's product accent (drone / delivery state).
  */
 
 /** The staff side: Django admin customized into "Meridian Operations". */
 export function OperationsMockup() {
   const rows = [
-    { y: 150, order: "MMA-1038", state: "delivered", dot: "#2f855a", hot: false },
-    { y: 186, order: "MMA-1042", state: "in flight", dot: "#1f7a8c", hot: true },
+    { y: 150, order: "MMA-1038", state: "delivered", dot: "#237049", hot: false },
+    { y: 186, order: "MMA-1042", state: "in flight", dot: "#1b6b7b", hot: true },
     { y: 222, order: "MMA-1043", state: "verified", dot: "#285d33", hot: false },
     { y: 258, order: "MMA-1044", state: "received", dot: "#9aa08f", hot: false },
   ];
@@ -42,12 +42,12 @@ export function OperationsMockup() {
       {/* rows */}
       {rows.map((r) => (
         <g key={r.order}>
-          <rect x="24" y={r.y - 22} width="452" height="32" rx="8" fill={r.hot ? "#e0edf0" : "transparent"} stroke={r.hot ? "#1f7a8c" : "transparent"} strokeOpacity="0.55" />
+          <rect x="24" y={r.y - 22} width="452" height="32" rx="8" fill={r.hot ? "#e0edf0" : "transparent"} stroke={r.hot ? "#1b6b7b" : "transparent"} strokeOpacity="0.55" />
           <text x="40" y={r.y} fill="#18211a" fontSize="11" fontFamily="var(--font-mono)">{r.order}</text>
           <rect x="170" y={r.y - 8} width="86" height="8" rx="4" fill="#c4bfae" />
           <circle cx="306" cy={r.y - 4} r="4.5" fill={r.dot} />
           <text x="318" y={r.y} fill="#485148" fontSize="10.5" fontFamily="var(--font-mono)">{r.state}</text>
-          <rect x="412" y={r.y - 12} width="52" height="18" rx="9" fill={r.hot ? "#1f7a8c" : "#e7e3d6"} stroke={r.hot ? "#1f7a8c" : "#dcd8ca"} />
+          <rect x="412" y={r.y - 12} width="52" height="18" rx="9" fill={r.hot ? "#1b6b7b" : "#e7e3d6"} stroke={r.hot ? "#1b6b7b" : "#dcd8ca"} />
           <text x="438" y={r.y} textAnchor="middle" fill={r.hot ? "#18211a" : "#485148"} fontSize="9.5" fontWeight={r.hot ? 700 : 400} fontFamily="var(--font-mono)">
             {r.hot ? "advance" : "open"}
           </text>
@@ -128,7 +128,7 @@ export function MeridianArchitectureDiagram() {
       ].map((j) => (
         <g key={j.label}>
           <rect x={j.x} y="374" width={j.w} height="28" rx="14" fill="#e7e3d6" stroke="#dcd8ca" />
-          <circle cx={j.x + 16} cy="388" r="5" fill="#2f855a" />
+          <circle cx={j.x + 16} cy="388" r="5" fill="#237049" />
           <text x={j.x + 28} y="392" fill="#485148" fontSize="10.5" fontFamily="var(--font-mono)">
             {j.label}
           </text>

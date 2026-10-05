@@ -1,6 +1,6 @@
 import type { GithubActivity as Activity } from "@/lib/github";
 
-const LEVEL = ["var(--color-bg-panel)", "#c9d8bf", "#8fb184", "#4f8a57", "#2f6a3b"];
+const LEVEL = ["var(--color-bg-panel)", "var(--color-heat-1)", "var(--color-heat-2)", "var(--color-heat-3)", "var(--color-accent)"];
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 /** Build-time GitHub stats + 12-month contribution heatmap. Real numbers only. */
@@ -45,7 +45,7 @@ export default function GithubActivity({ data, profileUrl }: { data: Activity; p
             Profile ↗
           </a>
         </div>
-        <div className="mt-5 overflow-x-auto">
+        <div tabIndex={0} role="region" aria-label="Contribution heatmap (scrolls horizontally)" className="mt-5 overflow-x-auto">
           <svg
             width={width}
             height={height}

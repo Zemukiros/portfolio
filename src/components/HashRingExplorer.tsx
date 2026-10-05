@@ -4,8 +4,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { HashRing, floorModPos, ringFraction, ringHash } from "@/lib/hashRing";
 
 const NODES = ["node-1", "node-2", "node-3", "node-4", "node-5"];
-/** Violet ramp by lightness; node-5 (the newcomer) is also drawn raised off the ring. */
-const NODE_COLOR = ["#1f4a29", "#1f4a29", "#285d33", "#c9d8bf", "#18211a"];
+/** Field-green ramp, dark to light (all distinct); node-5 (the newcomer) is also drawn raised off the ring. */
+const NODE_COLOR = ["#1f4a29", "#2f6a3b", "#4f8a57", "#8fb184", "#c9d8bf"];
 const VNODE_OPTIONS = [1, 10, 100, 200];
 const KEY_COUNT = 100_000;
 

@@ -243,7 +243,7 @@ export default function MeridianCaseStudy() {
           lede="One well-built monolith, twice deployed: production on the company's own hosting behind Passenger with MariaDB, and a demo copy on Render + Neon that rebuilds as code on every push."
         />
         <div className="mt-12">
-          <div className="overflow-x-auto rounded-3xl border border-border bg-bg-raised p-5 sm:p-8">
+          <div tabIndex={0} role="region" aria-label="Architecture diagram (scrolls horizontally)" className="overflow-x-auto rounded-3xl border border-border bg-bg-raised p-5 sm:p-8">
             <div className="min-w-[640px]">
               <MeridianArchitectureDiagram />
             </div>

@@ -2,7 +2,7 @@ import { Window } from "./ProjectMockups";
 
 /**
  * Case-study visuals for IntelliRoute, drawn in the site's schematic
- * product-true language: violet line-work, dark panels, mint = verified.
+ * product-true language: field-green line-work, paper panels, mint = verified.
  */
 
 /** Preference-to-ranking product moment: what using IntelliRoute feels like. */
@@ -125,7 +125,7 @@ export function ArchitectureDiagram() {
       ].map((j) => (
         <g key={j.label}>
           <rect x={j.x} y="374" width={j.w} height="28" rx="14" fill="#e7e3d6" stroke="#dcd8ca" />
-          <circle cx={j.x + 16} cy="388" r="5" fill="#2f855a" />
+          <circle cx={j.x + 16} cy="388" r="5" fill="#237049" />
           <text x={j.x + 28} y="392" fill="#485148" fontSize="10.5" fontFamily="var(--font-mono)">
             {j.label}
           </text>

@@ -57,15 +57,15 @@ function pointAt(pts: Pt[], t: number): Pt {
 
 const PACKET_STYLE: Record<PacketKind, { r: number; fill: string; stroke?: string; opacity?: number }> = {
   write: { r: 5, fill: "#2f6a3b" },
-  ack: { r: 3.5, fill: "#2f855a" },
+  ack: { r: 3.5, fill: "#237049" },
   read: { r: 4, fill: "#285d33" },
   data: { r: 5, fill: "#285d33" },
   repair: { r: 5.5, fill: "#9fbf95", stroke: "#18211a" },
   heartbeat: { r: 2.5, fill: "#5a6258", opacity: 0.8 },
   meta: { r: 3, fill: "#485148" },
   gc: { r: 3.5, fill: "#fbfaf5", stroke: "#485148" },
-  response: { r: 4.5, fill: "#2f855a" },
-  fail: { r: 4.5, fill: "#c2416b" },
+  response: { r: 4.5, fill: "#237049" },
+  fail: { r: 4.5, fill: "#a8325a" },
 };
 
 const BLOB_LABEL: Record<string, string> = {
@@ -250,8 +250,8 @@ function Topology({
             ? { text: "starting…", fill: "#5a6258" }
             : { text: `heartbeat ${Math.max(0, silent).toFixed(1)}s ago`, fill: "#5a6258" }
           : suspect
-            ? { text: `stopped · silent ${silent.toFixed(1)}s`, fill: "#b7791f" }
-            : { text: "stopped", fill: "#c2416b" };
+            ? { text: `stopped · silent ${silent.toFixed(1)}s`, fill: "#8a5f17" }
+            : { text: "stopped", fill: "#a8325a" };
         const blobs = [...node.blobs.entries()]
           .map(([oid, b]) => {
             const o = sim.objects.get(oid);
@@ -279,13 +279,13 @@ function Topology({
               height={TILE.h}
               rx="16"
               fill="#efece2"
-              stroke={down ? "#c2416b" : suspect ? "#b7791f" : "#c4bfae"}
+              stroke={down ? "#a8325a" : suspect ? "#8a5f17" : "#c4bfae"}
               strokeOpacity={down || suspect ? 0.7 : 1}
               strokeWidth="1.4"
               strokeDasharray={down ? "6 5" : undefined}
             />
             <g opacity={down || !node.running ? 0.5 : 1}>
-              <circle cx={x + 18} cy={y + 21} r={beat ? 5 : 3.5} fill={node.running ? "#2f855a" : "#9aa08f"} opacity={beat ? 1 : 0.85} />
+              <circle cx={x + 18} cy={y + 21} r={beat ? 5 : 3.5} fill={node.running ? "#237049" : "#9aa08f"} opacity={beat ? 1 : 0.85} />
               <text x={x + 30} y={y + 26} fill="#18211a" fontSize="15" fontFamily="var(--font-display)">
                 {id}
               </text>
@@ -295,7 +295,7 @@ function Topology({
               x={x + TILE.w - 35}
               y={y + 25}
               textAnchor="middle"
-              fill={down ? "#c2416b" : "#2f855a"}
+              fill={down ? "#a8325a" : "#237049"}
               fontSize="10.5"
               fontWeight="600"
               fontFamily="var(--font-mono)"
@@ -319,7 +319,7 @@ function Topology({
                     : b.state === "pending"
                       ? "#9aa08f"
                       : b.state === "corrupt"
-                        ? "#c2416b"
+                        ? "#a8325a"
                         : "none";
                 return (
                   <rect
@@ -377,14 +377,14 @@ function Topology({
                 height="20"
                 rx="10"
                 fill={node.running ? "#f6e3ea" : "#dfe8d8"}
-                stroke={node.running ? "#c2416b" : "#2f6a3b"}
+                stroke={node.running ? "#a8325a" : "#2f6a3b"}
                 strokeOpacity="0.7"
               />
               <text
                 x={x + TILE.w - 42}
                 y={y + 162}
                 textAnchor="middle"
-                fill={node.running ? "#c2416b" : "#285d33"}
+                fill={node.running ? "#a8325a" : "#285d33"}
                 fontSize="10.5"
                 fontWeight="600"
                 fontFamily="var(--font-mono)"
@@ -538,7 +538,6 @@ const LogPanel = memo(function LogPanel({ sim }: { sim: MiniS3Sim; version: numb
   return (
     <ol
       ref={ref}
-      role="log"
       aria-live="off"
       aria-label="Cluster event log"
       tabIndex={0}
@@ -650,7 +649,7 @@ export default function MiniS3Simulator() {
             type="button"
             disabled={locked}
             onClick={() => setSelectedKey(act0(() => sim.upload()))}
-            className="rounded-xl bg-accent px-4 py-2.5 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(47,106,59,0.25)] transition-all hover:bg-accent-deep disabled:cursor-default disabled:opacity-40 disabled:hover:bg-accent"
+            className="rounded-xl bg-accent px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-accent-deep disabled:cursor-default disabled:opacity-40 disabled:hover:bg-accent"
           >
             Upload a file
           </button>
@@ -711,7 +710,7 @@ export default function MiniS3Simulator() {
       </dl>
 
       {/* topology */}
-      <div className="mt-3 overflow-x-auto px-3 sm:px-5">
+      <div tabIndex={0} role="region" aria-label="Cluster view (scrolls horizontally)" className="mt-3 overflow-x-auto px-3 sm:px-5">
         <div className="min-w-[640px]">
           <Topology
             sim={sim}

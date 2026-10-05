@@ -16,9 +16,9 @@ export function Window({
   return (
     <svg viewBox={`0 0 500 ${height}`} aria-hidden="true" className="h-auto w-full">
       <rect x="2" y="2" width="496" height={height - 4} rx="16" fill="#fbfaf5" stroke="#c4bfae" strokeWidth="1.5" />
-      <circle cx="24" cy="24" r="4.5" fill="#c2416b" />
-      <circle cx="42" cy="24" r="4.5" fill="#b7791f" />
-      <circle cx="60" cy="24" r="4.5" fill="#2f855a" />
+      <circle cx="24" cy="24" r="4.5" fill="#a8325a" />
+      <circle cx="42" cy="24" r="4.5" fill="#8a5f17" />
+      <circle cx="60" cy="24" r="4.5" fill="#237049" />
       <rect x="150" y="14" width="200" height="20" rx="10" fill="#e7e3d6" />
       <text x="250" y="28" textAnchor="middle" fill="#5a6258" fontSize="11" fontFamily="var(--font-mono)">
         {title}
@@ -74,7 +74,7 @@ export function IntelliRouteMockup() {
           <rect x="330" y={r.y + 16} width={r.w} height="9" rx="4.5" fill={r.hot ? "#285d33" : "#d4cfbf"} />
           <rect x="330" y={r.y + 34} width={r.w - 34} height="7" rx="3.5" fill="#c4bfae" />
           {r.hot && (
-            <path d={`M448 ${r.y + 20}l6 7 10-13`} stroke="#2f855a" strokeWidth="3.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            <path d={`M448 ${r.y + 20}l6 7 10-13`} stroke="#237049" strokeWidth="3.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
           )}
         </g>
       ))}
@@ -103,12 +103,12 @@ export function MeridianMockup() {
       <text x="24" y="94" fill="#5a6258" fontSize="10.5" fontFamily="var(--font-mono)">
         plan: priority · window: today 2–4 pm
       </text>
-      <rect x="376" y="62" width="100" height="24" rx="12" fill="#e2efe6" stroke="#1f7a8c" strokeOpacity="0.6" />
-      <text x="426" y="78" textAnchor="middle" fill="#1f7a8c" fontSize="10.5" fontFamily="var(--font-mono)">
+      <rect x="376" y="62" width="100" height="24" rx="12" fill="#e2efe6" stroke="#1b6b7b" strokeOpacity="0.6" />
+      <text x="426" y="78" textAnchor="middle" fill="#1b6b7b" fontSize="10.5" fontFamily="var(--font-mono)">
         drone in flight
       </text>
       {/* four-stage tracker */}
-      <line x1="60" y1="140" x2="300" y2="140" stroke="#2f855a" strokeWidth="3" strokeLinecap="round" />
+      <line x1="60" y1="140" x2="300" y2="140" stroke="#237049" strokeWidth="3" strokeLinecap="round" />
       <line x1="300" y1="140" x2="420" y2="140" stroke="#c4bfae" strokeWidth="3" strokeLinecap="round" strokeDasharray="1 8" />
       {stages.map((s) => (
         <g key={s.label}>
@@ -116,8 +116,8 @@ export function MeridianMockup() {
             cx={s.x}
             cy="140"
             r={s.state === "active" ? 11 : 8}
-            fill={s.state === "done" ? "#2f855a" : s.state === "active" ? "#e2efe6" : "#e7e3d6"}
-            stroke={s.state === "todo" ? "#c4bfae" : s.state === "active" ? "#1f7a8c" : "#2f855a"}
+            fill={s.state === "done" ? "#237049" : s.state === "active" ? "#e2efe6" : "#e7e3d6"}
+            stroke={s.state === "todo" ? "#c4bfae" : s.state === "active" ? "#1b6b7b" : "#237049"}
             strokeWidth={s.state === "active" ? 2.2 : 1.5}
           />
           {s.state === "done" && (
@@ -130,10 +130,10 @@ export function MeridianMockup() {
       ))}
       {/* drone above the active stage */}
       <g transform="translate(300 108)">
-        <line x1="-12" y1="0" x2="12" y2="0" stroke="#1f7a8c" strokeWidth="2.5" strokeLinecap="round" />
-        <circle cx="-12" cy="0" r="3.5" fill="none" stroke="#1f7a8c" strokeWidth="1.6" />
-        <circle cx="12" cy="0" r="3.5" fill="none" stroke="#1f7a8c" strokeWidth="1.6" />
-        <rect x="-4" y="1" width="8" height="6" rx="2" fill="#1f7a8c" />
+        <line x1="-12" y1="0" x2="12" y2="0" stroke="#1b6b7b" strokeWidth="2.5" strokeLinecap="round" />
+        <circle cx="-12" cy="0" r="3.5" fill="none" stroke="#1b6b7b" strokeWidth="1.6" />
+        <circle cx="12" cy="0" r="3.5" fill="none" stroke="#1b6b7b" strokeWidth="1.6" />
+        <rect x="-4" y="1" width="8" height="6" rx="2" fill="#1b6b7b" />
       </g>
       {/* delivery details card */}
       <rect x="24" y="196" width="284" height="88" rx="11" fill="#e7e3d6" stroke="#dcd8ca" />
@@ -150,7 +150,7 @@ export function MeridianMockup() {
       </text>
       {[234, 252, 270].map((y, i) => (
         <g key={y}>
-          <circle cx="348" cy={y - 3} r="4" fill={["#2f855a", "#1f7a8c", "#c4bfae"][i]} />
+          <circle cx="348" cy={y - 3} r="4" fill={["#237049", "#1b6b7b", "#c4bfae"][i]} />
           <rect x="360" y={y - 8} width={[92, 74, 84][i]} height="7" rx="3.5" fill="#c4bfae" />
         </g>
       ))}
@@ -229,7 +229,7 @@ export function QueryGuardMockup() {
       {["read-only", "schema-valid", "back-translation ✓"].map((g, i) => (
         <g key={g}>
           <rect x={24 + i * 156} y="202" width="146" height="26" rx="13" fill="#e7e3d6" stroke="#dcd8ca" />
-          <circle cx={42 + i * 156} cy="215" r="6" fill="#2f855a" opacity="0.9" />
+          <circle cx={42 + i * 156} cy="215" r="6" fill="#237049" opacity="0.9" />
           <text x={54 + i * 156} y="219" fill="#485148" fontSize="10.5" fontFamily="var(--font-mono)">
             {g}
           </text>
@@ -275,7 +275,7 @@ export function MiniS3Mockup() {
             height="150"
             rx="11"
             fill={n.down ? "#fbfaf5" : "#e7e3d6"}
-            stroke={n.down ? "#c2416b" : "#dcd8ca"}
+            stroke={n.down ? "#a8325a" : "#dcd8ca"}
             strokeOpacity={n.down ? 0.7 : 1}
             strokeDasharray={n.down ? "5 4" : undefined}
           />
@@ -283,7 +283,7 @@ export function MiniS3Mockup() {
             {n.id}
           </text>
           <rect x={n.x + 12} y="90" width={n.down ? 44 : 30} height="16" rx="8" fill={n.down ? "#f6e3ea" : "#e2efe6"} />
-          <text x={n.x + (n.down ? 34 : 27)} y="101.5" textAnchor="middle" fill={n.down ? "#c2416b" : "#2f855a"} fontSize="9.5" fontWeight="600" fontFamily="var(--font-mono)">
+          <text x={n.x + (n.down ? 34 : 27)} y="101.5" textAnchor="middle" fill={n.down ? "#a8325a" : "#237049"} fontSize="9.5" fontWeight="600" fontFamily="var(--font-mono)">
             {n.down ? "DOWN" : "UP"}
           </text>
           {Array.from({ length: 25 }, (_, j) => {
@@ -306,14 +306,14 @@ export function MiniS3Mockup() {
       ))}
       {/* worker log */}
       <rect x="24" y="222" width="456" height="92" rx="11" fill="#fbfaf5" stroke="#dcd8ca" />
-      <text x="40" y="246" fill="#b7791f" fontSize="10.5" fontFamily="var(--font-mono)">
+      <text x="40" y="246" fill="#8a5f17" fontSize="10.5" fontFamily="var(--font-mono)">
         node-1 missed heartbeats for 6s → DOWN
       </text>
       <text x="40" y="268" fill="#485148" fontSize="10.5" fontFamily="var(--font-mono)">
         repair pass: 13 new copies made
       </text>
-      <path d="M40 286l4 4 8-9" stroke="#2f855a" strokeWidth="2.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-      <text x="60" y="290" fill="#2f855a" fontSize="10.5" fontFamily="var(--font-mono)">
+      <path d="M40 286l4 4 8-9" stroke="#237049" strokeWidth="2.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      <text x="60" y="290" fill="#237049" fontSize="10.5" fontFamily="var(--font-mono)">
         demo.bin via node-4 · SHA-256 match
       </text>
     </Window>

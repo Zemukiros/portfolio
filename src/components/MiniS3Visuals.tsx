@@ -1,6 +1,6 @@
 /**
  * Case-study visuals for Mini-S3, in the site's schematic language:
- * violet line-work, dark panels, the featured node glowing, mono labels
+ * field-green line-work on paper panels, the featured node glowing, mono labels
  * for protocols and data. Every label maps to code in the mini-s3 repo.
  */
 
@@ -235,7 +235,7 @@ export function SequenceDiagram({ lanes, messages, label }: { lanes: Lane[]; mes
           const toLeft = x + 44 + m.label.length * 7 > W - 10;
           const loopX = toLeft ? x - 34 : x + 34;
           const cy = rowY + 16;
-          const color = m.tone === "bad" ? "#c2416b" : m.tone === "good" ? "#2f855a" : "#485148";
+          const color = m.tone === "bad" ? "#a8325a" : m.tone === "good" ? "#237049" : "#485148";
           return (
             <g key={i}>
               <path
@@ -281,7 +281,7 @@ export function SequenceDiagram({ lanes, messages, label }: { lanes: Lane[]; mes
         const b = X(m.to);
         const dir = b > a ? 1 : -1;
         const ly = rowY + 26;
-        const stroke = m.kind === "call" ? "#2f6a3b" : m.kind === "fail" ? "#c2416b" : m.kind === "async" ? "#9aa08f" : "#5a6258";
+        const stroke = m.kind === "call" ? "#2f6a3b" : m.kind === "fail" ? "#a8325a" : m.kind === "async" ? "#9aa08f" : "#5a6258";
         const marker = m.kind === "call" ? `sq${idBase}` : m.kind === "async" ? `sq${idBase}a` : `sq${idBase}r`;
         return (
           <g key={i}>
@@ -296,14 +296,14 @@ export function SequenceDiagram({ lanes, messages, label }: { lanes: Lane[]; mes
               markerEnd={m.kind === "fail" ? undefined : `url(#${marker})`}
             />
             {m.kind === "fail" && (
-              <path d={`M${b - dir * 30 - 5} ${ly - 5}l10 10m0-10l-10 10`} stroke="#c2416b" strokeWidth="2" strokeLinecap="round" />
+              <path d={`M${b - dir * 30 - 5} ${ly - 5}l10 10m0-10l-10 10`} stroke="#a8325a" strokeWidth="2" strokeLinecap="round" />
             )}
             {badge(a, ly, num)}
             <text
               x={a + dir * 24}
               y={ly - 9}
               textAnchor={dir > 0 ? "start" : "end"}
-              fill={m.kind === "async" ? "#5a6258" : m.kind === "fail" ? "#c2416b" : "#485148"}
+              fill={m.kind === "async" ? "#5a6258" : m.kind === "fail" ? "#a8325a" : "#485148"}
               fontSize="11.5"
               fontFamily={MONO}
               {...halo}

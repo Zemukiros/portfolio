@@ -4,34 +4,20 @@ type SimpleIcon = { title: string; path: string; hex: string };
 
 const icons = si as unknown as Record<string, SimpleIcon>;
 
-/** Brand marks that are too dark for the dark background get lifted. */
-const LIFT: Record<string, string> = {
-  siOpenjdk: "#e8e6f0",
-  siNextdotjs: "#f1eef9",
-  siVercel: "#f1eef9",
-  siGithub: "#e8e6f0",
-  siDjango: "#2ba977",
-  siNumpy: "#4d77cf",
-  siPandas: "#8b5cf6",
-};
-
 export function TechIcon({
   slug,
   size = 34,
   className = "",
   title,
-  noLift = false,
 }: {
   slug: string;
   size?: number;
   className?: string;
   title?: string;
-  /** Render the true brand color even for dark marks (for light surfaces). */
-  noLift?: boolean;
 }) {
   const icon = icons[slug];
   if (!icon) return null;
-  const fill = noLift ? `#${icon.hex}` : (LIFT[slug] ?? `#${icon.hex}`);
+  const fill = `#${icon.hex}`; // true brand color, never recolored
   return (
     <svg
       role="img"
@@ -58,7 +44,7 @@ export function AwsMark({ size = 34 }: { size?: number }) {
         width: size,
         height: size,
         fontSize: size * 0.42,
-        color: "#FF9900",
+        color: "#232F3E", // AWS "squid ink" — the brand's text color on light surfaces
         letterSpacing: "-0.02em",
       }}
     >

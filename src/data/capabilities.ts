@@ -21,22 +21,22 @@ export const capabilities: Capability[] = [
   },
   {
     title: "Algorithms & performance",
-    detail: "Graph search and K-shortest paths over real road metadata, benchmarked in CI rather than estimated.",
+    detail: "Dijkstra and Yen's K-shortest paths over a road graph with speeds, tolls, safety, and closures — benchmarked in CI, not estimated.",
     evidence: "IntelliRoute",
   },
   {
     title: "Product web apps",
-    detail: "Auth, ownership checks at the query level, order workflows, and live status tracking for real users.",
+    detail: "Auth, ownership checks at the query level, order workflows, and live status tracking — demoed on synthetic data.",
     evidence: "Meridian",
   },
   {
     title: "Testing & verification",
-    detail: "Unit, integration, and end-to-end suites with pipelines that stay green — numbers on this site come from them.",
+    detail: "Unit, integration, and end-to-end suites — 121 tests in a green CI pipeline for IntelliRoute, 69 for Meridian, plus a recorded failure drill for Mini-S3.",
     evidence: "IntelliRoute · Meridian · Mini-S3",
   },
   {
     title: "Delivery & DevOps",
-    detail: "Docker Compose stacks, GitHub Actions pipelines, and deploys to Vercel and Render, designed with AWS architecture in mind.",
-    evidence: "IntelliRoute · Meridian",
+    detail: "Docker Compose stacks, a four-job GitHub Actions pipeline, and live deploys to Vercel and Render.",
+    evidence: "IntelliRoute · Meridian · Mini-S3",
   },
 ];

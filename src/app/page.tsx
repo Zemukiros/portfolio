@@ -141,7 +141,7 @@ export default async function Home() {
                       {tech.icon === "aws" ? (
                         <AwsMark size={16} />
                       ) : tech.icon ? (
-                        <TechIcon slug={tech.icon} size={16} noLift />
+                        <TechIcon slug={tech.icon} size={16} />
                       ) : (
                         <span className="mx-[5px] h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
                       )}

@@ -11,7 +11,7 @@ export default function LocalTime({ timeZone, label }: { timeZone: string; label
       timeZone,
       hour: "2-digit",
       minute: "2-digit",
-      hour12: false,
+      hourCycle: "h23",
     });
     const tick = () => setNow(fmt.format(new Date()));
     tick();
