@@ -1,30 +1,30 @@
 @import "tailwindcss";
 
 @theme {
-  /* ---- Signal Violet — studio-dark engineering world ---- */
-  --color-bg: #07060c;
-  --color-bg-raised: #0d0b16;
-  --color-bg-panel: #131022;
-  --color-border: #221d33;
-  --color-border-strong: #322a4a;
-  --color-ink: #f1eef9;
-  --color-ink-dim: #a49dbd;
-  --color-ink-faint: #837da6;
-  --color-accent: #8b5cf6;
-  --color-accent-strong: #a78bfa;
-  --color-accent-deep: #6d28d9;
-  --color-amber: #e8b45a;
-  --color-rose: #f472b6;
-  --color-cyan: #22d3ee;
-  --color-mint: #34d399;
+  /* ---- Paper & Field — light editorial engineering notebook ---- */
+  --color-bg: #f4f2ea;
+  --color-bg-raised: #efece2;
+  --color-bg-panel: #e7e3d6;
+  --color-border: #dcd8ca;
+  --color-border-strong: #c4bfae;
+  --color-ink: #18211a;
+  --color-ink-dim: #485148;
+  --color-ink-faint: #5a6258;
+  --color-accent: #2f6a3b;
+  --color-accent-strong: #285d33;
+  --color-accent-deep: #1f4a29;
+  --color-amber: #b7791f;
+  --color-rose: #c2416b;
+  --color-cyan: #1f7a8c;
+  --color-mint: #2f855a;
 
-  --font-display: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
   --font-body: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono Variable", ui-monospace, "SF Mono", monospace;
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html {
@@ -41,7 +41,7 @@ body {
 }
 
 ::selection {
-  background: rgba(139, 92, 246, 0.35);
+  background: rgba(47, 106, 59, 0.22);
 }
 
 /* ---------- Hero atmosphere ---------- */
