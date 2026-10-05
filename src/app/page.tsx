@@ -1,262 +1,270 @@
 import Link from "next/link";
-import HeroScene from "@/components/HeroScene";
-import SocialLinks from "@/components/SocialLinks";
-import ProjectCarousel from "@/components/ProjectCarousel";
-import ExperienceTabs from "@/components/ExperienceTabs";
+import EditorialHero from "@/components/EditorialHero";
 import SectionHeading from "@/components/SectionHeading";
-import Typewriter from "@/components/Typewriter";
-import Reveal from "@/components/Reveal";
-import WordReveal from "@/components/WordReveal";
+import ProjectList from "@/components/ProjectList";
+import ExperienceAccordion from "@/components/ExperienceAccordion";
+import GithubActivity from "@/components/GithubActivity";
+import HashRingFigure from "@/components/HashRingFigure";
+import LocalTime from "@/components/LocalTime";
 import { TechIcon, AwsMark } from "@/components/TechIcon";
 import { profile } from "@/data/profile";
 import { skillGroups } from "@/data/skills";
 import { education, certifications } from "@/data/education";
+import { capabilities } from "@/data/capabilities";
+import { getGithubActivity } from "@/lib/github";
 
-export default function Home() {
+const SECTION = "mx-auto w-full max-w-6xl px-5 py-24 sm:px-8 sm:py-32";
+
+export default async function Home() {
+  const github = await getGithubActivity(profile.githubUser);
+
+  const landmarks = [
+    ...education.map((e) => ({
+      title: e.degree,
+      meta: [e.school, e.detail].filter(Boolean).join(" · "),
+      when: e.dates,
+    })),
+    ...certifications.map((c) => ({ title: c.name, meta: c.issuer, when: "Certified" })),
+  ];
+
   return (
     <>
-      {/* ================= Hero ================= */}
-      <section className="relative overflow-hidden">
-        <div
-          className="hero-glow left-[-10%] top-[-15%] h-[480px] w-[480px]"
-          style={{ background: "rgba(109, 40, 217, 0.28)" }}
-          aria-hidden="true"
-        />
-        <div
-          className="hero-glow bottom-[-25%] right-[-5%] h-[420px] w-[420px]"
-          style={{ background: "rgba(139, 92, 246, 0.14)" }}
-          aria-hidden="true"
-        />
-        <svg
-          className="contour right-0 top-0 hidden xl:block"
-          width="360"
-          height="420"
-          viewBox="0 0 360 420"
-          fill="none"
-          aria-hidden="true"
-        >
-          <path d="M356 8C240 30 200 120 262 178s6 168-124 152c-96-12-120 60-70 82" stroke="#8b5cf6" strokeOpacity="0.3" strokeWidth="1.5" />
-          <path d="M356 78C264 96 236 168 288 218s4 148-108 134" stroke="#8b5cf6" strokeOpacity="0.16" strokeWidth="1.5" />
-        </svg>
+      <EditorialHero />
 
-        <div className="mx-auto grid min-h-[94svh] w-full max-w-6xl items-center gap-12 px-5 pb-16 pt-32 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-6">
-          <div>
-            <p className="hero-rise hero-rise-1 font-mono text-sm text-accent-strong">
-              Hi, I&apos;m
-            </p>
-            <h1 className="hero-rise hero-rise-2 mt-3 font-display text-[clamp(3rem,8vw,5.75rem)] font-extrabold leading-[0.98] tracking-[-0.03em] text-ink">
-              Zemariam
-              <br />
-              Haftegebriel
-              <span className="text-accent">.</span>
-            </h1>
-            <p className="hero-rise hero-rise-3 mt-6 min-h-[2.6em] font-display text-2xl font-semibold text-ink sm:text-3xl">
-              I&apos;m{" "}
-              <span className="text-accent-strong">
-                <Typewriter
-                  phrases={[
-                    "a software engineer.",
-                    "a full-stack & AI systems builder.",
-                    "an AWS-certified solutions architect.",
-                    "a CS student at Bowie State.",
-                  ]}
-                />
-              </span>
-            </p>
-            <p className="hero-rise hero-rise-3 mt-4 max-w-xl text-lg leading-relaxed text-ink-dim">
-              I craft full-stack, AI-enabled systems that are built to be
-              proven — tested, benchmarked, shipped.
-            </p>
-            <div className="hero-rise hero-rise-4 mt-8">
-              <SocialLinks />
-            </div>
-            <div className="hero-rise hero-rise-5 mt-9 flex flex-wrap items-center gap-4">
-              <Link
-                href="/#work"
-                className="rounded-xl bg-accent px-7 py-3.5 text-[15px] font-semibold text-white shadow-[0_8px_30px_rgba(139,92,246,0.35)] transition-all hover:bg-accent-deep hover:shadow-[0_8px_30px_rgba(139,92,246,0.5)]"
-              >
-                View my work
-              </Link>
-              <Link
-                href="/#contact"
-                className="rounded-xl border border-border-strong px-7 py-3.5 text-[15px] font-medium text-ink transition-colors hover:border-accent hover:text-accent-strong"
-              >
-                Let&apos;s talk
-              </Link>
-            </div>
-            <p className="hero-rise hero-rise-5 mt-10 font-mono text-xs tracking-wide text-ink-faint">
-              {profile.location} · B.S. Computer Science — May 2027
-            </p>
-            <div className="hero-rise hero-rise-5 mt-12 flex justify-center lg:hidden">
-              <HeroScene />
-            </div>
-          </div>
+      <div className="relative z-10 bg-bg">
+        {/* ================= 01 About ================= */}
+        <section id="about" className={SECTION}>
+          <SectionHeading
+            index="01"
+            label="About"
+            title="Systems that hold up"
+            accent="under proof"
+            lede="Tested, benchmarked, documented, and shipped — the evidence comes with the code."
+          />
 
-          <div className="hero-rise hero-rise-3 relative hidden justify-center lg:flex">
-            <HeroScene />
-          </div>
-        </div>
+          <div className="mt-14 grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+            <figure className="self-start">
+              <div className="rounded-[20px] border border-border bg-bg-raised p-6">
+                <HashRingFigure className="mx-auto w-full max-w-[420px]" />
+              </div>
+              <figcaption className="mt-3 font-mono text-[11px] leading-relaxed text-ink-faint">
+                Mini-S3&apos;s consistent-hash ring: a key lands on the first three nodes clockwise.
+                Simplified to one virtual node per server (the repo uses 200).
+              </figcaption>
+            </figure>
 
-        <p
-          className="pointer-events-none absolute right-6 top-1/2 hidden -translate-y-1/2 rotate-90 font-display text-6xl font-extrabold tracking-tight text-ink/[0.045] xl:block"
-          aria-hidden="true"
-        >
-          ENGINEER
-        </p>
-      </section>
+            <div>
+              <div className="space-y-5 text-[15px] leading-relaxed text-ink-dim sm:text-base">
+                <p>{profile.about[0]}</p>
+                <p>{profile.about[2]}</p>
+              </div>
 
-      {/* ================= About ================= */}
-      <section id="about" className="mx-auto w-full max-w-6xl px-5 py-24 sm:px-8">
-        <WordReveal
-          className="mx-auto max-w-3xl text-center font-display text-[clamp(1.5rem,3.2vw,2.25rem)] font-semibold leading-snug tracking-tight"
-          segments={[
-            {
-              text: "I'm a Computer Science student at Bowie State University building systems that hold up under proof",
-              className: "text-ink",
-            },
-            {
-              text: "— Java and Spring Boot backends, Python services, AI-integrated workflows, and cloud architecture designed the AWS way.",
-              className: "text-ink-faint",
-            },
-          ]}
-        />
-        <Reveal delay={180} className="mt-10 flex flex-wrap justify-center gap-3">
-          {[
-            "B.S. Computer Science · GPA 3.8",
-            "AWS Solutions Architect – Associate",
-            "2 engineering internships",
-            "121 automated tests across IntelliRoute",
-          ].map((f) => (
-            <span
-              key={f}
-              className="rounded-full border border-border-strong bg-bg-raised px-5 py-2.5 text-sm font-medium text-ink-dim"
-            >
-              {f}
-            </span>
-          ))}
-        </Reveal>
-      </section>
-
-      {/* ================= Skills ================= */}
-      <section id="skills" className="mx-auto w-full max-w-6xl px-5 py-24 sm:px-8">
-        <SectionHeading
-          title="The"
-          accent="toolkit"
-          lede="The languages, frameworks, and infrastructure I build with — from JVM backends to AI service integration to AWS architecture."
-        />
-        <div className="mt-12 space-y-10">
-          {skillGroups.map((group) => (
-            <div key={group.title}>
-              <h3 className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-ink-faint">
-                {group.title}
-              </h3>
-              <ul className="mt-4 flex flex-wrap gap-3">
-                {group.items.map((tech) => (
-                  <li
-                    key={tech.name}
-                    className="flex items-center gap-2.5 rounded-xl border border-border bg-bg-raised py-2.5 pl-3 pr-4 transition-[border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-border-strong"
-                  >
-                    {tech.icon === "aws" ? (
-                      <AwsMark size={22} />
-                    ) : tech.icon ? (
-                      <TechIcon slug={tech.icon} size={22} />
-                    ) : (
-                      <span className="h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
-                    )}
-                    <span className="text-sm font-medium text-ink">{tech.name}</span>
+              <h3 className="mt-12 font-mono text-[11px] uppercase tracking-[0.16em] text-ink-faint">Landmarks</h3>
+              <ul className="mt-3 border-t border-border-strong">
+                {landmarks.map((l) => (
+                  <li key={l.title} className="grid gap-1 border-b border-border py-4 sm:grid-cols-[1fr_auto] sm:gap-6">
+                    <div>
+                      <p className="font-display text-xl leading-tight text-ink">{l.title}</p>
+                      <p className="mt-1 text-sm text-ink-dim">{l.meta}</p>
+                    </div>
+                    <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-faint sm:pt-1.5">{l.when}</p>
                   </li>
                 ))}
               </ul>
+
+              <dl className="mt-8 grid grid-cols-2 gap-6">
+                <div>
+                  <dt className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-ink-faint">Location</dt>
+                  <dd className="mt-1.5 text-sm text-ink">{profile.location}</dd>
+                </div>
+                <div>
+                  <dt className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-ink-faint">Local time</dt>
+                  <dd className="mt-1.5">
+                    <LocalTime timeZone="America/New_York" label="ET" />
+                  </dd>
+                </div>
+              </dl>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
+        </section>
 
-      {/* ================= Projects ================= */}
-      <section id="work" className="mx-auto w-full max-w-6xl px-5 py-24 sm:px-8">
-        <SectionHeading
-          title="Featured"
-          accent="work"
-          lede="Systems with real architecture behind them — algorithms, services, tests, and pipelines you can open and run."
-        />
-        <div className="mt-6">
-          <ProjectCarousel />
-        </div>
-      </section>
+        {/* ================= 02 Work ================= */}
+        <section id="work" className={SECTION}>
+          <SectionHeading
+            index="02"
+            label="Selected work"
+            title="Real architecture,"
+            accent="open to inspect"
+            lede="Systems with real architecture behind them — algorithms, services, tests, and pipelines you can open and run."
+          />
+          <div className="mt-14">
+            <ProjectList />
+          </div>
+        </section>
 
-      {/* ================= Experience ================= */}
-      <section id="experience" className="mx-auto w-full max-w-6xl px-5 py-24 sm:px-8">
-        <SectionHeading
-          title="My"
-          accent="experience"
-          lede="Two engineering teams, from a drone medication-delivery platform to production Spring Boot services."
-        />
-        <div className="mt-12 rounded-3xl border border-border bg-bg-raised p-8 sm:p-10">
-          <ExperienceTabs />
-        </div>
-      </section>
+        {/* ================= 03 Experience ================= */}
+        <section id="experience" className={SECTION}>
+          <SectionHeading
+            index="03"
+            label="Experience"
+            title="Two teams,"
+            accent="shipped work"
+            lede="Two engineering teams, from a drone medication-delivery platform to production Spring Boot services."
+          />
+          <div className="mt-14">
+            <ExperienceAccordion />
+          </div>
+        </section>
 
-      {/* ================= Education ================= */}
-      <section id="education" className="mx-auto w-full max-w-6xl px-5 py-24 sm:px-8">
-        <SectionHeading title="Education &" accent="certification" />
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          {education.map((e) => (
-            <div key={e.school} className="rounded-3xl border border-border bg-bg-raised p-8">
-              <p className="font-mono text-xs text-ink-faint">{e.dates}</p>
-              <h3 className="mt-3 font-display text-xl font-bold text-ink">{e.school}</h3>
-              <p className="mt-1.5 text-sm font-medium text-accent-strong">{e.degree}</p>
-              {e.detail && <p className="mt-3 text-sm leading-relaxed text-ink-dim">{e.detail}</p>}
-              <p className="mt-1 text-sm text-ink-faint">{e.location}</p>
-            </div>
-          ))}
-          {certifications.map((c) => (
-            <div
-              key={c.name}
-              className="flex flex-col justify-between rounded-3xl p-8"
-              style={{
-                background: "linear-gradient(140deg, #2a1758 0%, #6d28d9 70%, #8b5cf6 110%)",
-              }}
-            >
-              <div>
-                <p className="font-mono text-xs text-white/70">Certified</p>
-                <h3 className="mt-3 font-display text-xl font-bold leading-snug text-white">
-                  {c.name}
-                </h3>
+        {/* ================= 04 Stack ================= */}
+        <section id="stack" className={SECTION}>
+          <SectionHeading
+            index="04"
+            label="Stack"
+            title="The tools"
+            accent="I build with"
+            lede="The languages, frameworks, and infrastructure I build with — from JVM backends to AI service integration to AWS architecture."
+          />
+          <div className="mt-14 grid gap-5 md:grid-cols-2">
+            {skillGroups.map((group, i) => (
+              <div key={group.title} className="rounded-2xl border border-border p-7">
+                <p className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-ink-faint">
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <h3 className="mt-2 font-display text-2xl text-ink">{group.title}</h3>
+                <ul className="mt-5 flex flex-wrap gap-2">
+                  {group.items.map((tech) => (
+                    <li
+                      key={tech.name}
+                      className="flex items-center gap-2 rounded-lg border border-border bg-bg-raised py-1.5 pl-2 pr-3 text-[13px] text-ink"
+                    >
+                      {tech.icon === "aws" ? (
+                        <AwsMark size={16} />
+                      ) : tech.icon ? (
+                        <TechIcon slug={tech.icon} size={16} noLift />
+                      ) : (
+                        <span className="mx-[5px] h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
+                      )}
+                      {tech.name}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <p className="mt-6 text-sm font-medium text-white/85">{c.issuer}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
 
-      {/* ================= Contact ================= */}
-      <section id="contact" className="relative mx-auto w-full max-w-6xl overflow-hidden px-5 py-28 sm:px-8">
-        <div
-          className="hero-glow left-1/2 top-1/2 h-[380px] w-[560px] -translate-x-1/2 -translate-y-1/2"
-          style={{ background: "rgba(109, 40, 217, 0.18)" }}
-          aria-hidden="true"
-        />
-        <div className="relative text-center">
-          <h2 className="font-display text-[clamp(2.5rem,6vw,4.5rem)] font-extrabold tracking-tight text-ink">
-            Let&apos;s build something<span className="text-accent">.</span>
-          </h2>
-          <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-ink-dim">
-            I&apos;m open to software engineering internships and new-grad roles in
-            backend, AI, cloud, and full-stack teams. My inbox is the fastest route.
-          </p>
-          <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href={`mailto:${profile.email}`}
-              className="rounded-xl bg-accent px-8 py-4 text-[15px] font-semibold text-white shadow-[0_8px_30px_rgba(139,92,246,0.35)] transition-all hover:bg-accent-deep"
-            >
-              {profile.email}
-            </a>
+        {/* ================= 05 GitHub ================= */}
+        {github && (
+          <section id="github" className={SECTION}>
+            <SectionHeading
+              index="05"
+              label="GitHub"
+              title="Building"
+              accent="in public"
+              lede="Pulled from my public GitHub profile when the site is built — no numbers typed by hand."
+            />
+            <div className="mt-14">
+              <GithubActivity data={github} profileUrl={profile.github} />
+            </div>
+          </section>
+        )}
+
+        {/* ================= 06 Capabilities ================= */}
+        <section id="capabilities" className={SECTION}>
+          <SectionHeading
+            index={github ? "06" : "05"}
+            label="Capabilities"
+            title="What I can"
+            accent="build for your team"
+            lede="Each capability points at a repository you can open, not a buzzword."
+          />
+          <ol className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+            {capabilities.map((c, i) => (
+              <li key={c.title} className="flex flex-col bg-bg p-7">
+                <span className="font-mono text-[11px] text-accent-strong">{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="mt-4 font-display text-2xl leading-tight text-ink">{c.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-dim">{c.detail}</p>
+                <p className="mt-auto pt-5 font-mono text-[10.5px] uppercase tracking-[0.12em] text-ink-faint">
+                  {c.evidence}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        {/* ================= Contact ================= */}
+        <section id="contact" className={`${SECTION} pb-36`}>
+          <div className="grid gap-14 border-t border-border-strong pt-14 lg:grid-cols-[1.5fr_1fr]">
+            <div>
+              <h2 className="font-display text-[clamp(2.5rem,6vw,4.75rem)] leading-[0.95] tracking-[-0.025em] text-ink">
+                Open to internships
+                <br />
+                <span className="text-accent">&amp; new-grad roles.</span>
+              </h2>
+              <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-ink-dim sm:text-base">
+                I&apos;m open to software engineering internships and new-grad roles in backend, AI,
+                cloud, and full-stack teams. My inbox is the fastest route.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <a
+                  href={`mailto:${profile.email}`}
+                  className="rounded-full bg-accent-deep px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-accent"
+                >
+                  {profile.email}
+                </a>
+                <span
+                  className="rounded-full border border-dashed border-border-strong px-6 py-3 text-sm text-ink-faint"
+                  title="Résumé download is being updated"
+                >
+                  Download CV · soon
+                </span>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-8">
+              <div>
+                <p className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-ink-faint">Sitemap</p>
+                <ul className="mt-4 space-y-2.5 text-sm">
+                  {[
+                    ["About", "/#about"],
+                    ["Work", "/#work"],
+                    ["Experience", "/#experience"],
+                    ["Stack", "/#stack"],
+                    ["Capabilities", "/#capabilities"],
+                  ].map(([label, href]) => (
+                    <li key={href}>
+                      <Link href={href} className="text-ink-dim transition-colors hover:text-accent-strong">
+                        {label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-ink-faint">Elsewhere</p>
+                <ul className="mt-4 space-y-2.5 text-sm">
+                  <li>
+                    <a href={profile.github} target="_blank" rel="noopener noreferrer" className="text-ink-dim transition-colors hover:text-accent-strong">
+                      GitHub ↗
+                    </a>
+                  </li>
+                  <li>
+                    <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="text-ink-dim transition-colors hover:text-accent-strong">
+                      LinkedIn ↗
+                    </a>
+                  </li>
+                  <li>
+                    <a href={`mailto:${profile.email}`} className="text-ink-dim transition-colors hover:text-accent-strong">
+                      Email
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div className="mt-8 flex justify-center">
-            <SocialLinks />
-          </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </>
   );
 }

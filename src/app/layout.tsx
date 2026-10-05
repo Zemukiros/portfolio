@@ -4,9 +4,9 @@ import "@fontsource/instrument-serif/400.css";
 import "@fontsource/instrument-serif/400-italic.css";
 import "@fontsource-variable/jetbrains-mono";
 import "./globals.css";
-import Nav from "@/components/Nav";
+import SiteHeader from "@/components/SiteHeader";
+import FloatingNav from "@/components/FloatingNav";
 import Footer from "@/components/Footer";
-import IntroLoader from "@/components/IntroLoader";
 import { profile } from "@/data/profile";
 
 export const metadata: Metadata = {
@@ -59,10 +59,10 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         >
           Skip to content
         </a>
-        <IntroLoader />
-        <Nav />
+        <SiteHeader />
         <main id="main">{children}</main>
         <Footer />
+        <FloatingNav />
       </body>
     </html>
   );
