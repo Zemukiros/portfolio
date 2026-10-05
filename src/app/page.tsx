@@ -16,7 +16,7 @@ import { getGithubActivity } from "@/lib/github";
 const SECTION = "mx-auto w-full max-w-6xl px-5 py-24 sm:px-8 sm:py-32";
 
 export default async function Home() {
-  const github = await getGithubActivity(profile.githubUser);
+  const github = profile.showGithubActivity ? await getGithubActivity(profile.githubUser) : null;
 
   const landmarks = [
     ...education.map((e) => ({
@@ -92,7 +92,7 @@ export default async function Home() {
         <section id="work" className={SECTION}>
           <SectionHeading
             index="02"
-            label="Selected work"
+            label="Projects"
             title="Real architecture,"
             accent="open to inspect"
             lede="Systems with real architecture behind them — algorithms, services, tests, and pipelines you can open and run."

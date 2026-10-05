@@ -42,7 +42,7 @@ export default function EditorialHero() {
 
         <div className="relative flex h-full flex-col items-center justify-center px-5 text-center">
           <p className="hero-rise hero-rise-1 rounded-full border border-ink/15 bg-bg/60 px-4 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.16em] text-ink-dim backdrop-blur-sm">
-            Backend · AI-enabled systems · Cloud
+            {profile.roleTags.join(" · ")}
           </p>
           <h1
             id="hero-title"

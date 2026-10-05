@@ -15,9 +15,10 @@ export const metadata: Metadata = {
     template: `%s — ${profile.shortName}`,
   },
   description:
-    "Software engineer building backend and AI-enabled systems. Java, Spring Boot, Python, TypeScript, PostgreSQL, AWS — with tested, benchmarked, shipped projects.",
+    "Software engineer building full-stack and AI-enabled systems. Java, Spring Boot, Python, TypeScript, PostgreSQL, AWS — with tested, benchmarked, shipped projects.",
   keywords: [
     "software engineer",
+    "full-stack engineer",
     "backend engineer",
     "Java",
     "Spring Boot",
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${profile.shortName} — Software Engineer`,
     description:
-      "Backend, AI-enabled systems, and cloud architecture — tested, benchmarked, shipped.",
+      "Full-stack, AI-enabled systems, and cloud architecture — tested, benchmarked, shipped.",
     type: "website",
   },
 };
