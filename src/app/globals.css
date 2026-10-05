@@ -1,35 +1,39 @@
 @import "tailwindcss";
 
 @theme {
-  /* ---- Signal Violet — studio-dark engineering world ---- */
-  --color-bg: #07060c;
-  --color-bg-raised: #0d0b16;
-  --color-bg-panel: #131022;
-  --color-border: #221d33;
-  --color-border-strong: #322a4a;
-  --color-ink: #f1eef9;
-  --color-ink-dim: #a49dbd;
-  --color-ink-faint: #837da6;
-  --color-accent: #8b5cf6;
-  --color-accent-strong: #a78bfa;
-  --color-accent-deep: #6d28d9;
-  --color-amber: #e8b45a;
-  --color-rose: #f472b6;
-  --color-cyan: #22d3ee;
-  --color-mint: #34d399;
+  /* ---- Paper & Field — light editorial engineering notebook ---- */
+  --color-bg: #f4f2ea;
+  --color-bg-raised: #efece2;
+  --color-bg-panel: #e7e3d6;
+  --color-border: #dcd8ca;
+  --color-border-strong: #c4bfae;
+  --color-ink: #18211a;
+  --color-ink-dim: #485148;
+  --color-ink-faint: #5a6258;
+  --color-accent: #2f6a3b;
+  --color-accent-strong: #285d33;
+  --color-accent-deep: #1f4a29;
+  --color-amber: #8a5f17;
+  --color-rose: #a8325a;
+  --color-cyan: #1b6b7b;
+  --color-mint: #237049;
+  --color-window: #fbfaf5;
+  --color-heat-1: #c9d8bf;
+  --color-heat-2: #8fb184;
+  --color-heat-3: #4f8a57;
 
-  --font-display: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
   --font-body: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono Variable", ui-monospace, "SF Mono", monospace;
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5.5rem;
+  scroll-padding-top: 1.5rem;
 }
 
 body {
@@ -41,21 +45,7 @@ body {
 }
 
 ::selection {
-  background: rgba(139, 92, 246, 0.35);
-}
-
-/* ---------- Hero atmosphere ---------- */
-.hero-glow {
-  position: absolute;
-  pointer-events: none;
-  border-radius: 9999px;
-  filter: blur(90px);
-}
-
-.contour {
-  position: absolute;
-  pointer-events: none;
-  opacity: 0.5;
+  background: rgba(47, 106, 59, 0.22);
 }
 
 /* ---------- Orchestrated hero entrance (one authored moment) ---------- */
@@ -80,137 +70,6 @@ body {
 .hero-rise-4 { animation-delay: 0.38s; }
 .hero-rise-5 { animation-delay: 0.5s; }
 
-@keyframes draw-edge {
-  from { stroke-dashoffset: var(--edge-len, 400); }
-  to { stroke-dashoffset: 0; }
-}
-.graph-edge {
-  stroke-dasharray: var(--edge-len, 400);
-  animation: draw-edge 1.6s cubic-bezier(0.65, 0, 0.35, 1) 0.5s forwards;
-  stroke-dashoffset: var(--edge-len, 400);
-}
-@keyframes node-pop {
-  from { opacity: 0; transform: scale(0.4); }
-  to { opacity: 1; transform: scale(1); }
-}
-.graph-node {
-  opacity: 0;
-  transform-origin: center;
-  transform-box: fill-box;
-  animation: node-pop 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-@keyframes pulse-route {
-  0%, 100% { opacity: 0.9; }
-  50% { opacity: 0.4; }
-}
-.graph-route {
-  animation: pulse-route 3.4s ease-in-out 2.2s infinite;
-}
-
-/* ---------- Rocket cursor (fine pointers only) ---------- */
-@media (hover: hover) and (pointer: fine) {
-  body {
-    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 96 96'><g transform='rotate(-45 48 48)'><path d='M38 52c-8 4-10 12-10 18 6-2 12-6 14-10z' fill='%236d28d9'/><path d='M58 52c8 4 10 12 10 18-6-2-12-6-14-10z' fill='%236d28d9'/><path d='M48 8c10 8 14 22 14 34 0 12-6 22-14 30-8-8-14-18-14-30 0-12 4-26 14-34z' fill='%23f1eef9' stroke='%2307060c' stroke-width='3'/><path d='M48 8c5 4 8.5 9.6 11 16H37c2.5-6.4 6-12 11-16z' fill='%238b5cf6'/><circle cx='48' cy='40' r='7.5' fill='%23131022' stroke='%238b5cf6' stroke-width='2.5'/></g></svg>") 4 4, auto;
-  }
-  a, button, [role="tab"], [role="button"], label, summary {
-    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 96 96'><g transform='rotate(-45 48 48)'><path d='M42 72c0 8 3 14 6 20 3-6 6-12 6-20z' fill='%23e8b45a'/><path d='M38 52c-8 4-10 12-10 18 6-2 12-6 14-10z' fill='%236d28d9'/><path d='M58 52c8 4 10 12 10 18-6-2-12-6-14-10z' fill='%236d28d9'/><path d='M48 8c10 8 14 22 14 34 0 12-6 22-14 30-8-8-14-18-14-30 0-12 4-26 14-34z' fill='%23f1eef9' stroke='%2307060c' stroke-width='3'/><path d='M48 8c5 4 8.5 9.6 11 16H37c2.5-6.4 6-12 11-16z' fill='%23a78bfa'/><circle cx='48' cy='40' r='7.5' fill='%23131022' stroke='%23a78bfa' stroke-width='2.5'/></g></svg>") 4 4, pointer;
-  }
-}
-
-/* ---------- Intro loader ---------- */
-@keyframes loader-lift {
-  0% { transform: translateY(26px); }
-  100% { transform: translateY(-14px); }
-}
-.loader-rocket {
-  animation: loader-lift 1.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-@keyframes loader-flame-flicker {
-  0%, 100% { transform: scaleY(1); opacity: 1; }
-  50% { transform: scaleY(1.45); opacity: 0.85; }
-}
-.loader-flame {
-  animation: loader-flame-flicker 0.22s ease-in-out infinite;
-}
-@keyframes loader-star-twinkle {
-  0%, 100% { opacity: 0.15; }
-  50% { opacity: 0.8; }
-}
-.loader-star {
-  opacity: 0.2;
-  animation: loader-star-twinkle 1.4s ease-in-out infinite;
-}
-@keyframes loader-bar-fill {
-  from { width: 0%; }
-  to { width: 100%; }
-}
-.loader-bar {
-  width: 0%;
-  animation: loader-bar-fill 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-/* ---------- Word-by-word statement reveal ---------- */
-.word-reveal-word {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.word-reveal.is-visible .word-reveal-word {
-  opacity: 1;
-  transform: none;
-}
-@media (prefers-reduced-motion: reduce) {
-  .word-reveal-word {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
-
-/* ---------- Typewriter caret ---------- */
-@keyframes caret-blink {
-  0%, 45% { opacity: 1; }
-  50%, 95% { opacity: 0; }
-  100% { opacity: 1; }
-}
-.type-caret {
-  animation: caret-blink 1.1s steps(1) infinite;
-}
-
-/* ---------- Hero parallax layers ---------- */
-.parallax-scene {
-  --px: 0;
-  --py: 0;
-}
-.parallax-back {
-  transform: translate3d(calc(var(--px) * -14px), calc(var(--py) * -10px), 0);
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.parallax-mid {
-  transform: translate3d(calc(var(--px) * 6px), calc(var(--py) * 4px), 0);
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.parallax-front {
-  transform: translate3d(calc(var(--px) * 16px), calc(var(--py) * 12px), 0);
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-@keyframes float-bob {
-  0%, 100% { translate: 0 0; }
-  50% { translate: 0 -7px; }
-}
-.float-bob {
-  animation: float-bob 5.5s ease-in-out infinite;
-}
-
-/* ---------- Showcase carousel ---------- */
-.carousel {
-  scrollbar-width: none;
-}
-.carousel::-webkit-scrollbar {
-  display: none;
-}
 
 /* ---------- Mini-S3 simulator ---------- */
 @keyframes blob-in {
@@ -227,7 +86,7 @@ body {
   outline: none;
 }
 
-/* Legacy scroll-reveal (still used by the case-study page) */
+/* Scroll reveal for section headings (SectionHeading) and case-study hero blocks */
 .reveal {
   opacity: 0;
   transform: translateY(16px);
@@ -238,22 +97,11 @@ body {
   transform: none;
 }
 
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .hero-rise { opacity: 1; animation: none; }
-  .graph-edge { stroke-dashoffset: 0; animation: none; }
-  .graph-node { opacity: 1; animation: none; }
-  .graph-route { animation: none; }
-  .float-bob { animation: none; }
-  .loader-rocket,
-  .loader-flame,
-  .loader-star,
-  .loader-bar,
-  .type-caret { animation: none; }
-  .parallax-back,
-  .parallax-mid,
-  .parallax-front { transform: none; }
   *,
   *::before,
   *::after {
@@ -262,10 +110,68 @@ body {
   }
 }
 
-/* Focus visibility for keyboard navigation */
-a:focus-visible,
-button:focus-visible {
-  outline: 2px solid var(--color-accent-strong);
+/* ================= Paper & Field (2026-10) ================= */
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
   outline-offset: 3px;
-  border-radius: 4px;
+}
+
+/* Hero frame insets as the page scrolls (--hero-p: 0 → 1, set by EditorialHero). */
+.hero-frame-wrap {
+  --hero-p: 0;
+  position: sticky;
+  top: 0;
+}
+.hero-frame {
+  transform: scale(calc(1 - var(--hero-p) * 0.06));
+  border-radius: calc(var(--hero-p) * 20px);
+  transform-origin: 50% 0;
+  will-change: transform;
+}
+
+/* Route in the hero artwork drifts slowly along its dashes. */
+@keyframes route-drift {
+  to { stroke-dashoffset: -200; }
+}
+.hero-route {
+  animation: route-drift 14s linear infinite;
+}
+
+/* Floating layers: popover and project dialog. */
+@keyframes pop-in {
+  from { opacity: 0; transform: translate(-50%, 6px) scale(0.98); }
+  to { opacity: 1; transform: translate(-50%, 0) scale(1); }
+}
+.pop-in {
+  animation: pop-in 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes dialog-in {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+.project-dialog[open] {
+  animation: dialog-in 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.project-dialog::backdrop {
+  background: rgba(24, 33, 26, 0.35);
+  backdrop-filter: blur(2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-frame { transform: none; border-radius: 0; }
+  .hero-route, .pop-in, .project-dialog[open] { animation: none; }
+}
+
+/* QueryGuard simulator: each stage body fades up as the pipeline reaches it; the confidence bar grows. */
+@keyframes qg-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+.qg-stage-body.is-shown { animation: qg-in 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
+@keyframes qg-bar { from { width: 0; } }
+.qg-bar { animation: qg-bar 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+@media (prefers-reduced-motion: reduce) {
+  .qg-stage-body.is-shown, .qg-bar { animation: none; }
 }

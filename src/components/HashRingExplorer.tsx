@@ -4,8 +4,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { HashRing, floorModPos, ringFraction, ringHash } from "@/lib/hashRing";
 
 const NODES = ["node-1", "node-2", "node-3", "node-4", "node-5"];
-/** Violet ramp by lightness; node-5 (the newcomer) is also drawn raised off the ring. */
-const NODE_COLOR = ["#4c1d95", "#7c3aed", "#a78bfa", "#d4c6fd", "#f1eef9"];
+/** Field-green ramp, dark to light (all distinct); node-5 (the newcomer) is also drawn raised off the ring. */
+const NODE_COLOR = ["#1f4a29", "#2f6a3b", "#4f8a57", "#8fb184", "#c9d8bf"];
 const VNODE_OPTIONS = [1, 10, 100, 200];
 const KEY_COUNT = 100_000;
 
@@ -142,7 +142,7 @@ export default function HashRingExplorer() {
           role="img"
           aria-label={`Hash ring with ${count} nodes and ${vnodes} virtual node${vnodes === 1 ? "" : "s"} each: ${arcs.length} arcs, each owned by the node whose point ends it.`}
         >
-          <circle cx="200" cy="200" r="150" fill="none" stroke="#131022" strokeWidth="30" />
+          <circle cx="200" cy="200" r="150" fill="none" stroke="#e7e3d6" strokeWidth="30" />
           {arcs.map((a, i) => {
             const idx = NODES.indexOf(a.node);
             const newcomer = idx === 4;
@@ -156,13 +156,13 @@ export default function HashRingExplorer() {
               />
             );
           })}
-          <text x="200" y="190" textAnchor="middle" fill="#f1eef9" fontSize="30" fontWeight="700" fontFamily="var(--font-display)">
+          <text x="200" y="190" textAnchor="middle" fill="#18211a" fontSize="30" fontFamily="var(--font-display)">
             {(count * vnodes).toLocaleString("en-US")}
           </text>
-          <text x="200" y="214" textAnchor="middle" fill="#a49dbd" fontSize="12" fontFamily="var(--font-mono)">
+          <text x="200" y="214" textAnchor="middle" fill="#485148" fontSize="12" fontFamily="var(--font-mono)">
             points on the ring
           </text>
-          <text x="200" y="232" textAnchor="middle" fill="#837da6" fontSize="11" fontFamily="var(--font-mono)">
+          <text x="200" y="232" textAnchor="middle" fill="#5a6258" fontSize="11" fontFamily="var(--font-mono)">
             {count} nodes × {vnodes} vnode{vnodes === 1 ? "" : "s"}
           </text>
         </svg>
@@ -216,7 +216,7 @@ export default function HashRingExplorer() {
         ) : (
           <>
             <div className="mt-8">
-              <h3 className="font-display text-lg font-bold text-ink">Load per node</h3>
+              <h3 className="font-display text-lg text-ink">Load per node</h3>
               <p className="mt-1 text-sm leading-relaxed text-ink-dim" aria-live="polite">
                 Busiest node holds{" "}
                 <span className="font-mono font-semibold text-accent-strong">{pct(busiest!.share)}</span> of keys — fair
@@ -245,7 +245,7 @@ export default function HashRingExplorer() {
             </div>
 
             <div className="mt-8">
-              <h3 className="font-display text-lg font-bold text-ink">Add a 5th node to a 4-node cluster</h3>
+              <h3 className="font-display text-lg text-ink">Add a 5th node to a 4-node cluster</h3>
               <p className="mt-1 text-sm leading-relaxed text-ink-dim">Share of keys that change owner:</p>
               <div className="mt-4 space-y-3">
                 {[

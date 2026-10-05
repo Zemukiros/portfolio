@@ -24,8 +24,6 @@ export const metadata: Metadata = {
 
 const project = projects.find((p) => p.slug === "mini-s3")!;
 
-const GRADIENT = "linear-gradient(135deg, #3a1405 0%, #9a3412 58%, #ea580c 128%)";
-
 const pathPanels = [
   {
     id: "write",
@@ -234,36 +232,36 @@ export default function MiniS3CaseStudy() {
   return (
     <>
       {/* ================= Case hero ================= */}
-      <section className="relative overflow-hidden" style={{ background: GRADIENT }}>
+      <section className="relative overflow-hidden border-b border-border">
         <div className="mx-auto w-full max-w-6xl px-5 pb-0 pt-28 sm:px-8">
           <Reveal>
-            <Link href="/#work" className="font-mono text-xs text-white/70 transition-colors hover:text-white">
+            <Link href="/#work" className="font-mono text-xs text-ink-faint transition-colors hover:text-accent-strong">
               ← All projects
             </Link>
             <div className="mt-6 flex flex-wrap items-center gap-4">
-              <h1 className="font-display text-[clamp(2.5rem,6vw,4.5rem)] font-extrabold leading-none tracking-[-0.03em] text-white">
-                Mini-S3<span className="text-white/50">.</span>
+              <h1 className="font-display text-[clamp(2.5rem,6vw,4.5rem)] leading-none tracking-[-0.025em] text-ink">
+                Mini-S3<span className="text-accent">.</span>
               </h1>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 font-mono text-[11px] font-medium text-white backdrop-blur-sm">
-                <span className="h-1.5 w-1.5 rounded-full bg-white/80" aria-hidden="true" />
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 font-mono text-[11px] font-medium text-accent-strong">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
                 Built &amp; verified · runs in Docker
               </span>
             </div>
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/85 sm:text-xl">
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-dim sm:text-xl">
               A self-healing distributed object store. Every file is kept as
               three copies placed by consistent hashing, a write counts once two
               are durable, and when a storage node dies a background worker
               rebuilds what it held — without losing a byte.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4 text-sm font-medium">
-              <a href="#simulator" className="rounded-xl bg-white px-6 py-3 text-[#9a3412] transition-colors hover:bg-white/85">
+              <a href="#simulator" className="rounded-full bg-accent-deep px-6 py-3 text-white transition-colors hover:bg-accent">
                 Try the simulator ↓
               </a>
-              <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-white/90 hover:text-white">
+              <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-ink hover:text-accent-strong">
                 View the repository ↗
               </a>
             </div>
-            <p className="mt-4 max-w-xl font-mono text-[11px] leading-relaxed text-white/70">
+            <p className="mt-4 max-w-xl font-mono text-[11px] leading-relaxed text-ink-faint">
               Mini-S3 runs as a seven-container Docker Compose cluster and is not
               hosted publicly. The simulator on this page is an in-browser model
               of the same protocol: the same hash ring, quorum, and repair rules,
@@ -271,7 +269,7 @@ export default function MiniS3CaseStudy() {
             </p>
             <div className="mt-6 flex flex-wrap gap-2 pb-2">
               {project.stack.map((t) => (
-                <span key={t} className="rounded-full bg-white/12 px-3 py-1 font-mono text-[11px] text-white/85">
+                <span key={t} className="rounded-md border border-border px-2 py-0.5 font-mono text-[11px] text-ink-dim">
                   {t}
                 </span>
               ))}
@@ -279,12 +277,11 @@ export default function MiniS3CaseStudy() {
           </Reveal>
 
           <div className="relative z-10 mt-10 sm:mt-12">
-            <div className="mx-auto max-w-4xl rotate-[2deg] rounded-2xl shadow-[0_30px_80px_rgba(7,6,12,0.6)]">
+            <div className="mx-auto max-w-4xl rounded-2xl border border-border-strong overflow-hidden">
               <MiniS3Mockup />
             </div>
           </div>
         </div>
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-bg" aria-hidden="true" />
       </section>
 
       {/* metric strip */}
@@ -306,7 +303,7 @@ export default function MiniS3CaseStudy() {
 
       {/* ================= Problem ================= */}
       <section className="mx-auto w-full max-w-6xl px-5 py-24 sm:px-8">
-        <p className="mx-auto max-w-3xl text-center font-display text-[clamp(1.5rem,3.2vw,2.25rem)] font-semibold leading-snug tracking-tight">
+        <p className="mx-auto max-w-3xl text-center font-display text-[clamp(1.5rem,3.2vw,2.25rem)] leading-snug tracking-tight">
           <span className="text-ink">Keep every file three times, keep writing when a disk dies, and heal without a human.</span>{" "}
           <span className="text-ink-faint">The upload API is the easy part. Durability, concurrency, and failure are the project.</span>
         </p>
@@ -325,7 +322,7 @@ export default function MiniS3CaseStudy() {
           accent="design"
           lede="Metadata and bytes live in different places, on purpose. One jar runs as three roles — api, storage, or worker, chosen by Spring profile — so the API, the storage nodes, and the worker all ship from a single image."
         />
-        <div className="mt-12 overflow-x-auto rounded-3xl border border-border bg-bg-raised p-5 sm:p-8">
+        <div tabIndex={0} role="region" aria-label="Architecture diagram (scrolls horizontally)" className="mt-12 overflow-x-auto rounded-3xl border border-border bg-bg-raised p-5 sm:p-8">
           <div className="min-w-[680px]">
             <MiniS3ArchitectureDiagram />
           </div>
@@ -369,8 +366,8 @@ export default function MiniS3CaseStudy() {
             </div>
           ))}
         </div>
-        <div className="mt-5 overflow-x-auto rounded-3xl border border-border bg-bg-raised p-7">
-          <h3 className="font-display text-base font-bold text-ink">The three statements that carry the design</h3>
+        <div tabIndex={0} role="region" aria-label="Key SQL statements (scrolls horizontally)" className="mt-5 overflow-x-auto rounded-3xl border border-border bg-bg-raised p-7">
+          <h3 className="font-display text-base text-ink">The three statements that carry the design</h3>
           <div className="mt-4 space-y-4">
             {sql.map((q) => (
               <pre key={q.comment} className="font-mono text-[12.5px] leading-relaxed">
@@ -429,7 +426,7 @@ export default function MiniS3CaseStudy() {
                 d.wide ? "border-accent/30 bg-accent/5" : "border-border bg-bg-raised hover:border-border-strong"
               }`}
             >
-              <h3 className={`font-display font-bold text-ink ${d.wide ? "text-2xl" : "text-xl"}`}>
+              <h3 className={`font-display text-ink ${d.wide ? "text-2xl" : "text-xl"}`}>
                 {d.title} <span className="font-medium text-accent-strong">— {d.tradeoff}</span>
               </h3>
               <p className={`mt-3 max-w-3xl leading-relaxed text-ink-dim ${d.wide ? "text-base" : "text-[15px]"}`}>{d.body}</p>
@@ -448,7 +445,7 @@ export default function MiniS3CaseStudy() {
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
           <div className="rounded-3xl border border-border bg-bg-raised p-7 sm:p-8">
             <div className="flex flex-wrap items-baseline justify-between gap-3">
-              <h3 className="font-display text-xl font-bold text-ink">The node-kill drill</h3>
+              <h3 className="font-display text-xl text-ink">The node-kill drill</h3>
               <p className="font-mono text-xs text-ink-faint">scripts/demo.sh · recorded run</p>
             </div>
             <ol className="mt-6 space-y-4">
@@ -473,7 +470,7 @@ export default function MiniS3CaseStudy() {
 
           <div className="rounded-3xl border border-border bg-bg-raised p-7 sm:p-8">
             <div className="flex flex-wrap items-baseline justify-between gap-3">
-              <h3 className="font-display text-xl font-bold text-ink">Placement, by the numbers</h3>
+              <h3 className="font-display text-xl text-ink">Placement, by the numbers</h3>
               <p className="font-mono text-xs text-ink-faint">100,000 keys · fair share 20%</p>
             </div>
             <table className="mt-5 w-full text-left text-sm">
@@ -528,12 +525,12 @@ export default function MiniS3CaseStudy() {
             ))}
           </ol>
           <div className="h-fit rounded-3xl border border-border bg-bg-raised p-7 sm:p-8">
-            <h3 className="font-display text-xl font-bold text-ink">Known gaps, named up front</h3>
+            <h3 className="font-display text-xl text-ink">Known gaps, named up front</h3>
             <ul className="mt-4 space-y-3.5">
               {gaps.map((g) => (
                 <li key={g} className="flex gap-3 text-[14.5px] leading-relaxed text-ink-dim">
                   <svg width="14" height="14" viewBox="0 0 14 14" className="mt-1.5 shrink-0" aria-hidden="true">
-                    <path d="M2 7h8M7 3.5 10.5 7 7 10.5" stroke="#8b5cf6" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M2 7h8M7 3.5 10.5 7 7 10.5" stroke="#2f6a3b" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                   {g}
                 </li>
@@ -545,27 +542,27 @@ export default function MiniS3CaseStudy() {
 
       {/* ================= Close ================= */}
       <section className="mx-auto w-full max-w-6xl px-5 pb-28 sm:px-8">
-        <div className="flex flex-wrap items-center justify-between gap-6 rounded-3xl p-9 sm:p-12" style={{ background: GRADIENT }}>
+        <div className="flex flex-wrap items-center justify-between gap-6 rounded-[20px] border border-border bg-bg-raised p-9 sm:p-12">
           <div>
-            <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">
-              Stop a node, then read the code<span className="text-white/50">.</span>
+            <h2 className="font-display text-3xl text-ink sm:text-4xl">
+              Stop a node, then read the code<span className="text-accent">.</span>
             </h2>
-            <p className="mt-2 max-w-md text-[15px] leading-relaxed text-white/80">
+            <p className="mt-2 max-w-md text-[15px] leading-relaxed text-ink-dim">
               The simulator runs a verified port of the placement code; the repo
               runs the real cluster with one command.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-4 text-sm font-medium">
-            <a href="#simulator" className="rounded-xl bg-white px-6 py-3 text-[#9a3412] transition-colors hover:bg-white/85">
+            <a href="#simulator" className="rounded-full bg-accent-deep px-6 py-3 text-white transition-colors hover:bg-accent">
               Try the simulator
             </a>
-            <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-white transition-colors hover:text-white/80">
+            <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-ink transition-colors hover:text-accent-strong">
               GitHub ↗
             </a>
-            <Link href="/#contact" className="text-white transition-colors hover:text-white/80">
+            <Link href="/#contact" className="text-ink transition-colors hover:text-accent-strong">
               Contact me
             </Link>
-            <Link href="/#work" className="text-white transition-colors hover:text-white/80">
+            <Link href="/#work" className="text-ink transition-colors hover:text-accent-strong">
               All projects
             </Link>
           </div>

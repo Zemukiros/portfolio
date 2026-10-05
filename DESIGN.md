@@ -1,422 +1,219 @@
 ---
 name: Zemariam Haftegebriel — Portfolio
-description: Signal-violet studio-dark stage where one engineer's systems perform
+description: Paper & Field — a light editorial engineering notebook
 colors:
-  bg: "#07060c"
-  bg-raised: "#0d0b16"
-  bg-panel: "#131022"
-  border: "#221d33"
-  border-strong: "#322a4a"
-  ink: "#f1eef9"
-  ink-dim: "#a49dbd"
-  ink-faint: "#837da6"
-  accent: "#8b5cf6"
-  accent-strong: "#a78bfa"
-  accent-deep: "#6d28d9"
-  amber: "#e8b45a"
-  rose: "#f472b6"
-  cyan: "#22d3ee"
-  mint: "#34d399"
+  bg: "#f4f2ea"
+  bg-raised: "#efece2"
+  bg-panel: "#e7e3d6"
+  border: "#dcd8ca"
+  border-strong: "#c4bfae"
+  ink: "#18211a"
+  ink-dim: "#485148"
+  ink-faint: "#5a6258"
+  accent: "#2f6a3b"
+  accent-strong: "#285d33"
+  accent-deep: "#1f4a29"
+  amber: "#8a5f17"
+  rose: "#a8325a"
+  cyan: "#1b6b7b"
+  mint: "#237049"
 typography:
   display:
-    fontFamily: "Bricolage Grotesque Variable, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(3rem, 8vw, 5.75rem)"
-    fontWeight: 800
-    lineHeight: 0.98
-    letterSpacing: "-0.03em"
-  headline:
-    fontFamily: "Bricolage Grotesque Variable, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "2.25rem"
-    fontWeight: 700
-    lineHeight: 1.1
+    fontFamily: "Instrument Serif, ui-serif, Georgia, serif"
+    fontSize: "clamp(3rem, 7vw, 5.5rem)"
+    fontWeight: 400
+    lineHeight: 0.95
     letterSpacing: "-0.025em"
+  headline:
+    fontFamily: "Instrument Serif, ui-serif, Georgia, serif"
+    fontSize: "clamp(2.25rem, 4.5vw, 3.5rem)"
+    fontWeight: 400
+    lineHeight: 1.0
+    letterSpacing: "-0.02em"
   title:
-    fontFamily: "Bricolage Grotesque Variable, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Instrument Serif, ui-serif, Georgia, serif"
     fontSize: "1.5rem"
-    fontWeight: 700
-    lineHeight: 1.3
+    fontWeight: 400
+    lineHeight: 1.2
   body:
     fontFamily: "Inter Variable, ui-sans-serif, system-ui, sans-serif"
     fontSize: "0.9375rem"
     fontWeight: 400
-    lineHeight: 1.625
+    lineHeight: 1.65
   label:
     fontFamily: "JetBrains Mono Variable, ui-monospace, SF Mono, monospace"
-    fontSize: "0.75rem"
+    fontSize: "0.6875rem"
     fontWeight: 500
-    letterSpacing: "0.2em"
+    letterSpacing: "0.16em"
 rounded:
   sm: "8px"
   md: "12px"
   lg: "16px"
-  xl: "24px"
+  xl: "20px"
   pill: "9999px"
 spacing:
-  chip-gap: "12px"
-  card-pad: "32px"
-  card-pad-lg: "40px"
-  section-gap-heading: "48px"
-  section-rhythm: "96px"
+  section-rhythm: "128px"
+  heading-to-content: "56px"
+  row-pad-y: "20px"
+  card-pad: "28px"
 components:
   button-primary:
-    backgroundColor: "{colors.accent}"
-    textColor: "#ffffff"
-    rounded: "{rounded.md}"
-    padding: "14px 28px"
-  button-primary-hover:
     backgroundColor: "{colors.accent-deep}"
+    textColor: "#ffffff"
+    rounded: "{rounded.pill}"
+    padding: "10px 20px"
   button-ghost:
     backgroundColor: "transparent"
     textColor: "{colors.ink}"
-    rounded: "{rounded.md}"
-    padding: "14px 28px"
-  card-panel:
-    backgroundColor: "{colors.bg-raised}"
-    rounded: "{rounded.xl}"
-    padding: "{spacing.card-pad}"
-  chip-skill:
-    backgroundColor: "{colors.bg-raised}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.md}"
-    padding: "10px 16px 10px 12px"
-  tag-stack:
-    backgroundColor: "{colors.bg-panel}"
-    textColor: "{colors.ink-dim}"
-    rounded: "{rounded.pill}"
-    padding: "4px 12px"
-  tab-active:
-    backgroundColor: "{colors.accent}"
-    textColor: "#ffffff"
     rounded: "{rounded.pill}"
     padding: "10px 20px"
-  tab-inactive:
+  nav-floating:
+    backgroundColor: "{colors.bg-raised}"
+    rounded: "{rounded.pill}"
+    padding: "6px"
+  modal:
+    backgroundColor: "{colors.bg}"
+    rounded: "{rounded.xl}"
+    padding: "40px"
+  tag:
     backgroundColor: "transparent"
     textColor: "{colors.ink-dim}"
-    rounded: "{rounded.pill}"
-    padding: "10px 20px"
-  chip-action-white:
-    backgroundColor: "#ffffff"
-    textColor: "{colors.accent-deep}"
     rounded: "{rounded.sm}"
-    padding: "8px 16px"
+    padding: "3px 8px"
 ---
 
 # Design System: Zemariam Haftegebriel — Portfolio
 
+> Replaces "Signal Violet" (dark, violet, 2026-03 → 2026-10). Adopted 2026-10-04 on
+> `feat/editorial-rebrand`. Plan: `docs/plans/2026-10-editorial-rebrand.md`.
+
 ## Overview
 
-**Creative North Star: "The Signal-Violet Stage"**
+**Creative North Star: "Paper & Field."** An engineering notebook: warm paper, dark
+ink, one forest-green accent, and a thin editorial serif doing the talking. The page is
+quiet so the work reads clearly. It refuses the dark-gradient-card portfolio cliché
+the previous system drifted toward. Density is low and the rhythm is slow:
+generous whitespace, hairline rules, and lists and tables instead of card mosaics.
 
-A studio-dark engineering world where one engineer's systems perform. The
-ground is a near-black violet (#07060c), and a single committed violet
-(#8b5cf6) carries everything that matters in the UI chrome: primary CTAs,
-glow atmospheres, indicators, and the accent period that closes every
-heading. The build explicitly refuses two clichés named in its direction
-contract: the résumé-pasted-into-a-dark-template page, and the
-terminal-costume page. The tone is confident, warm, and product-true — the
-hero is an authored polychrome avatar scene: the engineer himself at his
-desk, waving, his monitor running the IntelliRoute route graph, pastel UI
-cards floating around him on a three-layer pointer parallax. Polychrome is
-deliberate and contained: the avatar scene, brand tech marks, and
-per-project gradient identities are its only homes.
+It belongs to the light editorial genre that the reference (`~/design-refs/Reference.mp4`)
+works in. **Inspiration, not copy:** we share its open-licensed fonts and its general
+vocabulary (serif headlines, hairlines, table-style project list, accordion, modal
+details, floating nav). All code, copy, imagery, and exact composition are ours. The
+reference site is not licensed for reuse.
 
-Density is generous: full-viewport hero (min-height 94svh), 96px section
-rhythm, 24px-radius panels with 32-40px internal padding. Depth comes from
-layered violet-tinted surfaces and hairline borders, not shadows — except
-on the gradient showcase cards, where tilted mockup windows sit on a deep
-ambient drop. Motion is a small sanctioned set: the orchestrated hero
-entrance with its idle float and parallax, section-heading reveals, and
-gentle hover lifts; everything else is still.
-
-**Key Characteristics:**
-- One committed violet in UI chrome; polychrome lives only in three sanctioned zones — the hero avatar scene, brand tech marks, and project gradient identities
-- Bricolage Grotesque display at heavy weights; Inter body; JetBrains Mono strictly for data, meta, and labels
-- Product-true authored SVG illustration — line-work vignettes, dark mockup windows, and the avatar scene — never stock imagery or gradient stand-ins
-- One orchestrated hero entrance plus a quiet sanctioned interaction set (heading reveals, hover lifts, idle float, pointer parallax)
-- Honest status language everywhere (verified metrics, truthful badges, "· soon" placeholder slots for missing links)
+**Key characteristics**
+- Paper ground, ink type, **one** forest-green accent. Nothing else in UI chrome.
+- Instrument Serif headlines at regular weight (never bold), with Inter for body and JetBrains Mono for data.
+- Hairline rules and paper tones separate surfaces. Shadows are reserved for floating layers.
+- A numbered mono eyebrow above each section heading (`01 — About`).
+- One signature object: a minimalist, product-true 3D form (the Mini-S3 hash ring) in About.
+- Honest status language everywhere, unchanged from the previous system.
 
 ## Colors
 
-A monochrome violet UI over three stacked dark surfaces, with three ink
-strengths, one accent in three intensities — and three sanctioned
-polychrome zones that never leak into chrome.
+### Accent
+- **Field Green** (`accent`, #2f6a3b): links, active states, the heading accent words, focus ring, heatmap scale top.
+- **Field Green Text** (`accent-strong`, #285d33): accent used as small text. It is ≥ 6:1 on every paper surface.
+- **Deep Field** (`accent-deep`, #1f4a29): primary button fill (white text 10:1) and hover/pressed state.
 
-### Primary
-- **Signal Violet** (`accent`, #8b5cf6): the one committed accent. Carries the computed route in illustrations, primary CTA fill, the heading-closing period, tab-active fill, the active carousel dot, bullet arrows, focus glow. If it is violet, it is the signal.
-- **Lifted Violet** (`accent-strong`, #a78bfa): the legible violet for text on dark — accent words inside headings, meta text, big graph nodes, hover-state link and arrow color.
-- **Deep Violet** (`accent-deep`, #6d28d9): pressed/hover fill for primary buttons, text color on white action chips, and the dense end of glow atmospheres (`rgba(109,40,217,0.28)`).
+### Paper and ink
+- **Paper** (`bg`, #f4f2ea): page ground. Never pure white.
+- **Paper Raised** (`bg-raised`, #efece2): row hover, nav pill, chips.
+- **Paper Panel** (`bg-panel`, #e7e3d6): nested wells, heatmap empty cells.
+- **Hairline** (`border`, #dcd8ca) / **Hairline Strong** (`border-strong`, #c4bfae): every divider, table rule, and card edge.
+- **Ink** (#18211a) headings · **Ink Dim** (#485148) body · **Ink Faint** (#5a6258) meta. All pass WCAG AA on all three paper tones.
 
-### Secondary (project gradient identities)
-Each showcase project owns one fixed gradient, used only on its identity
-surfaces (carousel card, case-study hero and closing panel):
-- **IntelliRoute** (featured): `linear-gradient(135deg, #37167f 0%, #6d28d9 55%, #8b5cf6 115%)` — the house violet.
-- **Rhythmiq**: `linear-gradient(135deg, #4a1268 0%, #86198f 60%, #d946ef 130%)` — magenta.
-- **QueryGuard**: `linear-gradient(135deg, #1e1b5e 0%, #4338ca 60%, #818cf8 130%)` — indigo.
-- **Meridian**: `linear-gradient(135deg, #0b3b3c 0%, #0f766e 55%, #2dd4bf 125%)` — teal.
-- **Mini-S3**: `linear-gradient(135deg, #3a1405 0%, #9a3412 58%, #ea580c 128%)` — ember (the last stop is held at orange-600 so white links stay legible in the bright corner).
+### Tertiary (illustration and status only)
+Amber, rose, mint, and cyan carry status inside the Mini-S3 console, the QueryGuard simulator console (rose = blocked, amber = clarification/stopped, green = pass/executed), and diagrams, never in chrome.
 
-Text on gradients is white (white/80 body, white/70 meta); UI on gradients
-is white glass (`bg-white/12`-`/15`, `border-white/25`) or solid white chips.
+### Named rules
+**The One Green Rule.** Field Green is the only accent in UI chrome. Brand tech marks keep
+their true colors (`TechIcon noLift`); project imagery lives inside its frame. There are no
+per-project gradient panels.
 
-### Neutral
-- **Stage Black** (`bg`, #07060c): the page ground. Near-black with a violet undertone; never pure #000. At 45% alpha + blur it is the carousel-card footer bar.
-- **Raised Stage** (`bg-raised`, #0d0b16): first elevation — cards, chips, panels sitting on the ground.
-- **Panel Violet** (`bg-panel`, #131022): second elevation — nested surfaces, tags on cards, illustration chip fills.
-- **Hairline** (`border`, #221d33): default 1px border on every raised surface.
-- **Hairline Strong** (`border-strong`, #322a4a): emphasized borders — ghost buttons, icon buttons, arrow buttons, inactive carousel dots — and the gray edges of every graph illustration.
-- **Ink** (`ink`, #f1eef9): headings and emphasized body text.
-- **Ink Dim** (`ink-dim`, #a49dbd): default body/paragraph text and nav links.
-- **Ink Faint** (`ink-faint`, #837da6): meta lines, footnotes, tile captions, the carousel counter — the quietest text allowed on the page.
-
-### Tertiary (illustration-only)
-- **Amber** (#e8b45a) and **Rose** (#f472b6): window-chrome dots in mockup windows; rose also draws the hero scene's cursor. **Mint** (#34d399 — now the `mint` token, used only where the tertiaries are allowed): the "verified" check marks in mockups, the green window-chrome dot, and the hero plant. **Cyan** (#22d3ee) remains a defined but unused token — reserved, no role yet.
-- The hero avatar scene carries its own contained palette: warm skin tones (#96603c, #8a5a3b), near-black curls (#1b1526), cream sweater (#f3efe9), violet furniture (#5b21b6, #6d28d9, #4c1d95), pastel floating-card fills (#efeafd, #fbe7f5, #f6f4fd) and a five-swatch palette pill. These stay inside the scene; none may migrate into UI chrome.
-- The line-work layer keeps a recurring dim-violet sub-palette (see Components → Illustrations).
-
-### Named Rules
-**The One Committed Violet Rule (amended).** Violet is the only accent in
-UI chrome — buttons, links, borders, badges, headings, indicators.
-Polychrome is sanctioned in exactly three zones: brand tech marks, the hero
-avatar scene, and the per-project gradient identities on carousel cards. No
-fourth zone without an explicit, user-approved amendment.
-
-**The Brand-Marks Exception.** Official technology logos (simple-icons
-brand hex values, AWS orange #FF9900) keep their true colors. Marks too
-dark for the dark ground are lifted to near-ink (`TechIcon` LIFT map); on
-light surfaces (the white floating chips on gradient cards) they render
-their true brand hex via `noLift`. Never recolor a brand mark to violet.
-
-**The Accent Period Rule.** Display and section headings end with a violet
-period (`<span class="text-accent">.</span>`). It is the signature
-punctuation of the world; one per heading, never mid-sentence. On gradient
-surfaces, where violet would vanish, the closing period renders
-`text-white/50` instead.
+**The Accent Close Rule.** Section headings set their last phrase in Field Green and end
+with a green period: `<span class="text-accent">phrase.</span>`. One per heading.
 
 ## Typography
 
-**Display Font:** Bricolage Grotesque Variable (with ui-sans-serif, system-ui)
-**Body Font:** Inter Variable (with ui-sans-serif, system-ui)
-**Label/Mono Font:** JetBrains Mono Variable (with ui-monospace, SF Mono)
+- **Display** (Instrument Serif 400, clamp 3–5.5rem, lh 0.95): hero greeting only.
+- **Headline** (Instrument Serif 400, clamp 2.25–3.5rem, lh 1.0): section headings, set on two lines.
+- **Title** (Instrument Serif 400, 1.25–1.75rem): project names, roles, modal titles. Italic is allowed for the "@ Org" part of a role line.
+- **Body** (Inter 400, 15–17px, lh 1.65, ink-dim). Emphasis is `font-medium text-ink`, never color.
+- **Label** (JetBrains Mono 500, 11px, +0.16em, uppercase): section eyebrows, table headers, dates, tags, stats captions.
 
-**Character:** A heavy, characterful grotesque doing the talking over a
-neutral workhorse body, with a monospace strictly rationed to data. The
-pairing reads engineering-confident, not terminal-costumed.
-
-### Hierarchy
-- **Display** (800, clamp(3rem, 8vw, 5.75rem), lh 0.98, ls -0.03em): the hero name only — two lines plus the violet period. Contact closer runs a smaller display clamp (800, clamp(2.5rem, 6vw, 4.5rem)).
-- **Headline** (700, 2.25rem → 3rem at `sm`, tracking-tight): section headings; last word rendered in Lifted Violet + violet period. The About statement uses a mid clamp (600, clamp(1.5rem, 3.2vw, 2.25rem)) with a two-tone ink → ink-faint sentence split.
-- **Title** (700, 1.25-1.875rem): card and panel titles — project names (1.875rem, white on gradient cards), role titles, school names (1.25rem).
-- **Body** (400, 15px-1.125rem, leading-relaxed, ink-dim; white/80 on gradients): paragraphs, bullets, ledes (1.125rem). Hero subtitle runs larger (1.25-1.5rem). Emphasis = `font-semibold text-ink`, never a color change.
-- **Label** (mono, 500, 0.75rem, +0.2em, UPPERCASE): skill-group labels. Non-uppercase mono meta at 10.5-14px: hero greeting, date/location lines, status chips, headline metrics, carousel counter, footnotes inside illustrations.
-
-### Named Rules
-**The Mono-Means-Data Rule.** JetBrains Mono appears only where content is
-data or metadata — dates, locations, metrics, statuses, group labels, code
-strings inside illustrations. Never for headings, paragraphs, or buttons.
+**The Serif-Never-Bold Rule.** Instrument Serif ships one weight. Never fake-bold it; hierarchy comes from size and color.
+**The Mono-Means-Data Rule.** Mono is only for data and metadata, as before.
 
 ## Layout
 
-Single centered column: `max-w-6xl` (72rem) container, `px-5` gutters
-rising to `px-8` at `sm`. Section rhythm is `py-24` (96px; contact runs
-`py-28`), each section opening with a `max-w-2xl` heading block and content
-following at `mt-12` (48px; the carousel starts tighter at `mt-6`). The
-hero is a full-viewport (`min-h-[94svh]`) two-column grid, `1.05fr /
-0.95fr` at `lg` — text left, avatar scene right; below `lg` the same scene
-re-renders full-width beneath the hero copy. The hero meta line carries
-location and degree only — the AWS certification lives solely in
-Education. The projects carousel breaks out of the container full-bleed
-(`-mx-5 sm:-mx-8` with matching scroll padding): a `snap-x snap-mandatory`
-scroll track with hidden scrollbar, featured card at `88vw`/max-860px,
-others `85vw`/max-560px. Card grids elsewhere: 3-up (`lg:grid-cols-3`) for
-education/certification. The nav is a fixed 4.5rem bar (transparent at
-top; `bg/85` + blur + border after 12px of scroll), with
-`scroll-padding-top: 5.5rem` compensating anchor jumps. Spacing steps
-observed: 8/12/16/24px within components, 28-32/40px card padding, 48px
-heading-to-content, 96px between sections. One atmosphere flourish: an
-oversized rotated "ENGINEER" watermark at `text-ink/[0.045]`, `xl`-only,
-aria-hidden.
+- `max-w-6xl` container, `px-5 sm:px-8`. Sections run `py-32` (128px) with heading → content `mt-14`.
+- **Section opening:** mono eyebrow `0N — Name`, then a two-line serif headline on the left and an optional short ink-dim paragraph on the right (`lg:grid-cols-[1.4fr_1fr]`).
+- **Hero:** full-viewport framed image with a centered greeting, a one-line role, and three pill links. On scroll, the frame insets (scale ~0.94, radius 0 → 20px) as the paper page rises over it.
+- **Project list:** a table (thumbnail · name + one-liner · stack tags · year · arrow) with hairline row rules. It collapses to stacked rows under `md`.
+- **Navigation:** a floating pill nav fixed to the bottom center, shown after the hero, with section links and a primary "Let's talk".
 
 ## Elevation & Depth
 
-Flat by conviction on the dark ground: depth is tonal — three stacked
-surface colors (bg → bg-raised → bg-panel), each step bounded by a 1px
-hairline border — plus atmosphere: large radial glows (`.hero-glow`,
-blur(90px), violet at 14-28% alpha) behind the hero and contact sections,
-and faint violet contour lines in the hero corner. The gradient showcase
-cards are the exception zone: their tilted mockup windows and floating
-tech-mark chips cast real shadows against the gradient.
+Flat by default: paper tone steps plus hairlines.
+- **Floating layer shadow** (`0 12px 40px rgba(24,33,26,0.12)`): floating nav, modal, contact popover only.
+- **Scrim:** `rgba(24,33,26,0.35)` plus a 2px backdrop blur behind modals and popovers.
 
-### Shadow Vocabulary
-- **CTA glow** (`box-shadow: 0 8px 30px rgba(139,92,246,0.35)`): primary buttons only; intensifies to `0.5` alpha on hover. Light emission from the violet fill, not elevation.
-- **Mockup drop** (`box-shadow: 0 24px 60px rgba(7,6,12,0.55)`): under the tilted mockup window on each gradient carousel card. The case-study page hero mockup uses a deeper cut of the same shadow (`0 30px 80px rgba(7,6,12,0.6)`).
-- **Floating chip** (Tailwind `shadow-lg`): under the white circular tech-mark chips floating on gradient cards.
-
-### Named Rules
-**The Borders-Not-Shadows Rule (amended).** On the dark ground, surfaces
-separate by background step + hairline border — no card shadows, no drop
-shadows on text. Shadows are sanctioned only as the CTA glow and, on the
-gradient carousel cards, the mockup drop and floating-chip shadows.
+**The Floating-Only Shadow Rule.** Only floating layers cast shadows. Cards, rows, and chips never do.
 
 ## Shapes
 
-Soft, generous geometry on a strict ladder: **24px** (`rounded-3xl`) for
-section panels, project carousel cards, and education cards; **16px**
-(`rounded-2xl`) for nested insets (mockup windows, side vignette panels);
-**12px** (`rounded-xl`) for buttons, skill chips, and inset wells; **8px**
-(`rounded-lg`) for icon buttons, white action chips, the nav logo tile,
-and nav GitHub button; **full pill** for tags, tabs, fact chips, status
-chips, carousel dots, and arrow buttons. Rule of thumb: radius shrinks
-with nesting depth — container 24 → inset 16 → control 12 → icon 8 — and
-anything text-sized-and-standalone is a pill. Illustration rects echo the
-ladder at SVG scale (rx 6-16). One signature gesture: **the tilted
-mockup** — carousel mockup windows rotate `+5deg` from a bottom-left
-origin, deepening to `6.5deg` with a `1.015` scale on card hover (500ms).
+Radius ladder: 20px modals and the hero frame → 16px cards and stack panels → 12px thumbnails and wells → 8px tags and icon buttons → pills for buttons, nav, and status badges.
 
 ## Components
 
-### Buttons
-- **Shape:** softly rounded (12px)
-- **Primary:** Signal Violet fill, white semibold 15px text, `px-7 py-3.5` (28×14px), CTA glow shadow. Hover: Deep Violet fill + stronger glow, `transition-all`.
-- **Ghost (secondary):** transparent, 1px Hairline Strong border, ink medium text, same padding. Hover: border and text shift to violet (`hover:border-accent hover:text-accent-strong`).
-- **White action chip (on gradients):** solid white, Deep Violet medium 14px text, 8px radius, `px-4 py-2`. Hover: `bg-white/85`. Placeholder variant for missing links: `border-white/25 text-white/75` with a "· soon" label.
-- **Arrow button (carousel):** 44px circle, Hairline Strong border, ink-dim chevron; hover to violet border + Lifted Violet; disabled at track ends via `opacity-35` with hover styles suppressed.
-- **Text link:** ink-dim medium, hover to ink (white/90 → white on gradients); external links suffixed "↗".
+- **Buttons:** primary is a Deep Field pill with white text. Ghost is a pill with a 1px Hairline Strong border and ink text, turning to a green border on hover. Text links get an animated underline in Field Green.
+- **Projects (restyle only; behavior is fixed).** The link logic from `ProjectCarousel` is preserved exactly. **Case study** goes to `caseStudyPath`. **GitHub** goes to `github`. **Live site** / **Live demo** go to `liveUrl`. **Demo** / **View demo** go to `demoUrl`. **Simulator →** goes to `simulatorPath` when there is no deployment. Every missing link renders its "· soon" placeholder. Featured project, status badges, headline metrics, and the three case-study pages keep their current content and routes. Only the presentation changes: a minimal row (thumbnail · name + one-liner · stack tags · status · arrow) with hairline rules. Hover tints the row Paper Raised and turns the arrow green, rotated −45°. A click opens the **project modal** with the same link set as visible actions, plus the headline metric and stack. The modal closes with Esc, the scrim, or the ✕; focus is trapped and returns to the row.
+- **Experience accordion:** a row with "Role *@ Org*", mono dates, and a chevron. It expands to bullets and tags. One open at a time, using `button[aria-expanded]` with a region.
+- **Stack panels:** 16px hairline cards per group. The mono label, serif title, and one sentence sit above brand-mark chips.
+- **GitHub activity:** stat cells (repos, contributions, followers, joined) plus a 53×7 heatmap in 4 green steps over Paper Panel, generated **at build time**. Numbers are real or the block is hidden.
+- **Capabilities grid:** a numbered hairline grid, with mono numbers, a serif title, and one ink-dim line. Every capability maps to a shipped repo.
+- **Contact:** a two-line headline, a short line, a Download CV primary button, a sitemap column, and a links column. "Let's talk" opens a popover with Copy email, Email, LinkedIn, and GitHub. There is no form backend.
+- **Status badge:** a mono 11px pill with a hairline border and a dot. Live / Built & verified use green, In development uses ink-dim, Up next uses faint. **The Honest Status Rule** is unchanged.
 
-### Chips (species — do not merge)
-- **Skill chip:** 12px radius, bg-raised, hairline border, brand icon (22px) + 14px medium ink label. Hover: border upgrades to Hairline Strong and the chip lifts `-translate-y-0.5` (200ms).
-- **Stack tag (dark):** full pill, bg-panel, hairline border, 12px ink-dim text. Static.
-- **Stack tag (gradient):** full pill, `bg-white/12`, mono 10.5px `text-white/85`. Static.
-- **Fact chip (About):** full pill, bg-raised, Hairline Strong border, 14px medium ink-dim, `px-5 py-2.5`.
-- **Featured pill:** solid white pill, mono 11px semibold Deep Violet text — marks the featured carousel card.
+## Signature: the 3D object
 
-### Status Badge (signature)
-Honest-status pill in two variants. **On dark surfaces:** mono 11px,
-tracking-wide, 1.5px colored dot, tinted per status — **Live** and **Built
-& verified · deploying** in violet tint (`text-accent-strong
-border-accent/40 bg-accent/10`), **In development** fainter
-(`border-accent/30 bg-accent/5`), **Up next** neutral (ink-dim, Hairline
-Strong border, no fill). **On gradient cards:** white glass
-(`bg-white/15 backdrop-blur-sm`, white mono 11px, white dot). **The Honest
-Status Rule.** Labels never overstate: "Planned" renders as "Up next",
-never as done; a metric appears only when verified; missing case-study,
-GitHub, or live links render visible "· soon" placeholder slots rather
-than disappearing or faking a destination.
+A minimalist **Mini-S3 hash ring** sits in About where a portrait would go. It is a thin ink torus with four node beads (the repo's four storage nodes), and a green arc plus a travelling packet carry one key to its three replicas. Preference lists come from `src/lib/hashRing.ts`, so it is true to the product. It is rendered with React Three Fiber in matte ink and paper tones, with no gradients or glow. It rotates slowly at idle and tilts ≤ 8° toward the pointer.
+- It loads lazily after first paint and only renders when on screen.
+- The fallback is a static authored SVG of the same ring, used for `prefers-reduced-motion`, missing WebGL, `(hover: none)` low-power devices, and while loading.
+- `role="img"` with a description of what the ring shows.
 
-### Cards / Containers
-- **Corner Style:** 24px
-- **Background:** bg-raised default; carousel cards use their project gradient identity
-- **Shadow Strategy:** none on dark cards; gradient cards per Elevation
-- **Border:** 1px Hairline on dark cards; gradient cards are borderless
-- **Internal Padding:** `p-8` (32px), `sm:p-10` (40px) on hero-level panels; carousel headers `p-7 sm:p-8`
-- **Hover behavior:** interactive cards lift `-translate-y-1.5` (300ms)
-- **Gradient panels:** reserved for identity — the three project carousel cards, each project's case-study hero and closing CTA panel (same identity gradient), and the AWS certification card (`linear-gradient(140deg, #2a1758 0%, #6d28d9 70%, #8b5cf6 110%)`, white text). Do not spawn gradient panels for anything without an identity of its own.
+**The Hero Fishbowl (amendment, user-approved 2026-10-04).** The hero's sun circle holds a small glass
+fishbowl: one original, generic fish (ellipsoid body, wagging tail, fins) swimming a slow figure-of-eight,
+a few rising bubbles, two weed strands, a sand floor, and one specular arc on the glass — all in field
+greens, paper, and ink, no other hues. It is positioned from the field artwork's slice math so it always
+sits exactly in the circle, pauses when the hero is off screen, shares the lazy three.js chunk, and falls
+back to a flat SVG fish under the same conditions as the ring. It is decorative (`aria-hidden`).
 
-### Project Carousel (signature)
-Full-bleed scroll-snap showcase: each project is one gradient-identity
-card containing a header row (white title + one-liner + mono headline
-metric), a tilted dark mockup window pushed to the right edge, floating
-white tech-mark chips (`lg`-only, float-bob idle, true brand colors via
-`noLift`), and a glassy footer bar (`bg-[#07060c]/45` + backdrop-blur)
-holding stack tags and the action row. Position UI sits above the track:
-pill-shaped dots (active dot stretches to `w-8` violet; inactive `w-2.5`
-Hairline Strong) with a mono `n / total` counter, plus the arrow buttons.
-Active-index tracking is saturation-aware — at scroll end the last card
-counts as active even when a nearer snap point exists. Dots are a
-`role="tablist"`; the track is a labeled `region`.
+**The Two Object Rule (amended from One Object).** At most two WebGL objects on the site: the product-true
+hash ring in About and the decorative hero fishbowl. No others without an explicit, user-approved amendment.
 
-### Hero Scene (signature)
-The authored avatar illustration (`HeroScene`): a friendly Black developer
-at his desk, waving, monitor running the IntelliRoute route graph, laptop
-sparkline, plant, and floating pastel UI cards (image card, play card,
-ranking chip, palette pill, sparkles). Pure authored SVG — no stock
-assets — with a meaningful `role="img"` description. Three parallax layers
-respond to pointer position over the hero section via `--px`/`--py` custom
-properties: back atmosphere moves `-14/-10px`, character/desk `+6/+4px`,
-floating cards `+16/+12px`, each with a spring-like ease
-(`cubic-bezier(0.22,1,0.36,1)`, 250-350ms). Floating cards idle on
-`float-bob` (5.5s, ±7px, staggered delays). Parallax and bob are disabled
-under `(hover: none)` and `prefers-reduced-motion`.
+## Imagery
 
-### Case-Study Surfaces (signature)
-Project case-study pages (`/projects/intelliroute` is the template) extend
-the system with a fixed set of conventions:
-- **Gradient page hero:** the project's gradient identity fills the hero, then fades into the page ground via a bottom overlay (`h-40 bg-gradient-to-b from-transparent to-bg`); a `rotate-[2deg]` hero mockup (16px radius, deep mockup shadow) bleeds across the seam into the first section. Hero text is white; actions reuse the white action chip and "· soon" placeholder; stack tags are the gradient (white/12) variant.
-- **Metric strip:** a single hairline `rounded-2xl` bg-raised `dl` row — mono semibold 1.25rem Lifted Violet value beside a 12px ink-dim label. This inline pairing is the sanctioned metric presentation on case studies; big-number stat cards are not.
-- **Decision cards:** titles voiced as a tradeoff — "X over Y" plus an em-dashed tradeoff phrase in medium Lifted Violet ("— isolation over convenience"). The keystone decision gets the accent-tinted wide panel (`border-accent/30 bg-accent/5`, `md:col-span-2`); the rest are standard bg-raised cards with hover border upgrade. Callout asides use the same accent tint (`border-accent/25 bg-accent/5`).
-- **Diagram suite:** large schematic SVG diagrams — the architecture diagram with its glowing featured node (violet stroke + gaussian-blur glow filter), violet marker arrows, dashed Lifted Violet fallback arc, mint CI status dots; and the three-beat fallback sequence (dashed border = unreachable beat, hot `#1c1533` accent-stroked final beat). Diagrams sit inside `overflow-x-auto` rounded-3xl panels with a `min-w-[640px]` inner wrapper so mobile scrolls instead of shrinking.
-- **Evidence blocks:** test-suite bars (6px full-pill track in bg-panel, violet fill) and benchmark tables (mono Lifted Violet data cells, hairline row borders, mono ink-faint headers, `sr-only` caption) present only recorded numbers.
-- **Roadmap timeline:** a `border-l` hairline list, 32px indent, absolute 16px dots — current item `border-accent bg-accent/30`, future items `border-border-strong bg-bg` — with mono uppercase tracked "when" labels in Signal Violet.
-- **Motion:** one `Reveal` wraps the hero block; all body sections arrive static (headings via the shared `SectionHeading` reveal).
+- The **hero image** is the only photographic or rendered image allowed. It must be the owner's own photo, a licensed asset, or a generated image approved with its cost stated. Never reuse the reference's image.
+- Project thumbnails are real screenshots of the real product, or the existing authored mockups re-rendered for paper.
+- Diagrams remain authored SVG and product-true (**The Product-True Illustration Rule** stands).
 
-### Interactive Console (Mini-S3 simulator — amendment, 2026-09-28)
-The simulator on `/projects/mini-s3` is a *working* mockup window: the
-same dark frame (#0b0916, #3b3157 border, rose/amber/mint chrome dots, mono
-title pill) with live controls inside. **The Console Palette Rule:** inside
-that window only, the illustration tertiaries carry status — mint = UP /
-acknowledged / checksum match, amber = suspect (silent but not yet DOWN),
-surplus, or under-replicated, rose = DOWN, failed, corrupt, or a destructive
-"stop" control. Primary actions stay Signal Violet. Sequence diagrams may use
-the same rose/mint on a single step label to mark a bad/good check. Nowhere
-else. Motion inside the console (packets, `blob-in`) is interaction-driven,
-runs only while the console is on screen, has a Pause control, starts paused
-under `prefers-reduced-motion`, and never renders packets in that mode.
+## Motion
 
-### Sequence Diagrams and Request-Path Tabs
-`SequenceDiagram` draws lanes as 12px-radius pills (the featured lane gets
-the violet stroke), dashed lifelines, and numbered violet badges at each
-message's source; labels sit beside the source end with a panel-colored halo
-so lifelines never cut text. Calls are solid violet, replies dashed ink-faint,
-background work dashed dim violet, notes are accent-tinted pills, and a
-dark band marks elapsed time. `RequestPathTabs` puts one diagram per tab
-(tablist with arrow-key support), followed by exactly three point cards.
+A small, calm set. Everything collapses under `prefers-reduced-motion`.
+- Hero frame inset on scroll, plus a one-time greeting fade/rise (0.8s, `cubic-bezier(0.16,1,0.3,1)`).
+- Section heading reveal: 12px rise and fade, once, headings only.
+- Row hover tint and arrow rotate (200ms). Accordion height via `grid-template-rows` (250ms). Modal and popover: scale 0.98 → 1 plus fade (200ms in, 150ms out).
+- The 3D ring idle rotation, paused when off screen.
 
-### Illustrations
-Two authored families, both product-true. **Line-work vignettes** (hero
-monitor graph, experience side panels): gray edges in Hairline Strong
-(#322a4a, 1.3-1.6px), highlighted route in Signal Violet (2.4-3.5px,
-round caps), big nodes Lifted Violet, dim-violet sub-palette — **#584b85**
-(dim nodes), **#3d3358** (skeleton bars), **#1c1533** ("hot"/selected
-fills) — with mono captions in ink-dim/ink-faint. **Mockup windows**
-(`ProjectMockups`): dark app windows (#0b0916 fill, #3b3157 frame,
-rose/amber/mint chrome dots, mono title pill) drawing each product's real
-or planned interface — ranked route lists, playlist rows, guarded SQL with
-mint check marks and a violet confidence bar. Meaningful graphics get
-`role="img"` + `aria-label`; decorative ones `aria-hidden`. **The
-Product-True Illustration Rule.** Every illustration depicts a real
-mechanism or interface of the system it represents — never stock imagery,
-screenshots faked as UI, or gradient stand-ins.
+**The Calm Motion Rule.** No scroll-jacking, no smooth-scroll libraries, no parallax outside the hero frame.
 
-### Motion (system-wide)
-One authored entrance plus a small sanctioned interaction set:
-- **Hero entrance:** `hero-rise` (rise-in: 26px lift + fade, 0.9s `cubic-bezier(0.16,1,0.3,1)`, five stagger steps at 0.05-0.5s). The graph draw/pop keyframes (`draw-edge`, `node-pop`, `pulse-route`) remain defined for graph illustrations.
-- **Hero idle:** `float-bob` (5.5s ease-in-out, ±7px, staggered) on floating cards and carousel tech chips; three-layer pointer parallax (see Hero Scene).
-- **Section-heading reveals:** the `Reveal` wrapper (IntersectionObserver, threshold 0.1, `-40px` bottom margin, one-shot) applies `.reveal` — 16px lift + fade over 0.6s ease — to section headings and the case-study page hero block only; section bodies arrive static.
-- **Hover set:** card lift `-translate-y-1.5` (300ms), skill-chip lift `-translate-y-0.5` (200ms), mockup tilt deepen (500ms), and `transition-colors` everywhere else.
+## Accessibility (unchanged bar)
+Landmarks, skip link, visible `focus-visible` ring (2px Field Green, 3px offset), labeled SVGs, dialog semantics with focus trap, keyboard-operable accordion and table rows, AA contrast on every paper surface, reduced-motion and touch fallbacks.
 
-`prefers-reduced-motion` collapses all of it to final state instantly
-(opacity 1, transforms none, universal 0.01ms override); parallax and bob
-are additionally skipped on touch (`hover: none`). **The One Authored
-Moment Rule (amended).** Orchestrated entrance animation lives in the hero;
-scroll entrances exist only as the single per-section heading reveal and
-the case-study hero block — never on card grids, lists, or body content.
-
-## Do's and Don'ts
-
-### Do:
-- **Do** keep violet (#8b5cf6 family) as the only accent in UI chrome, with polychrome confined to the three sanctioned zones (hero avatar scene, brand marks, project gradient identities).
-- **Do** step dark surfaces bg → bg-raised → bg-panel with 1px hairline borders instead of shadows.
-- **Do** follow the radius ladder: 24px panels, 16px insets, 12px controls, 8px icon/action buttons, pills for tags/badges/dots.
-- **Do** hold the section rhythm: `max-w-6xl`, `px-5 sm:px-8`, `py-24`, heading block then `mt-12` content (carousel `mt-6`, full-bleed track).
-- **Do** give each new showcase project one fixed gradient identity and a product-true dark mockup window in the shared Window frame.
-- **Do** end display and section headings with the violet period, and render heading accent words in Lifted Violet.
-- **Do** ship reduced-motion and touch fallbacks and full aria wiring (skip link, `focus-visible` outline `2px accent-strong / 3px offset`, labeled SVGs, tablist/region semantics) with every new surface.
-- **Do** keep statuses and metrics honest — badges, metrics, and "· soon" placeholder slots state only verified facts; let Education own the AWS certification (the hero meta line carries location and degree only).
-
-### Don't:
-- **Don't** introduce polychrome outside the three sanctioned zones, recolor brand marks to violet, or use the unused cyan token without first assigning it a documented role.
-- **Don't** add box shadows on the dark ground — shadows live only as the CTA glow and the gradient-card mockup/chip shadows.
-- **Don't** use JetBrains Mono for headings, paragraphs, or buttons; mono means data.
-- **Don't** spread scroll reveals beyond section headings and the case-study hero — one `Reveal` per heading; body content arrives static.
-- **Don't** create gradient panels without an identity to carry; project identity surfaces (carousel cards, case-study hero and close) and the certification card are the set.
-- **Don't** replace authored SVG illustration with stock imagery, emoji, glyph-font icons, or abstract gradient blobs.
-
+## Do / Don't
+- **Do** keep one green accent, hairlines, the serif at regular weight, numbered eyebrows, and honest statuses.
+- **Do** ship fallbacks with every motion or 3D surface.
+- **Don't** add gradients, glow, card shadows, a second accent, bold serif, or a second 3D object.
+- **Don't** copy the reference's code, wording, or images.

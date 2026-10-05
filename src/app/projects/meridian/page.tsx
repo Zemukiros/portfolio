@@ -17,8 +17,6 @@ export const metadata: Metadata = {
 
 const project = projects.find((p) => p.slug === "meridian")!;
 
-const GRADIENT = "linear-gradient(135deg, #0b3b3c 0%, #0f766e 55%, #2dd4bf 125%)";
-
 const decisions = [
   {
     title: "Django 6.0 over 5.x",
@@ -88,25 +86,25 @@ export default function MeridianCaseStudy() {
   return (
     <>
       {/* ================= Case hero ================= */}
-      <section className="relative overflow-hidden" style={{ background: GRADIENT }}>
+      <section className="relative overflow-hidden border-b border-border">
         <div className="mx-auto w-full max-w-6xl px-5 pb-0 pt-28 sm:px-8">
           <Reveal>
             <Link
               href="/#work"
-              className="font-mono text-xs text-white/70 transition-colors hover:text-white"
+              className="font-mono text-xs text-ink-faint transition-colors hover:text-accent-strong"
             >
               ← All projects
             </Link>
             <div className="mt-6 flex flex-wrap items-center gap-4">
-              <h1 className="font-display text-[clamp(2.5rem,6vw,4.5rem)] font-extrabold leading-none tracking-[-0.03em] text-white">
-                Meridian<span className="text-white/50">.</span>
+              <h1 className="font-display text-[clamp(2.5rem,6vw,4.5rem)] leading-none tracking-[-0.025em] text-ink">
+                Meridian<span className="text-accent">.</span>
               </h1>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 font-mono text-[11px] font-medium text-white backdrop-blur-sm">
-                <span className="h-1.5 w-1.5 rounded-full bg-white/80" aria-hidden="true" />
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 font-mono text-[11px] font-medium text-accent-strong">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
                 Live · internship project
               </span>
             </div>
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/85 sm:text-xl">
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-dim sm:text-xl">
               A drone medication-delivery platform built during my software
               engineering internship at Meridian Medical Associates — patients
               order and watch their delivery move through a live four-stage
@@ -119,7 +117,7 @@ export default function MeridianCaseStudy() {
                   href={project.demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-xl bg-white px-6 py-3 text-[#0f766e] transition-colors hover:bg-white/85"
+                  className="rounded-full bg-accent-deep px-6 py-3 text-white transition-colors hover:bg-accent"
                 >
                   View demo ↗
                 </a>
@@ -128,12 +126,12 @@ export default function MeridianCaseStudy() {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/90 hover:text-white"
+                className="text-ink hover:text-accent-strong"
               >
                 View the repository ↗
               </a>
             </div>
-            <p className="mt-4 max-w-xl font-mono text-[11px] leading-relaxed text-white/65">
+            <p className="mt-4 max-w-xl font-mono text-[11px] leading-relaxed text-ink-dim">
               The demo is my original development and testing deployment on
               Render, built during the internship before the project moved to
               the company&apos;s hosting — it is not the company&apos;s current
@@ -143,7 +141,7 @@ export default function MeridianCaseStudy() {
             </p>
             <div className="mt-6 flex flex-wrap gap-2 pb-2">
               {project.stack.map((t) => (
-                <span key={t} className="rounded-full bg-white/12 px-3 py-1 font-mono text-[11px] text-white/85">
+                <span key={t} className="rounded-md border border-border px-2 py-0.5 font-mono text-[11px] text-ink-dim">
                   {t}
                 </span>
               ))}
@@ -152,13 +150,12 @@ export default function MeridianCaseStudy() {
 
           {/* hero mockup bleeding out of the gradient */}
           <div className="relative z-10 mt-10 sm:mt-12">
-            <div className="mx-auto max-w-4xl rotate-[2deg] rounded-2xl shadow-[0_30px_80px_rgba(7,6,12,0.6)]">
+            <div className="mx-auto max-w-4xl rounded-2xl border border-border-strong overflow-hidden">
               <MeridianMockup />
             </div>
           </div>
         </div>
         {/* fade the gradient into the page ground under the mockup */}
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-bg" aria-hidden="true" />
       </section>
 
       {/* metric strip */}
@@ -180,7 +177,7 @@ export default function MeridianCaseStudy() {
 
       {/* ================= Problem ================= */}
       <section className="mx-auto w-full max-w-6xl px-5 py-24 sm:px-8">
-        <p className="mx-auto max-w-3xl text-center font-display text-[clamp(1.5rem,3.2vw,2.25rem)] font-semibold leading-snug tracking-tight">
+        <p className="mx-auto max-w-3xl text-center font-display text-[clamp(1.5rem,3.2vw,2.25rem)] leading-snug tracking-tight">
           <span className="text-ink">
             Take the patient platform from wireframes to a live product — in an
             internship timeline.
@@ -217,10 +214,10 @@ export default function MeridianCaseStudy() {
               ].map(([t, b]) => (
                 <li key={t} className="flex gap-4">
                   <svg width="18" height="18" viewBox="0 0 14 14" className="mt-1.5 shrink-0" aria-hidden="true">
-                    <path d="M2 7h8M7 3.5 10.5 7 7 10.5" stroke="#8b5cf6" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M2 7h8M7 3.5 10.5 7 7 10.5" stroke="#2f6a3b" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                   <div>
-                    <h3 className="font-display text-lg font-bold text-ink">{t}</h3>
+                    <h3 className="font-display text-lg text-ink">{t}</h3>
                     <p className="mt-1.5 text-[15px] leading-relaxed text-ink-dim">{b}</p>
                   </div>
                 </li>
@@ -246,7 +243,7 @@ export default function MeridianCaseStudy() {
           lede="One well-built monolith, twice deployed: production on the company's own hosting behind Passenger with MariaDB, and a demo copy on Render + Neon that rebuilds as code on every push."
         />
         <div className="mt-12">
-          <div className="overflow-x-auto rounded-3xl border border-border bg-bg-raised p-5 sm:p-8">
+          <div tabIndex={0} role="region" aria-label="Architecture diagram (scrolls horizontally)" className="overflow-x-auto rounded-3xl border border-border bg-bg-raised p-5 sm:p-8">
             <div className="min-w-[640px]">
               <MeridianArchitectureDiagram />
             </div>
@@ -264,7 +261,7 @@ export default function MeridianCaseStudy() {
                   : "border-border bg-bg-raised hover:border-border-strong"
               }`}
             >
-              <h3 className={`font-display font-bold text-ink ${d.wide ? "text-2xl" : "text-xl"}`}>
+              <h3 className={`font-display text-ink ${d.wide ? "text-2xl" : "text-xl"}`}>
                 {d.title}{" "}
                 <span className="font-medium text-accent-strong">— {d.tradeoff}</span>
               </h3>
@@ -286,7 +283,7 @@ export default function MeridianCaseStudy() {
         <div className="mt-12 grid gap-5 md:grid-cols-2">
           {constraints.map((c) => (
             <div key={c.title} className="rounded-3xl border border-border bg-bg-raised p-7 sm:p-8">
-              <h3 className="font-display text-xl font-bold text-ink">{c.title}</h3>
+              <h3 className="font-display text-xl text-ink">{c.title}</h3>
               <p className="mt-3 text-[15px] leading-relaxed text-ink-dim">{c.body}</p>
             </div>
           ))}
@@ -310,7 +307,7 @@ export default function MeridianCaseStudy() {
           {/* test suites */}
           <div>
             <div className="h-full rounded-3xl border border-border bg-bg-raised p-7 sm:p-8">
-              <h3 className="font-display text-xl font-bold text-ink">
+              <h3 className="font-display text-xl text-ink">
                 69 automated tests, four apps
               </h3>
               <div className="mt-6 space-y-5">
@@ -318,7 +315,7 @@ export default function MeridianCaseStudy() {
                   <div key={s.label}>
                     <div className="flex items-baseline justify-between gap-3">
                       <p className="font-mono text-xs text-ink-dim">{s.label}</p>
-                      <p className="font-display text-lg font-bold text-accent-strong">{s.count}</p>
+                      <p className="font-display text-lg text-accent-strong">{s.count}</p>
                     </div>
                     <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-bg-panel">
                       <div className="h-full rounded-full bg-accent" style={{ width: `${s.pct}%` }} />
@@ -337,7 +334,7 @@ export default function MeridianCaseStudy() {
           <div>
             <div className="flex h-full flex-col gap-6">
               <div className="rounded-3xl border border-border bg-bg-raised p-7 sm:p-8">
-                <h3 className="font-display text-xl font-bold text-ink">
+                <h3 className="font-display text-xl text-ink">
                   Two deployments, both documented
                 </h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-ink-dim">
@@ -351,7 +348,7 @@ export default function MeridianCaseStudy() {
                 </p>
               </div>
               <div className="flex-1 rounded-3xl border border-border bg-bg-raised p-7 sm:p-8">
-                <h3 className="font-display text-xl font-bold text-ink">
+                <h3 className="font-display text-xl text-ink">
                   Demo data as a feature
                 </h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-ink-dim">
@@ -370,14 +367,13 @@ export default function MeridianCaseStudy() {
       {/* ================= Close ================= */}
       <section className="mx-auto w-full max-w-6xl px-5 pb-28 sm:px-8">
         <div
-          className="flex flex-wrap items-center justify-between gap-6 rounded-3xl p-9 sm:p-12"
-          style={{ background: GRADIENT }}
+          className="flex flex-wrap items-center justify-between gap-6 rounded-[20px] border border-border bg-bg-raised p-9 sm:p-12"
         >
           <div>
-            <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">
-              Order a delivery, then read the code<span className="text-white/50">.</span>
+            <h2 className="font-display text-3xl text-ink sm:text-4xl">
+              Order a delivery, then read the code<span className="text-accent">.</span>
             </h2>
-            <p className="mt-2 max-w-md text-[15px] leading-relaxed text-white/80">
+            <p className="mt-2 max-w-md text-[15px] leading-relaxed text-ink-dim">
               The original Render demo, the 69-test suite, and the
               day-by-day development log — all open.
             </p>
@@ -388,7 +384,7 @@ export default function MeridianCaseStudy() {
                 href={project.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-xl bg-white px-6 py-3 text-[#0f766e] transition-colors hover:bg-white/85"
+                className="rounded-full bg-accent-deep px-6 py-3 text-white transition-colors hover:bg-accent"
               >
                 View demo ↗
               </a>
@@ -397,14 +393,14 @@ export default function MeridianCaseStudy() {
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white/90 transition-colors hover:text-white"
+              className="text-ink transition-colors hover:text-accent-strong"
             >
               GitHub ↗
             </a>
-            <Link href="/#contact" className="text-white/90 transition-colors hover:text-white">
+            <Link href="/#contact" className="text-ink transition-colors hover:text-accent-strong">
               Contact me
             </Link>
-            <Link href="/#work" className="text-white/90 transition-colors hover:text-white">
+            <Link href="/#work" className="text-ink transition-colors hover:text-accent-strong">
               All projects
             </Link>
           </div>
