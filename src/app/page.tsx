@@ -4,6 +4,7 @@ import SectionHeading from "@/components/SectionHeading";
 import ProjectList from "@/components/ProjectList";
 import ExperienceAccordion from "@/components/ExperienceAccordion";
 import GithubActivity from "@/components/GithubActivity";
+import FieldRoute from "@/components/FieldRoute";
 import HashRingObject from "@/components/HashRingObject";
 import LocalTime from "@/components/LocalTime";
 import { TechIcon, AwsMark } from "@/components/TechIcon";
@@ -18,13 +19,16 @@ const SECTION = "mx-auto w-full max-w-6xl px-5 py-24 sm:px-8 sm:py-32";
 export default async function Home() {
   const github = profile.showGithubActivity ? await getGithubActivity(profile.githubUser) : null;
 
-  const landmarks = [
+  const landmarks: { title: string; meta: string; when: string; href?: string }[] = [
     ...education.map((e) => ({
       title: e.degree,
       meta: [e.school, e.detail].filter(Boolean).join(" · "),
       when: e.dates,
     })),
-    ...certifications.map((c) => ({ title: c.name, meta: c.issuer, when: "Certified" })),
+    // Certifications appear only once a public verification link exists.
+    ...certifications
+      .filter((c) => c.verifyUrl)
+      .map((c) => ({ title: c.name, meta: c.issuer, when: "Certified", href: c.verifyUrl })),
   ];
 
   return (
@@ -65,7 +69,17 @@ export default async function Home() {
                   <li key={l.title} className="grid gap-1 border-b border-border py-4 sm:grid-cols-[1fr_auto] sm:gap-6">
                     <div>
                       <p className="font-display text-xl leading-tight text-ink">{l.title}</p>
-                      <p className="mt-1 text-sm text-ink-dim">{l.meta}</p>
+                      <p className="mt-1 text-sm text-ink-dim">
+                        {l.meta}
+                        {l.href && (
+                          <>
+                            {" · "}
+                            <a href={l.href} target="_blank" rel="noopener noreferrer" className="text-accent-strong hover:underline">
+                              Verify ↗
+                            </a>
+                          </>
+                        )}
+                      </p>
                     </div>
                     <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-faint sm:pt-1.5">{l.when}</p>
                   </li>
@@ -154,11 +168,25 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* ================= 05 GitHub ================= */}
+        {/* ================= 05 Field (interactive Dijkstra) ================= */}
+        <section id="field" className={SECTION}>
+          <SectionHeading
+            index="05"
+            label="How I think"
+            title="Shortest path"
+            accent="through the field"
+            lede="A live Dijkstra running in your browser — the same algorithm at the heart of IntelliRoute's routing core. Pick a flower and watch it search."
+          />
+          <div className="mt-14">
+            <FieldRoute />
+          </div>
+        </section>
+
+        {/* ================= GitHub (off until activity is denser; see profile.showGithubActivity) ================= */}
         {github && (
           <section id="github" className={SECTION}>
             <SectionHeading
-              index="05"
+              index="06"
               label="GitHub"
               title="Building"
               accent="in public"
@@ -173,7 +201,7 @@ export default async function Home() {
         {/* ================= 06 Capabilities ================= */}
         <section id="capabilities" className={SECTION}>
           <SectionHeading
-            index={github ? "06" : "05"}
+            index={github ? "07" : "06"}
             label="Capabilities"
             title="What I can"
             accent="build for your team"
