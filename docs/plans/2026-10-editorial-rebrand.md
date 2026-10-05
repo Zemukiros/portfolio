@@ -1,6 +1,6 @@
 # Plan: Editorial rebrand + minimalist 3D object
 
-Status: **Approved 2026-10-04 — Phase 1 in progress** on `feat/editorial-rebrand`
+Status: **Approved 2026-10-04** on `feat/editorial-rebrand` — Phases 1–3 done (contract, home rebuild, 3D ring); next: Phase 4 case-study restyle
 
 ## Decisions (2026-10-04)
 - Direction: follow the reference's light editorial look closely (user: Signal Violet / gradient cards felt cliché).

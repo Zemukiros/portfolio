@@ -178,7 +178,7 @@ Radius ladder: 20px modals and the hero frame → 16px cards and stack panels �
 
 ## Signature: the 3D object
 
-A minimalist **Mini-S3 hash ring** sits in About where a portrait would go. It is a thin ink torus with five node beads, and one green key arc travels to its replica nodes. Preference lists come from `src/lib/hashRing.ts`, so it is true to the product. It is rendered with React Three Fiber in matte ink and paper tones, with no gradients or glow. It rotates slowly at idle and tilts ≤ 8° toward the pointer.
+A minimalist **Mini-S3 hash ring** sits in About where a portrait would go. It is a thin ink torus with four node beads (the repo's four storage nodes), and a green arc plus a travelling packet carry one key to its three replicas. Preference lists come from `src/lib/hashRing.ts`, so it is true to the product. It is rendered with React Three Fiber in matte ink and paper tones, with no gradients or glow. It rotates slowly at idle and tilts ≤ 8° toward the pointer.
 - It loads lazily after first paint and only renders when on screen.
 - The fallback is a static authored SVG of the same ring, used for `prefers-reduced-motion`, missing WebGL, `(hover: none)` low-power devices, and while loading.
 - `role="img"` with a description of what the ring shows.

@@ -4,7 +4,7 @@ import SectionHeading from "@/components/SectionHeading";
 import ProjectList from "@/components/ProjectList";
 import ExperienceAccordion from "@/components/ExperienceAccordion";
 import GithubActivity from "@/components/GithubActivity";
-import HashRingFigure from "@/components/HashRingFigure";
+import HashRingObject from "@/components/HashRingObject";
 import LocalTime from "@/components/LocalTime";
 import { TechIcon, AwsMark } from "@/components/TechIcon";
 import { profile } from "@/data/profile";
@@ -45,7 +45,7 @@ export default async function Home() {
           <div className="mt-14 grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
             <figure className="self-start">
               <div className="rounded-[20px] border border-border bg-bg-raised p-6">
-                <HashRingFigure className="mx-auto w-full max-w-[420px]" />
+                <HashRingObject />
               </div>
               <figcaption className="mt-3 font-mono text-[11px] leading-relaxed text-ink-faint">
                 Mini-S3&apos;s consistent-hash ring: a key lands on the first three nodes clockwise.
