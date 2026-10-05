@@ -183,7 +183,15 @@ A minimalist **Mini-S3 hash ring** sits in About where a portrait would go. It i
 - The fallback is a static authored SVG of the same ring, used for `prefers-reduced-motion`, missing WebGL, `(hover: none)` low-power devices, and while loading.
 - `role="img"` with a description of what the ring shows.
 
-**The One Object Rule.** One 3D object on the site. It is never decorative-only, and no other WebGL.
+**The Hero Fishbowl (amendment, user-approved 2026-10-04).** The hero's sun circle holds a small glass
+fishbowl: one original, generic fish (ellipsoid body, wagging tail, fins) swimming a slow figure-of-eight,
+a few rising bubbles, two weed strands, a sand floor, and one specular arc on the glass — all in field
+greens, paper, and ink, no other hues. It is positioned from the field artwork's slice math so it always
+sits exactly in the circle, pauses when the hero is off screen, shares the lazy three.js chunk, and falls
+back to a flat SVG fish under the same conditions as the ring. It is decorative (`aria-hidden`).
+
+**The Two Object Rule (amended from One Object).** At most two WebGL objects on the site: the product-true
+hash ring in About and the decorative hero fishbowl. No others without an explicit, user-approved amendment.
 
 ## Imagery
 

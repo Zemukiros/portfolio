@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { profile } from "@/data/profile";
 import { education } from "@/data/education";
+import HeroFishbowl from "./HeroFishbowl";
 
 /**
  * Full-viewport framed hero. On scroll the frame insets (scale + radius) while the page
@@ -39,6 +40,7 @@ export default function EditorialHero() {
     <section ref={ref} className="hero-frame-wrap relative h-[100svh] min-h-[560px] p-0" aria-labelledby="hero-title">
       <div className="hero-frame absolute inset-0 overflow-hidden">
         <FieldArtwork />
+        <HeroFishbowl />
 
         <div className="relative flex h-full flex-col items-center justify-center px-5 text-center">
           <p className="hero-rise hero-rise-1 rounded-full border border-ink/15 bg-bg/60 px-4 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.16em] text-ink-dim backdrop-blur-sm">

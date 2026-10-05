@@ -1,38 +1,14 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { Component, useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState } from "react";
+import Keep2DOnError from "./Keep2DOnError";
 import HashRingFigure from "./HashRingFigure";
 import { preference, ringDescription } from "@/lib/ringFigure";
+import { canUse3D } from "@/lib/webgl";
 
 const HashRing3D = dynamic(() => import("./HashRing3D"), { ssr: false });
 
-/** If the 3D chunk fails to load or WebGL throws, drop back to the SVG (even after a fade-in). */
-class Keep2DOnError extends Component<{ children: ReactNode; onFail: () => void }, { failed: boolean }> {
-  state = { failed: false };
-  static getDerivedStateFromError() {
-    return { failed: true };
-  }
-  componentDidCatch() {
-    this.props.onFail();
-  }
-  render() {
-    return this.state.failed ? null : this.props.children;
-  }
-}
-
-function canUse3D() {
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
-  if (window.matchMedia("(hover: none)").matches) return false; // touch / low-power: keep the SVG
-  try {
-    const c = document.createElement("canvas");
-    const gl = c.getContext("webgl2") ?? c.getContext("webgl");
-    gl?.getExtension("WEBGL_lose_context")?.loseContext(); // release the probe context
-    return Boolean(gl);
-  } catch {
-    return false;
-  }
-}
 
 /**
  * The About section's signature object (DESIGN.md → "Signature: the 3D object").
