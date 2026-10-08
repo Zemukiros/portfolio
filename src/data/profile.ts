@@ -22,7 +22,7 @@ export const profile = {
     "Full-stack product delivery",
   ],
   about: [
-    "I'm a Computer Science student at Bowie State University (B.S. expected May 2027) focused on backend, AI-enabled, cloud, and full-stack engineering. I care about building systems that are reliable and provable — with automated tests, benchmarks, CI pipelines, and honest documentation behind every claim.",
+    "I'm a Computer Science student at Bowie State University focused on full-stack, AI-enabled, and cloud engineering. I care about building systems that are reliable and provable — with automated tests, benchmarks, CI pipelines, and honest documentation behind every claim.",
     "My day-to-day stack spans Java and Spring Boot on the backend, Python with FastAPI and Django for services, TypeScript and Next.js on the frontend, and PostgreSQL for data. I package with Docker, automate with GitHub Actions, and design for the cloud as an AWS Certified Solutions Architect – Associate.",
     "I've interned on two engineering teams — building a drone-based medication delivery platform at Meridian Medical Associates and shipping production Java/Spring Boot features at Mundy Base Technologies — and I direct AI tools aggressively in my workflow while owning the architecture, review, verification, and final quality of everything I ship.",
   ],
