@@ -1,22 +1,35 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { projects, projectFootnote, statusStyles, type Project } from "@/data/projects";
+import { projects, statusStyles, type Project } from "@/data/projects";
 import ProjectLinks from "./ProjectLinks";
 import {
   IntelliRouteMockup,
   MeridianMockup,
   MiniS3Mockup,
   RhythmiqMockup,
-  QueryGuardMockup,
 } from "./ProjectMockups";
 
-/** Display order and thumbnail per project. IntelliRoute is the featured project. */
+/** Real product screenshot, served static (public/projects) so every route stays prerendered. */
+function QueryGuardShot() {
+  return (
+    /* eslint-disable-next-line @next/next/no-img-element */
+    <img
+      src="/projects/queryguard-pipeline.webp"
+      width={1600}
+      height={1111}
+      alt="QueryGuard in demo mode answering a gross-revenue question: the pipeline timeline with every check passed, a 0.98 calibrated confidence with its per-signal breakdown, blind back-translation, an agreeing second query, and the SQL."
+      className="block h-auto w-full"
+    />
+  );
+}
+
+/** Display order and thumbnail per project. QueryGuard is the featured project. */
 const ROWS: { slug: string; thumb: React.ReactNode; featured?: boolean }[] = [
-  { slug: "intelliroute", thumb: <IntelliRouteMockup />, featured: true },
+  { slug: "queryguard", thumb: <QueryGuardShot />, featured: true },
+  { slug: "intelliroute", thumb: <IntelliRouteMockup /> },
   { slug: "mini-s3", thumb: <MiniS3Mockup /> },
   { slug: "meridian", thumb: <MeridianMockup /> },
-  { slug: "queryguard", thumb: <QueryGuardMockup /> },
   { slug: "rhythmiq", thumb: <RhythmiqMockup /> },
 ];
 
@@ -114,8 +127,6 @@ export default function ProjectList() {
           );
         })}
       </ul>
-
-      <p className="mt-5 text-sm text-ink-faint">{projectFootnote}</p>
 
       <dialog
         ref={dialogRef}

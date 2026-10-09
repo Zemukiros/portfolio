@@ -120,31 +120,32 @@ export const projects: Project[] = [
   },
   {
     slug: "queryguard",
-    name: "QueryGuard AI",
+    name: "QueryGuard",
     oneLiner:
-      "Secure text-to-SQL analytics with guardrails and hallucination detection over a read-only PostgreSQL database.",
-    status: "In development",
-    github: "https://github.com/Zemukiros/queryguard",
+      "Text-to-SQL with guardrails, hallucination detection and calibrated confidence. Zero writes possible.",
+    status: "Live",
     stack: [
       "Python",
       "FastAPI",
-      "PostgreSQL",
-      "SQLAlchemy",
-      "Next.js",
+      "React",
       "TypeScript",
-      "Docker",
-      "GitHub Actions",
+      "PostgreSQL",
+      "Redis",
+      "Claude API",
+      "Vercel",
     ],
+    github: "https://github.com/Zemukiros/queryguard",
+    liveUrl: "https://queryguard-livid.vercel.app",
+    caseStudyPath: "/projects/queryguard",
+    headlineMetric: "99.0% of wrong answers flagged · 7.6% false flags · 39/40 answerable correct",
     highlights: [
-      "Schema-aware SQL generation with a swappable LLM-provider interface — never hard-coded to one vendor.",
-      "Guardrails: read-only execution, blocked write/DDL operations, row limits, and back-translation checks that verify the SQL matches the question.",
-      "Evaluation harness over a golden set plus mutated-wrong negatives; first recorded live run (2026-10-01, 194 items): 49/50 generated answers correct, detectors flagged 102 of 105 wrong answers.",
+      "Two independent safety layers: a sqlparse-token guardrail (one SELECT, no DML anywhere, LIMIT added; 81 tests) in front of a read-only executor — a SELECT-only Postgres role in a READ ONLY transaction that is always rolled back.",
+      "Three detectors check every answer: blind back-translation (the SQL is turned back into a question by a model that never saw the original), an independent second query whose results must agree, and result sanity checks.",
+      "Their signals feed a logistic confidence model calibrated with grouped cross-validation. On the frozen eval set it flags 99.0% (103/104) of known-wrong queries, with 7.6% (6/79) false flags and Brier 0.051 → 0.038.",
+      "Live on Vercel with Neon Postgres and Upstash Redis: the real model runs within a $0.50 daily spend ceiling, falling back to a $0 demo mode; median $0.0135 and at most 4 API calls per question.",
     ],
   },
 ];
-
-export const projectFootnote =
-  "A fourth project will be selected and built after QueryGuard AI ships, targeting whichever capability the portfolio still lacks.";
 
 export const statusStyles: Record<ProjectStatus, { label: string; className: string }> = {
   Live: { label: "Live", className: "text-accent-strong border-accent/40 bg-accent/10" },
