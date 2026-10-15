@@ -11,7 +11,7 @@ export const education: EducationItem[] = [
     school: "Bowie State University",
     location: "Bowie, MD",
     degree: "B.S. in Computer Science",
-    detail: "GPA: 3.8 / 4.0",
+    detail: "GPA: 3.88 / 4.0",
     dates: "Expected May 2027",
   },
   {

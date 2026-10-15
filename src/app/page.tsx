@@ -19,11 +19,10 @@ const SECTION = "mx-auto w-full max-w-6xl px-5 py-24 sm:px-8 sm:py-32";
 export default async function Home() {
   const github = profile.showGithubActivity ? await getGithubActivity(profile.githubUser) : null;
 
-  const landmarks: { title: string; meta: string; when: string; href?: string }[] = [
+  const landmarks: { title: string; meta: string; when?: string; href?: string }[] = [
     ...education.map((e) => ({
       title: e.degree,
       meta: [e.school, e.detail].filter(Boolean).join(" · "),
-      when: e.dates,
     })),
     // Certifications appear only once a public verification link exists.
     ...certifications
@@ -81,7 +80,9 @@ export default async function Home() {
                         )}
                       </p>
                     </div>
-                    <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-faint sm:pt-1.5">{l.when}</p>
+                    {l.when && (
+                      <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-faint sm:pt-1.5">{l.when}</p>
+                    )}
                   </li>
                 ))}
               </ul>

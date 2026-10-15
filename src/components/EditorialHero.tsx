@@ -73,7 +73,7 @@ export default function EditorialHero() {
             ))}
           </nav>
           <p className="hero-rise hero-rise-5 absolute bottom-8 rounded-full bg-bg/75 px-4 py-1.5 font-mono text-[11px] tracking-[0.12em] text-ink backdrop-blur-sm">
-            {profile.location} · {education[0].degree.replace("B.S. in", "B.S.")}, {education[0].dates.replace("Expected ", "expected ")}
+            {profile.location} · {education[0].degree.replace("B.S. in", "B.S.")}
           </p>
         </div>
       </div>
