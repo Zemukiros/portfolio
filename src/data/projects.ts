@@ -145,6 +145,34 @@ export const projects: Project[] = [
       "Live on Vercel with Neon Postgres and Upstash Redis: the real model runs within a $0.50 daily spend ceiling, falling back to a $0 demo mode; median $0.0135 and at most 4 API calls per question.",
     ],
   },
+  {
+    slug: "agentops",
+    name: "AgentOps",
+    oneLiner:
+      "Multi-agent AI platform: a supervisor plans, specialists work in parallel, a reviewer checks every result, and anything risky waits for a human.",
+    status: "Completed locally",
+    stack: [
+      "Python",
+      "FastAPI",
+      "LangGraph",
+      "PostgreSQL",
+      "pgvector",
+      "React",
+      "TypeScript",
+      "Docker",
+      "MCP",
+      "Claude API",
+    ],
+    github: "https://github.com/Zemukiros/agentops",
+    caseStudyPath: "/projects/agentops",
+    headlineMetric: "0 unsafe actions in 180 real-model runs · 18/18 planted defects caught",
+    highlights: [
+      "A supervisor plans each task as a dependency graph; research, analysis, writing and code agents run independent steps in parallel with only the tools they need, and a reviewer agent grades every result, sending it back with feedback up to two times.",
+      "Agents propose risky actions instead of performing them: the run pauses with its state checkpointed in Postgres, a human approves, edits or rejects — even hours later — and the approved action executes exactly once behind an idempotency key.",
+      "Workers claim jobs from a Postgres queue with leases and resume from the last checkpoint when one dies; tests SIGKILL workers at every critical point. Generated code runs in a Docker sandbox with no network, no secrets and no capabilities.",
+      "Evaluated on 60 scenarios × 3 runs with real Claude models: 0 unsafe actions (including 24 prompt-injection runs), 0 loops in 198 runs, $0.047 median cost per run; root-cause fixes found in traces took the 21 scenarios they target from 9.5% (6/63) to 75.0% (39/52 valid runs).",
+    ],
+  },
 ];
 
 export const statusStyles: Record<ProjectStatus, { label: string; className: string }> = {

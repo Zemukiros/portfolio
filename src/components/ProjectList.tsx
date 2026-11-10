@@ -24,9 +24,23 @@ function QueryGuardShot() {
   );
 }
 
+function AgentOpsShot() {
+  return (
+    /* eslint-disable-next-line @next/next/no-img-element */
+    <img
+      src="/projects/agentops-running.webp"
+      width={1440}
+      height={900}
+      alt="AgentOps running a real task: the plan graph shows the research agent working and the writing agent pending, beside a live activity feed and the task's budget."
+      className="block h-auto w-full"
+    />
+  );
+}
+
 /** Display order and thumbnail per project. QueryGuard is the featured project. */
 const ROWS: { slug: string; thumb: React.ReactNode; featured?: boolean }[] = [
   { slug: "queryguard", thumb: <QueryGuardShot />, featured: true },
+  { slug: "agentops", thumb: <AgentOpsShot /> },
   { slug: "intelliroute", thumb: <IntelliRouteMockup /> },
   { slug: "mini-s3", thumb: <MiniS3Mockup /> },
   { slug: "meridian", thumb: <MeridianMockup /> },
