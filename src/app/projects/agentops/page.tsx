@@ -110,7 +110,7 @@ const challenges = [
   },
   {
     title: "What unit tests couldn't see",
-    body: "A real-model walkthrough through the UI completed with one approved email, sent exactly once — but the final report said “not sent”, because the synthesizer wrote from the pre-approval draft. It now receives the actual action outcomes (ADR-052).",
+    body: "A real-model walkthrough through the UI completed with one approved email, sent exactly once — but the final report said “not sent”, because the synthesizer wrote from the pre-approval draft. It now receives the actual action outcomes (ADR-052), and a second real-model run confirmed the fix: its report says the email was sent.",
   },
 ];
 
@@ -138,12 +138,13 @@ const stackGroups = [
   { label: "AI", items: "Claude API (Sonnet 5.5 and Haiku 5.5 as agents, Opus 5.5 as judge) · MCP · fastembed" },
   { label: "Frontend", items: "React 19 · TypeScript · Vite · Tailwind CSS · TanStack Query · React Flow" },
   { label: "Infra & security", items: "Docker · Docker Compose · nginx · GitHub Actions (10 CI jobs) · OpenTelemetry · gitleaks · pip-audit" },
-  { label: "Testing", items: "pytest (660 tests) · Vitest (65) · Playwright + axe · real-model eval harness" },
+  { label: "Testing", items: "pytest (660 tests) · Vitest (81) · Playwright + axe · real-model eval harness" },
 ];
 
 const next = [
   "Re-run the full 60-scenario suite after the fixes — the re-measure covered only the scenarios they target.",
-  "Re-measure the deliverable fix (ADR-052) with real models; it is tested with scripted models only.",
+  "Re-measure the deliverable fix (ADR-052) across the eval suite; so far it is confirmed on one real-model run.",
+  "Fix two issues that second run surfaced: the reviewer misread the proposed email as truncated, and the final reviewer doesn't see what actions actually did.",
   "Human review of the judge's grades, then the live web instead of fixture pages, and a broader prompt-injection red team.",
 ];
 
@@ -180,11 +181,14 @@ export default function AgentOpsCaseStudy() {
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4 text-sm font-medium">
               <a
-                href={project.github}
+                href={project.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-full bg-accent-deep px-6 py-3 text-white transition-colors hover:bg-accent"
               >
+                Try the recorded demo ↗
+              </a>
+              <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-ink hover:text-accent-strong">
                 View the repository ↗
               </a>
               <a href="#results" className="text-ink hover:text-accent-strong">
@@ -192,9 +196,10 @@ export default function AgentOpsCaseStudy() {
               </a>
             </div>
             <p className="mt-4 max-w-xl font-mono text-[11px] leading-relaxed text-ink-faint">
-              It needs Postgres, long-running workers and Docker, so it runs
-              locally with Docker Compose. A public replay of a real recorded run
-              is next.
+              The demo is the real UI replaying one real-model run in your
+              browser, and you make its two human decisions. The full system
+              needs Postgres, long-running workers and Docker, so it runs locally
+              with Docker Compose.
             </p>
             <div className="mt-6 flex flex-wrap gap-2 pb-2">
               {project.stack.map((t) => (
@@ -465,17 +470,21 @@ export default function AgentOpsCaseStudy() {
               Run it, then try to make it misbehave<span className="text-accent">.</span>
             </h2>
             <p className="mt-2 max-w-md text-[15px] leading-relaxed text-ink-dim">
-              Docker Compose brings up the whole stack. Scripted models are the
-              default, so it runs at $0 with no API key.
+              Watch a real run in the recorded demo, or bring up the whole stack
+              with Docker Compose. Scripted models are the default, so it runs at
+              $0 with no API key.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-4 text-sm font-medium">
             <a
-              href={project.github}
+              href={project.demoUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full bg-accent-deep px-6 py-3 text-white transition-colors hover:bg-accent"
             >
+              Recorded demo ↗
+            </a>
+            <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-ink transition-colors hover:text-accent-strong">
               GitHub ↗
             </a>
             <Link href="/#contact" className="text-ink transition-colors hover:text-accent-strong">
