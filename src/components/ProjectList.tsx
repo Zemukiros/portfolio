@@ -59,6 +59,25 @@ function StatusBadge({ status }: { status: Project["status"] }) {
   );
 }
 
+/**
+ * A demo deployment shown in the row itself, beside the status. Only for projects whose
+ * status isn't Live: a Live badge already says there is something to open.
+ */
+function DemoPill({ p }: { p: Project }) {
+  if (!p.demoUrl || p.status === "Live") return null;
+  return (
+    <a
+      href={p.demoUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`View the ${p.name} demo (opens in a new tab)`}
+      className="pointer-events-auto relative inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-border-strong bg-bg px-2.5 py-0.5 font-mono text-[11px] text-ink transition-colors hover:border-accent hover:text-accent-strong"
+    >
+      View demo ↗
+    </a>
+  );
+}
+
 export default function ProjectList() {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [openSlug, setOpenSlug] = useState<string | null>(null);
@@ -93,13 +112,20 @@ export default function ProjectList() {
         {ROWS.map((row) => {
           const p = projects.find((x) => x.slug === row.slug)!;
           return (
-            <li key={p.slug} className="border-b border-border">
+            <li
+              key={p.slug}
+              className="group relative border-b border-border transition-colors hover:bg-bg-raised has-[button:focus-visible]:bg-bg-raised"
+            >
+              {/* The whole row opens the modal; the button sits under the content so a row
+                  can also carry its own link (a demo) without nesting it in the button. */}
               <button
                 type="button"
                 onClick={() => show(p.slug)}
                 aria-haspopup="dialog"
-                className="group grid w-full grid-cols-[88px_1fr_24px] items-center gap-4 px-2 py-5 text-left transition-colors hover:bg-bg-raised focus-visible:bg-bg-raised md:grid-cols-[120px_1fr_220px_130px_32px] md:gap-6"
-              >
+                aria-label={`Open details for ${p.name}`}
+                className="absolute inset-0 h-full w-full cursor-pointer"
+              />
+              <div className="pointer-events-none relative grid grid-cols-[88px_1fr_24px] items-center gap-4 px-2 py-5 md:grid-cols-[120px_1fr_220px_130px_32px] md:gap-6">
                 <span className="block aspect-[16/10] overflow-hidden rounded-xl border border-border bg-window">
                   <span className="pointer-events-none block w-[250%] origin-top-left scale-[0.4]">{row.thumb}</span>
                 </span>
@@ -115,8 +141,9 @@ export default function ProjectList() {
                     )}
                   </span>
                   <span className="mt-1 line-clamp-2 block text-sm leading-relaxed text-ink-dim">{p.oneLiner}</span>
-                  <span className="mt-2 block md:hidden">
+                  <span className="mt-2 flex flex-wrap items-center gap-2 md:hidden">
                     <StatusBadge status={p.status} />
+                    <DemoPill p={p} />
                   </span>
                 </span>
                 <span className="hidden flex-wrap gap-1.5 md:flex">
@@ -126,8 +153,9 @@ export default function ProjectList() {
                     </span>
                   ))}
                 </span>
-                <span className="hidden md:block">
+                <span className="hidden flex-col items-start gap-1.5 md:flex">
                   <StatusBadge status={p.status} />
+                  <DemoPill p={p} />
                 </span>
                 <span
                   className="flex h-8 w-8 items-center justify-center justify-self-end rounded-full border border-border-strong text-ink-dim transition-[transform,color,border-color] duration-200 group-hover:-rotate-45 group-hover:border-accent group-hover:text-accent"
@@ -135,8 +163,7 @@ export default function ProjectList() {
                 >
                   →
                 </span>
-                <span className="sr-only">Open details for {p.name}</span>
-              </button>
+              </div>
             </li>
           );
         })}
