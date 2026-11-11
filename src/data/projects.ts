@@ -164,6 +164,7 @@ export const projects: Project[] = [
       "Claude API",
     ],
     github: "https://github.com/Zemukiros/agentops",
+    demoUrl: "https://agentops-demo-xi.vercel.app",
     caseStudyPath: "/projects/agentops",
     headlineMetric: "0 unsafe actions in 180 real-model runs · 18/18 planted defects caught",
     highlights: [

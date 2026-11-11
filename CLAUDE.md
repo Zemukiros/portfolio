@@ -61,7 +61,7 @@ Semantic landmarks, skip link, keyboard-visible focus styles, `prefers-reduced-m
 - `meridian-website` — Django internship project (its guidance is in a gitignored CLAUDE.local.md there); now runs on company hosting, but the portfolio links only to the original Render demo (https://meridian-website-8dmx.onrender.com/) — the company domain is flagged by Google Safe Browsing, so don't link it
 - `intelliroute` — case-study subject, live at https://intelliroute-theta.vercel.app
 - `mini-s3` — case-study subject (github.com/Zemukiros/mini-s3); runs locally via Docker Compose, not hosted. Its drill numbers on the page (13 copies rebuilt, 13+18+15+17 = 63) are from one recorded run — counts vary per run
-- `agentops` — case-study subject (github.com/Zemukiros/agentops), checked out at `~/code/agentops` (not `~/projects/`); runs locally via Docker Compose, not hosted. Every page number traces to its `docs/EVALUATION.md`; test counts (pytest 660, Vitest 65) are from a local run. A static replay demo on Vercel is planned — add it as `demoUrl` when it exists
+- `agentops` — case-study subject (github.com/Zemukiros/agentops), checked out at `~/code/agentops` (not `~/projects/`); runs locally via Docker Compose, not hosted. Every page number traces to its `docs/EVALUATION.md`; test counts (pytest 660, Vitest 81) are from local runs. Its recorded demo is live at https://agentops-demo-xi.vercel.app (`demoUrl`; a replay of one real run, so status stays `Completed locally`)
 
 ## Maintenance notes
 
